@@ -1,21 +1,20 @@
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
 
-const BLOG_POST_FILENAME_REGEX = /^(\/\d+)*\/(?<slug>.*)/
+const POST_FILENAME_REGEX = /^\/(?<category>.+)\/(\/?\d+)*\/(?<slug>.*)/
 
-exports.createPages = async ({ graphql, actions, reporter }) => {
+const createPagesInFolder = async ({graphql, actions, folderName}) => {
   const { createPage } = actions
 
-  // Define a template for blog post
-  const blogPost = path.resolve(`./src/templates/blog-post.js`)
+  const postTemplate = path.resolve(`./src/templates/post.js`)
 
-  // Get all markdown blog posts sorted by date
+  // Get all markdown posts in a folder sorted by date
   const result = await graphql(
     `
       {
         allMarkdownRemark(
+          filter: {fileAbsolutePath: {glob: "**/${folderName}/**"}}
           sort: { fields: [frontmatter___date], order: ASC }
-          limit: 1000
         ) {
           nodes {
             id
@@ -30,7 +29,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   if (result.errors) {
     reporter.panicOnBuild(
-      `There was an error loading your blog posts`,
+      `There was an error loading your posts`,
       result.errors
     )
     return
@@ -38,8 +37,8 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
   const posts = result.data.allMarkdownRemark.nodes
 
-  // Create blog posts pages
-  // But only if there's at least one markdown file found at "content/blog" (defined in gatsby-config.js)
+  // Create posts pages
+  // But only if there's at least one markdown file found at "content/" (defined in gatsby-config.js)
   // `context` is available in the template as a prop and as a variable in GraphQL
 
   if (posts.length > 0) {
@@ -49,7 +48,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
 
       createPage({
         path: post.fields.slug,
-        component: blogPost,
+        component: postTemplate,
         context: {
           id: post.id,
           previousPostId,
@@ -60,24 +59,125 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   }
 }
 
+const getTags = (allPosts) => {
+  const uniqueTags = new Set()
+
+  allPosts.forEach(({node}) => {
+      node.frontmatter.tags.forEach(tag => {
+          uniqueTags.add(tag)
+      })
+  })
+
+  return Array.from(uniqueTags)
+}
+
+const createTagsPages = async ({graphql, actions, folderName}) => {
+  const { createPage } = actions
+
+  const tagIndexTemplate = path.resolve(`./src/templates/tagIndex.js`)
+
+  // Get all markdown posts
+  const result = await graphql(
+      `
+      {
+        allMarkdownRemark(filter: {}) {
+        edges {
+            node {
+              id
+              frontmatter {
+                tags
+              }
+              fields {
+                slug
+                category
+              }
+            }
+          }
+        }
+      }
+      `
+  )
+
+  if (result.errors) {
+    reporter.panicOnBuild(
+      `There was an error loading your posts`,
+      result.errors
+    )
+    return
+  }
+
+  const tags = getTags(result.data.allMarkdownRemark.edges)
+
+  if (tags.length > 0) {
+    tags.forEach((tag, index) => {
+      createPage({
+        path: `tag/${tag}`,
+        component: tagIndexTemplate,
+        context: {
+          tag,
+          ids: result.data.allMarkdownRemark.edges
+            .filter(({ node }) => {
+              return node.frontmatter.tags.includes(tag)
+            })
+            .map(({node}) => node.id),
+        },
+      })
+    })
+  }
+}
+
+exports.createPages = async ({ graphql, actions, reporter }) => {
+  await Promise.all(
+    [
+      "blog",
+      "articles",
+    ].map(async (folderName) => {
+      await createPagesInFolder({
+        graphql,
+        actions,
+        reporter,
+        folderName,
+      });
+    })
+  );
+
+  await createTagsPages({
+    graphql,
+    actions,
+    reporter,
+  });
+
+}
+
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 
   if (node.internal.type === `MarkdownRemark`) {
     const value = createFilePath({ node, getNode })
-    const match = BLOG_POST_FILENAME_REGEX.exec(value)
+    const match = POST_FILENAME_REGEX.exec(value)
     if (match !== null) {
+        const category = match.groups['category']
         const lastSlugFragment = match.groups['slug']
         createNodeField({
-            name: `slug`,
-            node,
-            value: `/blog/${lastSlugFragment}`,
-          })
+          name: `slug`,
+          node,
+          value: `/${category}/${lastSlugFragment}`,
+        })
+        createNodeField({
+          name: `category`,
+          node,
+          value: category,
+        })
     } else {
         createNodeField({
           name: `slug`,
           node,
-          value: `/blog/${value}`,
+          value: `/post/${value}`,
+        })
+        createNodeField({
+          name: `category`,
+          node,
+          value: `post`,
         })
     }
 
@@ -92,7 +192,7 @@ exports.createSchemaCustomization = ({ actions }) => {
 
   // Also explicitly define the Markdown frontmatter
   // This way the "MarkdownRemark" queries will return `null` even when no
-  // blog posts are stored inside "content/blog" instead of returning an error
+  // blog posts are stored inside "content/" instead of returning an error
   createTypes(`
     type SiteSiteMetadata {
       author: Author
@@ -124,10 +224,12 @@ exports.createSchemaCustomization = ({ actions }) => {
       title: String
       description: String
       date: Date @dateformat
+      tags: [String]
     }
 
     type Fields {
       slug: String
+      category: String
     }
   `)
 }

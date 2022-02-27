@@ -15,14 +15,15 @@ module.exports = {
             email: `paulomenin@gmail.com`,
         },
     },
+
     plugins: [
         `gatsby-plugin-image`,
         `gatsby-plugin-postcss`,
         {
             resolve: `gatsby-source-filesystem`,
             options: {
-                path: `${__dirname}/content/blog`,
-                name: `blog`,
+                name: `posts`,
+                path: `${__dirname}/content/`,
             },
         },
         {
@@ -116,7 +117,7 @@ module.exports = {
               }
             `,
                         output: "/rss.xml",
-                        title: "Paulo Menin Blog RSS Feed",
+                        title: "Paulo Menin RSS Feed",
                     },
                 ],
             },

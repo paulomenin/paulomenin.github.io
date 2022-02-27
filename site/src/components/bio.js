@@ -18,18 +18,18 @@ const Bio = () => {
     const author = data.site.siteMetadata?.author
 
     return (
-        <div className="flex gap-2 items-center">
+        <div className="flex flex-col gap-2 items-center">
             <StaticImage
                 className="rounded-full"
                 layout="fixed"
                 formats={["auto", "webp", "avif"]}
                 src="../images/profile-pic.jpg"
-                width={60}
-                height={60}
+                width={90}
+                height={90}
                 quality={95}
                 alt="Profile picture"
             />
-            <div>
+            <div className="text-center">
               <p className="font-bold text-xl">
                   {author?.name || null}
               </p>

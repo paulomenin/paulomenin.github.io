@@ -13,9 +13,10 @@ const Menu = () => {
             {[
                 ["/articles", "Articles"],
                 ["/blog", "Blog"],
+                ["/tags", "Tags"],
                 ["/about", "About"]
             ].map(([url, label]) => (
-                <Link className="
+                <Link key={url} className="
                     font-bold px-2 rounded-full
                     hover:bg-neutral-200"
                     to={url}>
