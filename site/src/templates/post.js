@@ -25,9 +25,10 @@ const BlogPostTemplate = ({ data, location }) => {
         >
           <header>
             <h1 itemProp="headline">{post.frontmatter.title}</h1>
-            <div className="flex gap-2 content-center">
+            <TagList tags={post.frontmatter.tags} />
+            <div className="flex gap-2 justify-between">
               <div>{post.frontmatter.date}</div>
-              <TagList tags={post.frontmatter.tags} />
+              <div className="mr-2">{post.fields.readingTime.text}</div>
             </div>
           </header>
 
@@ -85,6 +86,11 @@ export const pageQuery = graphql`
         date(formatString: "MMMM DD, YYYY")
         description
         tags
+      }
+      fields {
+        readingTime {
+          text
+        }
       }
     }
     previous: markdownRemark(id: { eq: $previousPostId }) {
