@@ -30,9 +30,9 @@ const Menu = () => {
 const Header = ({ title }) => {
   return (
     <header className="
+        card
         flex flex-col
-        m-4 p-2 gap-2
-        rounded-xl bg-white
+        m-4 gap-2
     ">
         <div className="flex flex-row justify-between">
             <Link className="font-serif font-bold text-2xl" to="/">

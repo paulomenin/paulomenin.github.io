@@ -1,7 +1,6 @@
 import * as React from "react"
 import { Link, graphql } from "gatsby"
 
-import Bio from "../components/bio"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 
@@ -17,7 +16,7 @@ const BlogPostTemplate = ({ data, location }) => {
         description={post.frontmatter.description || post.excerpt}
       />
 
-      <div className="rounded-lg bg-white p-3">
+      <div className="card content-center">
         <article
           className="prose prose-neutral font-serif prose-headings:font-sans"
           itemScope
@@ -27,22 +26,17 @@ const BlogPostTemplate = ({ data, location }) => {
             <h1 itemProp="headline">{post.frontmatter.title}</h1>
             <p>{post.frontmatter.date}</p>
           </header>
-          <section
-            dangerouslySetInnerHTML={{ __html: post.html }}
-            itemProp="articleBody"
-          />
-        </article>
 
-        <nav className="rounded-lg bg-white">
-          <ul
-            style={{
-              display: `flex`,
-              flexWrap: `wrap`,
-              justifyContent: `space-between`,
-              listStyle: `none`,
-              padding: 0,
-            }}
-          >
+          <section itemProp="articleBody"
+          dangerouslySetInnerHTML={{ __html: post.html }}
+          />
+
+        </article>
+      </div>
+
+      {(previous || next) && (
+        <nav className="card mt-4">
+          <ul className="flex justify-between">
             <li>
               {previous && (
                 <Link to={previous.fields.slug} rel="prev">
@@ -59,8 +53,7 @@ const BlogPostTemplate = ({ data, location }) => {
             </li>
           </ul>
         </nav>
-
-      </div>
+      )}
 
     </Layout>
   )

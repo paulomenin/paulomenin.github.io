@@ -8,7 +8,7 @@ const Layout = ({ location, title, children }) => {
 
   return (
     <div
-     className="bg-neutral-100 flex flex-col h-screen justify-between"
+     className="flex flex-col"
      data-is-root-path={isRootPath}>
       <Header title={title} />
       <main className="mb-auto mx-4 relative">

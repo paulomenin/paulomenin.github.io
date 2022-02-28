@@ -10,7 +10,7 @@ const AboutPage = ({ data, location }) => {
     <Layout location={location} title={siteTitle}>
       <Seo title="About" />
       <div className="flex justify-center align-middle">
-        <div className="rounded-lg bg-white m-0 p-5">
+        <div className="card m-0 p-5">
           <p>About me</p>
         </div>
       </div>

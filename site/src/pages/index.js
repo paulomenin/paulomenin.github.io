@@ -4,30 +4,43 @@ import { graphql } from "gatsby"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import Bio from "../components/bio"
+import PostList from "../components/postList"
+import TagListContainer from "../components/tagListContainer"
 
 const LandingPage = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
+
+  const blogPosts = data.blogPosts.nodes
+  const articlePosts = data.articlePosts.nodes
 
   return (
     <Layout location={location} title={siteTitle}>
       <Seo title="Recent Posts" />
 
-      <div className="flex gap-2">
-        <div className="flex flex-col gap-2">
+      <div className="flex flex-col sm:flex-row flex-wrap gap-2">
+        <div className="flex flex-col shrink-0 grow sm:grow-0 basis-1/4 gap-2">
           <div className="rounded-lg p-2 bg-white" >
             <Bio />
           </div>
           <div className="rounded-lg p-2 bg-white text-center" >
-            <p className="font-bold">Categories</p>
+            <h1 className="mb-3">Tags</h1>
+            <TagListContainer />
           </div>
         </div>
-        <div className="items-end flex-grow bg-blue-400">
-          <div className="rounded-lg p-2 bg-white">
-            <h1 className="font-bold text-xl">Recent Posts</h1>
+
+        <div className="basis-1/2 grow">
+          <div>
+            <div className="rounded-lg p-2 bg-white mb-4">
+              <h1>Recent Articles</h1>
+            </div>
+            <PostList posts={articlePosts} />
           </div>
-
-          
-
+          <div>
+            <div className="rounded-lg p-2 bg-white mb-4 mt-4">
+              <h1>Recent Blog Entries</h1>
+            </div>
+            <PostList posts={blogPosts} />
+          </div>
         </div>
       </div>
 
@@ -44,11 +57,34 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMarkdownRemark(sort: { fields: [frontmatter___date], order: DESC }) {
+    blogPosts: allMarkdownRemark(
+      sort: {fields: [frontmatter___date], order: DESC}
+      limit: 5
+      filter: {fields: {category: {eq: "blog"}}}
+    ) {
       nodes {
         excerpt
         fields {
           slug
+          category
+        }
+        frontmatter {
+          date(formatString: "MMMM DD, YYYY")
+          title
+          description
+        }
+      }
+    }
+    articlePosts: allMarkdownRemark(
+      sort: {fields: [frontmatter___date], order: DESC}
+      limit: 5
+      filter: {fields: {category: {eq: "article"}}}
+    ) {
+      nodes {
+        excerpt
+        fields {
+          slug
+          category
         }
         frontmatter {
           date(formatString: "MMMM DD, YYYY")

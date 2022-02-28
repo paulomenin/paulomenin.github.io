@@ -74,7 +74,7 @@ const getTags = (allPosts) => {
 const createTagsPages = async ({graphql, actions, folderName}) => {
   const { createPage } = actions
 
-  const tagIndexTemplate = path.resolve(`./src/templates/tagIndex.js`)
+  const tagIndexTemplate = path.resolve(`./src/templates/tagPage.js`)
 
   // Get all markdown posts
   const result = await graphql(
@@ -130,7 +130,7 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
   await Promise.all(
     [
       "blog",
-      "articles",
+      "article",
     ].map(async (folderName) => {
       await createPagesInFolder({
         graphql,

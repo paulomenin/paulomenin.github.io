@@ -1,6 +1,6 @@
 import * as React from "react"
 
-// Hue color value for HSL
+// Hue color values of the tags
 const hueValues = [
   "0", "20", "40", "60", "80",
   "100", "120", "140", "160", "180",
