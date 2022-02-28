@@ -3,6 +3,7 @@ import { Link, graphql } from "gatsby"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
+import TagList from "../components/tagList"
 
 const BlogPostTemplate = ({ data, location }) => {
   const post = data.markdownRemark
@@ -16,7 +17,7 @@ const BlogPostTemplate = ({ data, location }) => {
         description={post.frontmatter.description || post.excerpt}
       />
 
-      <div className="card content-center">
+      <div className="card flex justify-center">
         <article
           className="prose prose-neutral font-serif prose-headings:font-sans"
           itemScope
@@ -24,7 +25,10 @@ const BlogPostTemplate = ({ data, location }) => {
         >
           <header>
             <h1 itemProp="headline">{post.frontmatter.title}</h1>
-            <p>{post.frontmatter.date}</p>
+            <div className="flex gap-2 content-center">
+              <div>{post.frontmatter.date}</div>
+              <TagList tags={post.frontmatter.tags} />
+            </div>
           </header>
 
           <section itemProp="articleBody"
@@ -80,6 +84,7 @@ export const pageQuery = graphql`
         title
         date(formatString: "MMMM DD, YYYY")
         description
+        tags
       }
     }
     previous: markdownRemark(id: { eq: $previousPostId }) {

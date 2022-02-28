@@ -20,4 +20,8 @@
   .card {
     @apply bg-white rounded-lg p-2;
   }
+
+  .menu-link {
+    @apply font-bold px-2 rounded-full hover:bg-neutral-200
+  }
 }

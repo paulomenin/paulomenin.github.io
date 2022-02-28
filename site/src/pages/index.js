@@ -1,5 +1,5 @@
 import * as React from "react"
-import { graphql } from "gatsby"
+import { Link, graphql } from "gatsby"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
@@ -19,10 +19,10 @@ const LandingPage = ({ data, location }) => {
 
       <div className="flex flex-col sm:flex-row flex-wrap gap-2">
         <div className="flex flex-col shrink-0 grow sm:grow-0 basis-1/4 gap-2">
-          <div className="rounded-lg p-2 bg-white" >
+          <div className="card" >
             <Bio />
           </div>
-          <div className="rounded-lg p-2 bg-white text-center" >
+          <div className="card text-center" >
             <h1 className="mb-3">Tags</h1>
             <TagListContainer />
           </div>
@@ -30,14 +30,26 @@ const LandingPage = ({ data, location }) => {
 
         <div className="basis-1/2 grow">
           <div>
-            <div className="rounded-lg p-2 bg-white mb-4">
+            <div className="flex justify-between card mb-4">
               <h1>Recent Articles</h1>
+              <Link className="menu-link"
+                    to="/articles">
+                    <span className="inline-block align-middle">
+                      All Articles
+                    </span>
+              </Link>
             </div>
             <PostList posts={articlePosts} />
           </div>
           <div>
-            <div className="rounded-lg p-2 bg-white mb-4 mt-4">
+            <div className="flex justify-between card mb-4 mt-4">
               <h1>Recent Blog Entries</h1>
+              <Link className="menu-link"
+                    to="/blog">
+                    <span className="inline-block align-middle">
+                      All Blog Posts
+                    </span>
+              </Link>
             </div>
             <PostList posts={blogPosts} />
           </div>

@@ -86,6 +86,7 @@ const createTagsPages = async ({graphql, actions, folderName}) => {
               id
               frontmatter {
                 tags
+                slug
               }
               fields {
                 slug
@@ -154,14 +155,15 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
 
   if (node.internal.type === `MarkdownRemark`) {
     const value = createFilePath({ node, getNode })
+    let slug = node.frontmatter.slug
     const match = POST_FILENAME_REGEX.exec(value)
     if (match !== null) {
         const category = match.groups['category']
-        const lastSlugFragment = match.groups['slug']
+        const finalSlug = slug ? slug : match.groups['slug']
         createNodeField({
           name: `slug`,
           node,
-          value: `/${category}/${lastSlugFragment}`,
+          value: `/${category}/${finalSlug}`,
         })
         createNodeField({
           name: `category`,

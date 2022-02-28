@@ -14,7 +14,7 @@ const TagsIndex = ({ data, location }) => {
     <div className="
     flex flex-col
     rounded-lg bg-white m-0 p-5">
-      <h1 className="mb-3">Tag List</h1>
+      <h1 className="mb-3">All Tags</h1>
       <TagListContainer />
     </div>
   </Layout>

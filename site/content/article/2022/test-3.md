@@ -1,9 +1,8 @@
 ---
-title: V60 Coffee Brew
-slug: v60c
+title: Test 3
 date: "2022-02-01T22:12:03.284Z"
-description: "My recipe of V60 coffee brew"
-tags: ["Coffee", "V60"]
+description: "Test article"
+tags: ["Coffee", "Test"]
 ---
 
 Do do fugiat elit voluptate nostrud anim veniam incididunt esse ipsum consectetur ullamco quis elit. Ea eiusmod sit esse aute irure do fugiat labore quis eiusmod nulla quis cupidatat dolore. Consectetur deserunt labore eiusmod laborum Lorem est Lorem anim veniam do. Reprehenderit enim laboris ut deserunt culpa ad in sit aliqua.

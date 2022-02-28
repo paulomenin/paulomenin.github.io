@@ -2,30 +2,7 @@ import * as React from "react"
 import { Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 import { RssIcon } from '@heroicons/react/solid'
-
-const Menu = () => {
-    return (
-        <nav className="
-            flex
-            flex-col xsm:flex-row
-            space-y-1 xsm:space-y-0
-            xsm:space-x-2">
-            {[
-                ["/articles", "Articles"],
-                ["/blog", "Blog"],
-                ["/tags", "Tags"],
-                ["/about", "About"]
-            ].map(([url, label]) => (
-                <Link key={url} className="
-                    font-bold px-2 rounded-full
-                    hover:bg-neutral-200"
-                    to={url}>
-                    {label}
-                </Link>
-            ))}
-        </nav>
-    )
-}
+import Menu from "./menu"
 
 const Header = ({ title }) => {
   return (

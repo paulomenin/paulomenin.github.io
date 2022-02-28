@@ -11,10 +11,10 @@ const BlogIndex = ({ data, location }) => {
 
   return (
     <Layout location={location} title={siteTitle}>
-      <Seo title="All Blog posts" />
+      <Seo title="All Articles" />
 
       <div className="flex justify-between card mb-4">
-        <h1>All Blog Entries</h1>
+        <h1>All Articles</h1>
       </div>
       <PostList posts={posts} />
     </Layout>
@@ -31,7 +31,7 @@ export const pageQuery = graphql`
       }
     }
     allMarkdownRemark(
-      filter: { fields: {category: {eq: "blog"}} }
+      filter: { fields: {category: {eq: "article"}} }
       sort: { fields: [frontmatter___date], order: DESC }) {
       nodes {
         excerpt
