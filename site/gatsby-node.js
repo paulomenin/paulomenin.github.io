@@ -1,5 +1,6 @@
 const path = require(`path`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
+const { paginate } = require('gatsby-awesome-pagination')
 
 const POST_FILENAME_REGEX = /^\/(?<category>.+)\/(\/?\d+)*\/(?<slug>.*)/
 
@@ -58,6 +59,46 @@ const createPagesInFolder = async ({graphql, actions, folderName}) => {
     })
   }
 }
+
+const createPaginatedPostsIndex = async ({graphql, actions, folderName}) => {
+  const { createPage } = actions
+
+  const postTemplate = path.resolve(`./src/templates/paginatedPostIndex_${folderName}.js`)
+
+  // Get all markdown posts in a folder sorted by date
+  const result = await graphql(
+    `
+      {
+        allMarkdownRemark(
+          filter: {fileAbsolutePath: {glob: "**/${folderName}/**"}}
+        ) {
+          nodes {
+            id
+          }
+        }
+      }
+    `
+  )
+
+  if (result.errors) {
+    reporter.panicOnBuild(
+      `There was an error loading your posts`,
+      result.errors
+    )
+    return
+  }
+
+  const posts = result.data.allMarkdownRemark.nodes
+
+  paginate({
+    createPage,
+    items: posts,
+    itemsPerPage: 2,
+    pathPrefix: `/${folderName}`, // Creates pages like `/folderName`, `/folderName/2`, etc
+    component: postTemplate,
+  })
+}
+
 
 const getTags = (allPosts) => {
   const uniqueTags = new Set()
@@ -133,12 +174,21 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
       "blog",
       "article",
     ].map(async (folderName) => {
-      await createPagesInFolder({
-        graphql,
-        actions,
-        reporter,
-        folderName,
-      });
+      await Promise.all([
+        await createPagesInFolder({
+          graphql,
+          actions,
+          reporter,
+          folderName,
+        }),
+
+        await createPaginatedPostsIndex({
+          graphql,
+          actions,
+          reporter,
+          folderName,
+        })
+      ]);
     })
   );
 
@@ -147,7 +197,6 @@ exports.createPages = async ({ graphql, actions, reporter }) => {
     actions,
     reporter,
   });
-
 }
 
 exports.onCreateNode = ({ node, actions, getNode }) => {

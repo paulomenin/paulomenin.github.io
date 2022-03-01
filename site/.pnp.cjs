@@ -39,6 +39,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["autoprefixer", "virtual:e3e6c79b4e4b15bb646c1869dd45f892ed00dfa42c1ea5c0e349b850e62661e67bcc3b04e80311c5adb511b4f343fdef295a6361c1cc3f27eccbe809a90411bc#npm:10.4.2"],\
             ["babel-eslint", "virtual:e3e6c79b4e4b15bb646c1869dd45f892ed00dfa42c1ea5c0e349b850e62661e67bcc3b04e80311c5adb511b4f343fdef295a6361c1cc3f27eccbe809a90411bc#npm:10.1.0"],\
             ["gatsby", "virtual:e3e6c79b4e4b15bb646c1869dd45f892ed00dfa42c1ea5c0e349b850e62661e67bcc3b04e80311c5adb511b4f343fdef295a6361c1cc3f27eccbe809a90411bc#npm:4.8.1"],\
+            ["gatsby-awesome-pagination", "virtual:e3e6c79b4e4b15bb646c1869dd45f892ed00dfa42c1ea5c0e349b850e62661e67bcc3b04e80311c5adb511b4f343fdef295a6361c1cc3f27eccbe809a90411bc#npm:0.3.8"],\
             ["gatsby-plugin-feed", "virtual:e3e6c79b4e4b15bb646c1869dd45f892ed00dfa42c1ea5c0e349b850e62661e67bcc3b04e80311c5adb511b4f343fdef295a6361c1cc3f27eccbe809a90411bc#npm:4.8.0"],\
             ["gatsby-plugin-gatsby-cloud", "virtual:e3e6c79b4e4b15bb646c1869dd45f892ed00dfa42c1ea5c0e349b850e62661e67bcc3b04e80311c5adb511b4f343fdef295a6361c1cc3f27eccbe809a90411bc#npm:4.8.1"],\
             ["gatsby-plugin-google-analytics", "virtual:e3e6c79b4e4b15bb646c1869dd45f892ed00dfa42c1ea5c0e349b850e62661e67bcc3b04e80311c5adb511b4f343fdef295a6361c1cc3f27eccbe809a90411bc#npm:4.8.0"],\
@@ -10272,6 +10273,33 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "linkType": "HARD"\
         }]\
       ]],\
+      ["gatsby-awesome-pagination", [\
+        ["npm:0.3.8", {\
+          "packageLocation": "./.yarn/cache/gatsby-awesome-pagination-npm-0.3.8-b9e7a7afc3-707415e012.zip/node_modules/gatsby-awesome-pagination/",\
+          "packageDependencies": [\
+            ["gatsby-awesome-pagination", "npm:0.3.8"]\
+          ],\
+          "linkType": "SOFT"\
+        }],\
+        ["virtual:e3e6c79b4e4b15bb646c1869dd45f892ed00dfa42c1ea5c0e349b850e62661e67bcc3b04e80311c5adb511b4f343fdef295a6361c1cc3f27eccbe809a90411bc#npm:0.3.8", {\
+          "packageLocation": "./.yarn/__virtual__/gatsby-awesome-pagination-virtual-4895652a92/0/cache/gatsby-awesome-pagination-npm-0.3.8-b9e7a7afc3-707415e012.zip/node_modules/gatsby-awesome-pagination/",\
+          "packageDependencies": [\
+            ["gatsby-awesome-pagination", "virtual:e3e6c79b4e4b15bb646c1869dd45f892ed00dfa42c1ea5c0e349b850e62661e67bcc3b04e80311c5adb511b4f343fdef295a6361c1cc3f27eccbe809a90411bc#npm:0.3.8"],\
+            ["@types/gatsby", null],\
+            ["@types/react", null],\
+            ["gatsby", "virtual:e3e6c79b4e4b15bb646c1869dd45f892ed00dfa42c1ea5c0e349b850e62661e67bcc3b04e80311c5adb511b4f343fdef295a6361c1cc3f27eccbe809a90411bc#npm:4.8.1"],\
+            ["lodash", "npm:4.17.21"],\
+            ["react", "npm:17.0.2"]\
+          ],\
+          "packagePeers": [\
+            "@types/gatsby",\
+            "@types/react",\
+            "gatsby",\
+            "react"\
+          ],\
+          "linkType": "HARD"\
+        }]\
+      ]],\
       ["gatsby-cli", [\
         ["npm:4.8.1", {\
           "packageLocation": "./.yarn/unplugged/gatsby-cli-npm-4.8.1-ce8bc4c70e/node_modules/gatsby-cli/",\
@@ -11087,6 +11115,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["autoprefixer", "virtual:e3e6c79b4e4b15bb646c1869dd45f892ed00dfa42c1ea5c0e349b850e62661e67bcc3b04e80311c5adb511b4f343fdef295a6361c1cc3f27eccbe809a90411bc#npm:10.4.2"],\
             ["babel-eslint", "virtual:e3e6c79b4e4b15bb646c1869dd45f892ed00dfa42c1ea5c0e349b850e62661e67bcc3b04e80311c5adb511b4f343fdef295a6361c1cc3f27eccbe809a90411bc#npm:10.1.0"],\
             ["gatsby", "virtual:e3e6c79b4e4b15bb646c1869dd45f892ed00dfa42c1ea5c0e349b850e62661e67bcc3b04e80311c5adb511b4f343fdef295a6361c1cc3f27eccbe809a90411bc#npm:4.8.1"],\
+            ["gatsby-awesome-pagination", "virtual:e3e6c79b4e4b15bb646c1869dd45f892ed00dfa42c1ea5c0e349b850e62661e67bcc3b04e80311c5adb511b4f343fdef295a6361c1cc3f27eccbe809a90411bc#npm:0.3.8"],\
             ["gatsby-plugin-feed", "virtual:e3e6c79b4e4b15bb646c1869dd45f892ed00dfa42c1ea5c0e349b850e62661e67bcc3b04e80311c5adb511b4f343fdef295a6361c1cc3f27eccbe809a90411bc#npm:4.8.0"],\
             ["gatsby-plugin-gatsby-cloud", "virtual:e3e6c79b4e4b15bb646c1869dd45f892ed00dfa42c1ea5c0e349b850e62661e67bcc3b04e80311c5adb511b4f343fdef295a6361c1cc3f27eccbe809a90411bc#npm:4.8.1"],\
             ["gatsby-plugin-google-analytics", "virtual:e3e6c79b4e4b15bb646c1869dd45f892ed00dfa42c1ea5c0e349b850e62661e67bcc3b04e80311c5adb511b4f343fdef295a6361c1cc3f27eccbe809a90411bc#npm:4.8.0"],\

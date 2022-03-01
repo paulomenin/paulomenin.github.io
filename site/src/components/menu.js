@@ -9,7 +9,7 @@ const Menu = () => {
           space-y-1 xsm:space-y-0
           xsm:space-x-2">
           {[
-              ["/articles", "Articles"],
+              ["/article", "Articles"],
               ["/blog", "Blog"],
               ["/tags", "Tags"],
               ["/about", "About"]

@@ -7317,6 +7317,18 @@ __metadata:
   languageName: node
   linkType: hard
 
+"gatsby-awesome-pagination@npm:^0.3.8":
+  version: 0.3.8
+  resolution: "gatsby-awesome-pagination@npm:0.3.8"
+  dependencies:
+    lodash: ^4.17.21
+  peerDependencies:
+    gatsby: ">=2.0.0"
+    react: ">=16.0.0"
+  checksum: 707415e0127e3ab5404261df03454243383340b779826395a9d7eedee91c0843294c2c6bc1ca8490ef031214bcd4b46c3fe7a1732614138a0292374f05dcaf7f
+  languageName: node
+  linkType: hard
+
 "gatsby-cli@npm:^4.8.1":
   version: 4.8.1
   resolution: "gatsby-cli@npm:4.8.1"
@@ -7815,6 +7827,7 @@ __metadata:
     autoprefixer: ^10.4.2
     babel-eslint: ^10.1.0
     gatsby: ^4.7.2
+    gatsby-awesome-pagination: ^0.3.8
     gatsby-plugin-feed: ^4.7.0
     gatsby-plugin-gatsby-cloud: ^4.7.0
     gatsby-plugin-google-analytics: ^4.7.0

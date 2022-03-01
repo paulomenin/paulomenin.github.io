@@ -41,17 +41,17 @@ const BlogPostTemplate = ({ data, location }) => {
 
       {(previous || next) && (
         <nav className="card mt-4">
-          <ul className="flex justify-between">
+          <ul className="flex justify-evenly">
             <li>
               {previous && (
-                <Link to={previous.fields.slug} rel="prev">
+                <Link className="nav-link" to={previous.fields.slug} rel="prev">
                   ← {previous.frontmatter.title}
                 </Link>
               )}
             </li>
             <li>
               {next && (
-                <Link to={next.fields.slug} rel="next">
+                <Link className="nav-link" to={next.fields.slug} rel="next">
                   {next.frontmatter.title} →
                 </Link>
               )}
