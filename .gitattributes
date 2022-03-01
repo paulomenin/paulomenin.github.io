@@ -1,1 +1,10 @@
 * text=auto
+
+# Text files
+*.svg text
+
+# Binary files
+*.zip binary
+*.png binary
+*.jpg binary
+*.jpeg binary

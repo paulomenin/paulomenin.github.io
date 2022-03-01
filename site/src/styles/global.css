@@ -24,14 +24,14 @@
   .tag-link {
     @apply rounded-md px-1 font-bold no-underline font-sans text-sm
     bg-neutral-200 text-neutral-800
-    hover:bg-yellow-200 hover:text-black
+    hover:bg-purple-300 hover:text-black;
   }
 
   .nav-link {
-    @apply px-2 rounded-full hover:bg-neutral-200
+    @apply px-2 rounded-full hover:bg-neutral-200;
   }
 
   .menu-link {
-    @apply font-bold nav-link
+    @apply font-bold nav-link;
   }
 }
