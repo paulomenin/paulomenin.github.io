@@ -3,6 +3,7 @@ const { createFilePath } = require(`gatsby-source-filesystem`)
 const { paginate } = require('gatsby-awesome-pagination')
 
 const POST_FILENAME_REGEX = /^\/(?<category>.+)\/(\/?\d+)*\/(?<slug>.*)/
+const PAGINATION_PAGE_SIZE = 2
 
 const createPagesInFolder = async ({graphql, actions, folderName}) => {
   const { createPage } = actions
@@ -93,7 +94,7 @@ const createPaginatedPostsIndex = async ({graphql, actions, folderName}) => {
   paginate({
     createPage,
     items: posts,
-    itemsPerPage: 2,
+    itemsPerPage: PAGINATION_PAGE_SIZE,
     pathPrefix: `/${folderName}`, // Creates pages like `/folderName`, `/folderName/2`, etc
     component: postTemplate,
   })
@@ -115,7 +116,7 @@ const getTags = (allPosts) => {
 const createTagsPages = async ({graphql, actions, folderName}) => {
   const { createPage } = actions
 
-  const tagIndexTemplate = path.resolve(`./src/templates/tagPage.js`)
+  const tagIndexTemplate = path.resolve(`./src/templates/paginatedPostIndex_tag.js`)
 
   // Get all markdown posts
   const result = await graphql(
@@ -127,11 +128,6 @@ const createTagsPages = async ({graphql, actions, folderName}) => {
               id
               frontmatter {
                 tags
-                slug
-              }
-              fields {
-                slug
-                category
               }
             }
           }
@@ -152,18 +148,33 @@ const createTagsPages = async ({graphql, actions, folderName}) => {
 
   if (tags.length > 0) {
     tags.forEach((tag, index) => {
-      createPage({
-        path: `tag/${tag}`,
+
+      const posts = result.data.allMarkdownRemark.edges
+        .filter(({ node }) => {
+          return node.frontmatter.tags.includes(tag)
+        });
+
+      const wrapperCreatePage = (page) => {
+        const pageWithNewContext = {
+          ...page,
+          context: {
+            ...page.context,
+            tag,
+             ids: posts.map(({node}) => node.id),
+          }
+        };
+
+        return createPage(pageWithNewContext);;
+      }
+
+      paginate({
+        createPage: wrapperCreatePage,
+        items: posts,
+        itemsPerPage: PAGINATION_PAGE_SIZE,
+        pathPrefix: `/tag/${tag}`,
         component: tagIndexTemplate,
-        context: {
-          tag,
-          ids: result.data.allMarkdownRemark.edges
-            .filter(({ node }) => {
-              return node.frontmatter.tags.includes(tag)
-            })
-            .map(({node}) => node.id),
-        },
       })
+
     })
   }
 }

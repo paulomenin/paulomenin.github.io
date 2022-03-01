@@ -33,7 +33,7 @@ const LandingPage = ({ data, location }) => {
             <div className="flex justify-between card mb-4">
               <h1>Recent Articles</h1>
               <Link className="menu-link"
-                    to="/articles">
+                    to="/article">
                     <span className="inline-block align-middle">
                       All Articles
                     </span>
