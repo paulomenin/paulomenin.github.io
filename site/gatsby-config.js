@@ -57,13 +57,7 @@ module.exports = {
       },
     },
     `gatsby-transformer-sharp`,
-    {
-      resolve: `gatsby-plugin-sharp`,
-      options: {
-        icon: `src/images/logo.svg`,
-      },
-    },
-
+    `gatsby-plugin-sharp`,
     // {
     //   resolve: `gatsby-plugin-google-analytics`,
     //   options: {

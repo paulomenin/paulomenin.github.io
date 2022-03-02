@@ -18,6 +18,10 @@
   h3 {
     @apply font-bold;
   }
+
+  h4 {
+    @apply font-semibold;
+  }
 }
 
 @layer components {

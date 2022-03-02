@@ -23,15 +23,15 @@ const SimpleIcon = ({ slug, label, fillColor }) => {
 const TechIcons = () => {
   return (
     <div className="flex flex-col gap-4">
-      <h3>Operating Systems</h3>
-      <div className="flex flex-wrap gap-2">
+      <h4>Operating Systems</h4>
+      <div className="flex flex-wrap gap-3">
         <SimpleIcon slug="windows" label="Windows" fillColor="#0078D6" />
         <SimpleIcon slug="linux" label="Linux" fillColor="#000" />
         <SimpleIcon slug="macos" label="Mac OS" fillColor="#000" />
       </div>
 
-      <h3>Programing Languages</h3>
-      <div className="flex flex-wrap gap-2">
+      <h4>Programing Languages</h4>
+      <div className="flex flex-wrap gap-3">
         <SimpleIcon slug="c" label="C" fillColor="#A8B9CC" />
         <SimpleIcon slug="cplusplus" label="C++" fillColor="#00599C" />
         <SimpleIcon slug="csharp" label="C Sharp" fillColor="#239120" />
@@ -39,8 +39,8 @@ const TechIcons = () => {
         <SimpleIcon slug="javascript" label="JavaScript" fillColor="#F7DF1E" />
       </div>
 
-      <h3>Frontend</h3>
-      <div className="flex flex-wrap gap-2">
+      <h4>Frontend</h4>
+      <div className="flex flex-wrap gap-3">
         <SimpleIcon slug="html5" label="HTML5" fillColor="#E34F26" />
         <SimpleIcon slug="css3" label="CSS3" fillColor="#1572B6" />
         <SimpleIcon slug="typescript" label="TypeScript" fillColor="#3178C6" />
@@ -56,8 +56,8 @@ const TechIcons = () => {
         <SimpleIcon slug="gatsby" label="Gatsby" fillColor="#663399" />
       </div>
 
-      <h3>Backend</h3>
-      <div className="flex flex-wrap gap-2">
+      <h4>Backend</h4>
+      <div className="flex flex-wrap gap-3">
         <SimpleIcon slug="springboot" label="Spring Boot" fillColor="#6DB33F" />
         <SimpleIcon slug="fastapi" label="FastAPI" fillColor="#009688" />
         <SimpleIcon slug="docker" label="Docker" fillColor="#2496ED" />
@@ -81,8 +81,8 @@ const TechIcons = () => {
         />
       </div>
 
-      <h3>Machine Learning</h3>
-      <div className="flex flex-wrap gap-2">
+      <h4>Machine Learning</h4>
+      <div className="flex flex-wrap gap-3">
         <SimpleIcon slug="pytorch" label="PyTorch" fillColor="#EE4C2C" />
         <SimpleIcon slug="tensorflow" label="TensorFlow" fillColor="#FF6F00" />
         <SimpleIcon slug="keras" label="Keras" fillColor="#D00000" />
@@ -96,8 +96,8 @@ const TechIcons = () => {
         <SimpleIcon slug="onnx" label="ONNX" fillColor="#005CED" />
       </div>
 
-      <h3>Others</h3>
-      <div className="flex flex-wrap gap-2">
+      <h4>Others</h4>
+      <div className="flex flex-wrap gap-3">
         <SimpleIcon slug="git" label="Git" fillColor="#F05032" />
 
         <SimpleIcon slug="dotnet" label=".NET" fillColor="#512BD4" />
