@@ -19,10 +19,10 @@ const LandingPage = ({ data, location }) => {
 
       <div className="flex flex-col sm:flex-row flex-wrap gap-2">
         <div className="flex flex-col shrink-0 grow sm:grow-0 basis-1/4 gap-2">
-          <div className="card" >
+          <div className="card">
             <Bio />
           </div>
-          <div className="card text-center" >
+          <div className="card text-center">
             <h1 className="mb-3">Tags</h1>
             <TagListContainer />
           </div>
@@ -32,11 +32,8 @@ const LandingPage = ({ data, location }) => {
           <div>
             <div className="flex justify-between card mb-4">
               <h1>Recent Articles</h1>
-              <Link className="menu-link"
-                    to="/article">
-                    <span className="inline-block align-middle">
-                      All Articles
-                    </span>
+              <Link className="menu-link" to="/article">
+                <span className="inline-block align-middle">All Articles</span>
               </Link>
             </div>
             <PostList posts={articlePosts} />
@@ -44,18 +41,16 @@ const LandingPage = ({ data, location }) => {
           <div>
             <div className="flex justify-between card mb-4 mt-4">
               <h1>Recent Blog Entries</h1>
-              <Link className="menu-link"
-                    to="/blog">
-                    <span className="inline-block align-middle">
-                      All Blog Posts
-                    </span>
+              <Link className="menu-link" to="/blog">
+                <span className="inline-block align-middle">
+                  All Blog Posts
+                </span>
               </Link>
             </div>
             <PostList posts={blogPosts} />
           </div>
         </div>
       </div>
-
     </Layout>
   )
 }
@@ -70,9 +65,9 @@ export const pageQuery = graphql`
       }
     }
     blogPosts: allMarkdownRemark(
-      sort: {fields: [frontmatter___date], order: DESC}
-      limit: 5
-      filter: {fields: {category: {eq: "blog"}}}
+      sort: { fields: [frontmatter___date], order: DESC }
+      limit: 3
+      filter: { fields: { category: { eq: "blog" }, visible: { eq: true } } }
     ) {
       nodes {
         excerpt
@@ -88,9 +83,9 @@ export const pageQuery = graphql`
       }
     }
     articlePosts: allMarkdownRemark(
-      sort: {fields: [frontmatter___date], order: DESC}
-      limit: 5
-      filter: {fields: {category: {eq: "article"}}}
+      sort: { fields: [frontmatter___date], order: DESC }
+      limit: 3
+      filter: { fields: { category: { eq: "article" }, visible: { eq: true } } }
     ) {
       nodes {
         excerpt

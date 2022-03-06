@@ -20,12 +20,11 @@ const BlogIndex = ({ data, location, pageContext }) => {
 
       <PostList posts={posts} />
 
-      { pageContext.numberOfPages > 1 && (
+      {pageContext.numberOfPages > 1 && (
         <div className="flex justify-between card mt-4">
           <Pagination pageContext={pageContext} />
         </div>
       )}
-
     </Layout>
   )
 }
@@ -40,11 +39,11 @@ export const pageQuery = graphql`
       }
     }
     allMarkdownRemark(
-      filter: { fields: {category: {eq: "article"}} }
+      filter: { fields: { category: { eq: "article" }, visible: { eq: true } } }
       sort: { fields: [frontmatter___date], order: DESC }
       skip: $skip
       limit: $limit
-      ) {
+    ) {
       nodes {
         excerpt
         fields {

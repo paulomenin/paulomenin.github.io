@@ -7,13 +7,9 @@ const Layout = ({ location, title, children }) => {
   const isRootPath = location.pathname === rootPath
 
   return (
-    <div
-     className="flex flex-col"
-     data-is-root-path={isRootPath}>
+    <div className="flex flex-col" data-is-root-path={isRootPath}>
       <Header title={title} />
-      <main className="mb-auto mx-4 relative">
-        {children}
-      </main>
+      <main className="mb-auto mx-4 relative">{children}</main>
       <Footer />
     </div>
   )

@@ -42,4 +42,9 @@
   .menu-link {
     @apply font-bold nav-link;
   }
+
+  .not-published-tag {
+    @apply rounded-md px-1 font-bold font-sans text-sm text-center
+    bg-red-300 text-red-800;
+  }
 }

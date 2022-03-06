@@ -6,17 +6,15 @@ import Seo from "../components/seo"
 import PostList from "../components/postList"
 import Pagination from "../components/pagination"
 
-const TagIndexTemplate = ({ data, location, pageContext}) => {
+const TagIndexTemplate = ({ data, location, pageContext }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
-  const posts = data.allMarkdownRemark.edges.map((edge) => {
-      return edge.node
+  const posts = data.allMarkdownRemark.edges.map(edge => {
+    return edge.node
   })
 
   return (
     <Layout location={location} title={siteTitle}>
-      <Seo
-        title={`${pageContext.tag} tag`}
-      />
+      <Seo title={`${pageContext.tag} tag`} />
 
       <div className="card mb-4">
         <h1>Posts with {pageContext.tag} tag</h1>
@@ -24,12 +22,11 @@ const TagIndexTemplate = ({ data, location, pageContext}) => {
 
       <PostList posts={posts} />
 
-      { pageContext.numberOfPages > 1 && (
+      {pageContext.numberOfPages > 1 && (
         <div className="flex justify-between card mt-4">
           <Pagination pageContext={pageContext} />
         </div>
       )}
-
     </Layout>
   )
 }
@@ -48,7 +45,7 @@ export const pageQuery = graphql`
       sort: { fields: [frontmatter___date], order: DESC }
       skip: $skip
       limit: $limit
-      ) {
+    ) {
       edges {
         node {
           excerpt

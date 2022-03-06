@@ -16,7 +16,7 @@ const BlogPostTemplate = ({ data, location }) => {
         title={post.frontmatter.title}
         description={post.frontmatter.description || post.excerpt}
       />
-
+      {console.log(post.fields.draft)}
       <div className="card flex justify-center">
         <article
           className="prose prose-neutral font-serif prose-headings:font-sans"
@@ -24,6 +24,12 @@ const BlogPostTemplate = ({ data, location }) => {
           itemType="http://schema.org/Article"
         >
           <header>
+            {!post.fields.published && (
+              <div className="not-published-tag">
+                Not Published
+                {post.frontmatter.draft && <span> marked as DRAFT</span>}
+              </div>
+            )}
             <h1 itemProp="headline">{post.frontmatter.title}</h1>
             <TagList tags={post.frontmatter.tags} />
             <div className="flex gap-2 justify-between">
@@ -32,10 +38,10 @@ const BlogPostTemplate = ({ data, location }) => {
             </div>
           </header>
 
-          <section itemProp="articleBody"
-          dangerouslySetInnerHTML={{ __html: post.html }}
+          <section
+            itemProp="articleBody"
+            dangerouslySetInnerHTML={{ __html: post.html }}
           />
-
         </article>
       </div>
 
@@ -59,7 +65,6 @@ const BlogPostTemplate = ({ data, location }) => {
           </ul>
         </nav>
       )}
-
     </Layout>
   )
 }
@@ -86,11 +91,13 @@ export const pageQuery = graphql`
         date(formatString: "MMMM DD, YYYY")
         description
         tags
+        draft
       }
       fields {
         readingTime {
           text
         }
+        published
       }
     }
     previous: markdownRemark(id: { eq: $previousPostId }) {
