@@ -6,6 +6,7 @@ import Seo from "../components/seo"
 import Bio from "../components/bio"
 import PostList from "../components/postList"
 import TagListContainer from "../components/tagListContainer"
+import YearListContainer from "../components/yearListContainer"
 
 const LandingPage = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
@@ -17,7 +18,7 @@ const LandingPage = ({ data, location }) => {
     <Layout location={location} title={siteTitle}>
       <Seo title="Recent Posts" />
 
-      <div className="flex flex-col sm:flex-row flex-wrap gap-2">
+      <div className="flex flex-wrap flex-col gap-4 sm:flex-row sm:gap-2">
         <div className="flex flex-col shrink-0 grow sm:grow-0 basis-1/4 gap-2">
           <div className="card">
             <Bio />
@@ -25,6 +26,8 @@ const LandingPage = ({ data, location }) => {
           <div className="card text-center">
             <h1 className="mb-3">Tags</h1>
             <TagListContainer />
+            <div className="h-4" />
+            <YearListContainer />
           </div>
         </div>
 
@@ -65,15 +68,16 @@ export const pageQuery = graphql`
       }
     }
     blogPosts: allMarkdownRemark(
+      filter: { fields: { category: { eq: "blog" }, visible: { eq: true } } }
       sort: { fields: [frontmatter___date], order: DESC }
       limit: 3
-      filter: { fields: { category: { eq: "blog" }, visible: { eq: true } } }
     ) {
       nodes {
         excerpt
         fields {
           slug
           category
+          published
         }
         frontmatter {
           date(formatString: "MMMM DD, YYYY")
@@ -83,15 +87,16 @@ export const pageQuery = graphql`
       }
     }
     articlePosts: allMarkdownRemark(
+      filter: { fields: { category: { eq: "article" }, visible: { eq: true } } }
       sort: { fields: [frontmatter___date], order: DESC }
       limit: 3
-      filter: { fields: { category: { eq: "article" }, visible: { eq: true } } }
     ) {
       nodes {
         excerpt
         fields {
           slug
           category
+          published
         }
         frontmatter {
           date(formatString: "MMMM DD, YYYY")

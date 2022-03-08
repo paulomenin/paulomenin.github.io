@@ -22,7 +22,7 @@ const Footer = () => {
         content-center items-center
         h-10 m-4 mb-2 px-3 rounded-lg
         font-bold
-        bg-neutral-200"
+        bg-neutral-200 drop-shadow-md"
     >
       <div>
         Copyright © {new Date().getFullYear()} {author.name}

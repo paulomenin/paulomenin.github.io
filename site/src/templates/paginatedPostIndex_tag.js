@@ -14,10 +14,10 @@ const TagIndexTemplate = ({ data, location, pageContext }) => {
 
   return (
     <Layout location={location} title={siteTitle}>
-      <Seo title={`${pageContext.tag} tag`} />
+      <Seo title={`Tagged by ${pageContext.tag}`} />
 
       <div className="card mb-4">
-        <h1>Posts with {pageContext.tag} tag</h1>
+        <h1>Tagged by: {pageContext.tag}</h1>
       </div>
 
       <PostList posts={posts} />
@@ -57,6 +57,7 @@ export const pageQuery = graphql`
           fields {
             slug
             category
+            published
           }
         }
       }

@@ -12,10 +12,10 @@ const BlogIndex = ({ data, location, pageContext }) => {
 
   return (
     <Layout location={location} title={siteTitle}>
-      <Seo title="All Blog posts" />
+      <Seo title="All Blog Posts" />
 
       <div className="flex justify-between card mb-4">
-        <h1>All Blog Entries</h1>
+        <h1>All Blog Posts</h1>
       </div>
 
       <PostList posts={posts} />
@@ -49,6 +49,7 @@ export const pageQuery = graphql`
         fields {
           slug
           category
+          published
         }
         frontmatter {
           date(formatString: "MMMM DD, YYYY")

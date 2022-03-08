@@ -26,13 +26,13 @@
 
 @layer components {
   .card {
-    @apply bg-white rounded-lg p-2;
+    @apply bg-white rounded-lg p-2 drop-shadow-md;
   }
 
   .tag-link {
     @apply rounded-md px-1 font-bold no-underline font-sans text-sm
     bg-neutral-200 text-neutral-800
-    hover:bg-purple-300 hover:text-black;
+    hover:bg-purple-800 hover:text-white;
   }
 
   .nav-link {
@@ -44,7 +44,7 @@
   }
 
   .not-published-tag {
-    @apply rounded-md px-1 font-bold font-sans text-sm text-center
-    bg-red-300 text-red-800;
+    @apply rounded-md px-1 font-bold no-underline font-sans text-sm text-center
+    h-5 bg-red-300 text-red-800;
   }
 }

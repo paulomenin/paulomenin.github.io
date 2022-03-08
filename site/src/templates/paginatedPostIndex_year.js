@@ -6,16 +6,18 @@ import Seo from "../components/seo"
 import PostList from "../components/postList"
 import Pagination from "../components/pagination"
 
-const BlogIndex = ({ data, location, pageContext }) => {
+const TagIndexTemplate = ({ data, location, pageContext }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
-  const posts = data.allMarkdownRemark.nodes
+  const posts = data.allMarkdownRemark.edges.map(edge => {
+    return edge.node
+  })
 
   return (
     <Layout location={location} title={siteTitle}>
-      <Seo title="All Articles" />
+      <Seo title={`During ${pageContext.year}`} />
 
-      <div className="flex justify-between card mb-4">
-        <h1>All Articles</h1>
+      <div className="card mb-4">
+        <h1>During: {pageContext.year}</h1>
       </div>
 
       <PostList posts={posts} />
@@ -29,33 +31,35 @@ const BlogIndex = ({ data, location, pageContext }) => {
   )
 }
 
-export default BlogIndex
+export default TagIndexTemplate
 
 export const pageQuery = graphql`
-  query ($skip: Int!, $limit: Int!) {
+  query YearIndexPageQuery($ids: [String]!, $skip: Int!, $limit: Int!) {
     site {
       siteMetadata {
         title
       }
     }
     allMarkdownRemark(
-      filter: { fields: { category: { eq: "article" }, visible: { eq: true } } }
+      filter: { id: { in: $ids } }
       sort: { fields: [frontmatter___date], order: DESC }
       skip: $skip
       limit: $limit
     ) {
-      nodes {
-        excerpt
-        fields {
-          slug
-          category
-          published
-        }
-        frontmatter {
-          date(formatString: "MMMM DD, YYYY")
-          title
-          description
-          tags
+      edges {
+        node {
+          excerpt
+          frontmatter {
+            title
+            date(formatString: "MMM D, YYYY")
+            description
+          }
+          fields {
+            slug
+            category
+            published
+            year
+          }
         }
       }
     }

@@ -3,9 +3,94 @@ const { createFilePath } = require(`gatsby-source-filesystem`)
 const { paginate } = require("gatsby-awesome-pagination")
 
 const POST_FILENAME_REGEX = /^\/(?<category>.+)\/(\/?\d+)*\/(?<slug>.*)/
-const PAGINATION_PAGE_SIZE = 10
+const ITEMS_PER_PAGE = 10
+const CATEGORIES = ["blog", "article"]
 
-const createPagesInFolder = async ({ graphql, actions, folderName }) => {
+exports.onCreateNode = ({ node, actions, getNode }) => {
+  const { createNodeField } = actions
+
+  if (node.internal.type !== `MarkdownRemark`) {
+    return
+  }
+
+  const value = createFilePath({ node, getNode })
+  let slugValue = `/post/${value}`
+  let categoryValue = `post`
+
+  const match = POST_FILENAME_REGEX.exec(value)
+  if (match !== null) {
+    const category = match.groups["category"]
+    const slug = node.frontmatter.slug
+      ? node.frontmatter.slug
+      : match.groups["slug"]
+    slugValue = `/${category}/${slug}`
+    categoryValue = category
+  }
+
+  createNodeField({
+    name: `slug`,
+    node,
+    value: slugValue,
+  })
+
+  createNodeField({
+    name: `category`,
+    node,
+    value: categoryValue,
+  })
+
+  if (node.frontmatter.date) {
+    const date = new Date(node.frontmatter.date)
+    const year = date.getFullYear()
+
+    createNodeField({
+      name: `year`,
+      node,
+      value: year,
+    })
+  }
+}
+
+exports.createPages = async ({ graphql, actions, reporter }) => {
+  await Promise.all(
+    CATEGORIES.map(async category => {
+      await Promise.all([
+        await createPagesForCategory({
+          graphql,
+          actions,
+          reporter,
+          category,
+        }),
+
+        await createPaginatedIndexForCategory({
+          graphql,
+          actions,
+          reporter,
+          category,
+        }),
+      ])
+    })
+  )
+
+  await createPaginatedTagIndexPages({
+    graphql,
+    actions,
+    reporter,
+  })
+
+  await createPaginatedYearIndexPages({
+    graphql,
+    actions,
+    reporter,
+  })
+}
+
+const createPagesForCategory = async ({
+  graphql,
+  actions,
+  reporter,
+  category,
+}) => {
   const { createPage } = actions
 
   const postTemplate = path.resolve(`./src/templates/post.js`)
@@ -16,7 +101,7 @@ const createPagesInFolder = async ({ graphql, actions, folderName }) => {
       {
         allMarkdownRemark(
           filter: {
-            fileAbsolutePath: { glob: "**/${folderName}/**" }
+            fileAbsolutePath: { glob: "**/${category}/**" }
             fields: { visible: { eq: true } }
           }
           sort: { fields: [frontmatter___date], order: ASC }
@@ -42,10 +127,6 @@ const createPagesInFolder = async ({ graphql, actions, folderName }) => {
 
   const posts = result.data.allMarkdownRemark.nodes
 
-  // Create posts pages
-  // But only if there's at least one markdown file found at "content/" (defined in gatsby-config.js)
-  // `context` is available in the template as a prop and as a variable in GraphQL
-
   if (posts.length > 0) {
     posts.forEach((post, index) => {
       const previousPostId = index === 0 ? null : posts[index - 1].id
@@ -64,11 +145,16 @@ const createPagesInFolder = async ({ graphql, actions, folderName }) => {
   }
 }
 
-const createPaginatedPostsIndex = async ({ graphql, actions, folderName }) => {
+const createPaginatedIndexForCategory = async ({
+  graphql,
+  actions,
+  reporter,
+  category,
+}) => {
   const { createPage } = actions
 
   const postTemplate = path.resolve(
-    `./src/templates/paginatedPostIndex_${folderName}.js`
+    `./src/templates/paginatedPostIndex_${category}.js`
   )
 
   // Get all markdown posts in a folder sorted by date
@@ -77,7 +163,7 @@ const createPaginatedPostsIndex = async ({ graphql, actions, folderName }) => {
       {
         allMarkdownRemark(
           filter: {
-            fileAbsolutePath: { glob: "**/${folderName}/**" }
+            fileAbsolutePath: { glob: "**/${category}/**" }
             fields: { visible: { eq: true } }
           }
         ) {
@@ -99,11 +185,12 @@ const createPaginatedPostsIndex = async ({ graphql, actions, folderName }) => {
 
   const posts = result.data.allMarkdownRemark.nodes
 
+  // Creates pages like `/category`, `/category/2`, etc
   paginate({
     createPage,
     items: posts,
-    itemsPerPage: PAGINATION_PAGE_SIZE,
-    pathPrefix: `/${folderName}`, // Creates pages like `/folderName`, `/folderName/2`, etc
+    itemsPerPage: ITEMS_PER_PAGE,
+    pathPrefix: `/${category}`,
     component: postTemplate,
   })
 }
@@ -111,16 +198,16 @@ const createPaginatedPostsIndex = async ({ graphql, actions, folderName }) => {
 const getTags = allPosts => {
   const uniqueTags = new Set()
 
-  allPosts.forEach(({ node }) => {
+  allPosts.forEach(node => {
     node.frontmatter.tags.forEach(tag => {
-      uniqueTags.add(tag)
+      uniqueTags.add(tag.toLowerCase())
     })
   })
 
   return Array.from(uniqueTags)
 }
 
-const createTagsPages = async ({ graphql, actions, folderName }) => {
+const createPaginatedTagIndexPages = async ({ graphql, actions, reporter }) => {
   const { createPage } = actions
 
   const tagIndexTemplate = path.resolve(
@@ -132,12 +219,10 @@ const createTagsPages = async ({ graphql, actions, folderName }) => {
     `
       {
         allMarkdownRemark(filter: { fields: { visible: { eq: true } } }) {
-          edges {
-            node {
-              id
-              frontmatter {
-                tags
-              }
+          nodes {
+            id
+            frontmatter {
+              tags
             }
           }
         }
@@ -153,12 +238,13 @@ const createTagsPages = async ({ graphql, actions, folderName }) => {
     return
   }
 
-  const tags = getTags(result.data.allMarkdownRemark.edges)
+  const tags = getTags(result.data.allMarkdownRemark.nodes)
 
   if (tags.length > 0) {
-    tags.forEach((tag, index) => {
-      const posts = result.data.allMarkdownRemark.edges.filter(({ node }) => {
-        return node.frontmatter.tags.includes(tag)
+    tags.forEach((tag, _) => {
+      const posts = result.data.allMarkdownRemark.nodes.filter(node => {
+        lowercaseTags = node.frontmatter.tags.map(tag => tag.toLowerCase())
+        return lowercaseTags.includes(tag)
       })
 
       const wrapperCreatePage = page => {
@@ -167,7 +253,7 @@ const createTagsPages = async ({ graphql, actions, folderName }) => {
           context: {
             ...page.context,
             tag,
-            ids: posts.map(({ node }) => node.id),
+            ids: posts.map(node => node.id),
           },
         }
 
@@ -177,7 +263,7 @@ const createTagsPages = async ({ graphql, actions, folderName }) => {
       paginate({
         createPage: wrapperCreatePage,
         items: posts,
-        itemsPerPage: PAGINATION_PAGE_SIZE,
+        itemsPerPage: ITEMS_PER_PAGE,
         pathPrefix: `/tag/${tag}`,
         component: tagIndexTemplate,
       })
@@ -185,66 +271,66 @@ const createTagsPages = async ({ graphql, actions, folderName }) => {
   }
 }
 
-exports.createPages = async ({ graphql, actions, reporter }) => {
-  await Promise.all(
-    ["blog", "article"].map(async folderName => {
-      await Promise.all([
-        await createPagesInFolder({
-          graphql,
-          actions,
-          reporter,
-          folderName,
-        }),
+const createPaginatedYearIndexPages = async ({
+  graphql,
+  actions,
+  reporter,
+}) => {
+  const { createPage } = actions
 
-        await createPaginatedPostsIndex({
-          graphql,
-          actions,
-          reporter,
-          folderName,
-        }),
-      ])
-    })
+  const yearIndexTemplate = path.resolve(
+    `./src/templates/paginatedPostIndex_year.js`
   )
 
-  await createTagsPages({
-    graphql,
-    actions,
-    reporter,
-  })
-}
+  const result = await graphql(
+    `
+      {
+        allMarkdownRemark(filter: { fields: { visible: { eq: true } } }) {
+          group(field: fields___year) {
+            nodes {
+              id
+            }
+            fieldValue
+          }
+        }
+      }
+    `
+  )
 
-exports.onCreateNode = ({ node, actions, getNode }) => {
-  const { createNodeField } = actions
+  if (result.errors) {
+    reporter.panicOnBuild(
+      `There was an error loading your posts`,
+      result.errors
+    )
+    return
+  }
 
-  if (node.internal.type === `MarkdownRemark`) {
-    const value = createFilePath({ node, getNode })
-    let slug = node.frontmatter.slug
-    const match = POST_FILENAME_REGEX.exec(value)
-    if (match !== null) {
-      const category = match.groups["category"]
-      const finalSlug = slug ? slug : match.groups["slug"]
-      createNodeField({
-        name: `slug`,
-        node,
-        value: `/${category}/${finalSlug}`,
+  if (result.data.allMarkdownRemark.group.length > 0) {
+    result.data.allMarkdownRemark.group.forEach((group, _) => {
+      const year = group.fieldValue
+      const posts = group.nodes
+
+      const wrapperCreatePage = page => {
+        const pageWithNewContext = {
+          ...page,
+          context: {
+            ...page.context,
+            year,
+            ids: posts.map(node => node.id),
+          },
+        }
+
+        return createPage(pageWithNewContext)
+      }
+
+      paginate({
+        createPage: wrapperCreatePage,
+        items: posts,
+        itemsPerPage: ITEMS_PER_PAGE,
+        pathPrefix: `/year/${year}`,
+        component: yearIndexTemplate,
       })
-      createNodeField({
-        name: `category`,
-        node,
-        value: category,
-      })
-    } else {
-      createNodeField({
-        name: `slug`,
-        node,
-        value: `/post/${value}`,
-      })
-      createNodeField({
-        name: `category`,
-        node,
-        value: `post`,
-      })
-    }
+    })
   }
 }
 
@@ -295,6 +381,7 @@ exports.createSchemaCustomization = ({ actions }) => {
     type Fields {
       slug: String
       category: String
+      year: String
       visible: Boolean
       published: Boolean
     }

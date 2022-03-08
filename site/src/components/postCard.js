@@ -3,9 +3,14 @@ import { Link } from "gatsby"
 
 const PostCard = ({ post }) => {
   return (
-    <div className="rounded-lg bg-white p-2">
+    <div className="card">
       <Link to={post.fields.slug}>
-        <h3>{post.frontmatter.title}</h3>
+        <div className="flex justify-between">
+          <h3>{post.frontmatter.title}</h3>
+          {!post.fields.published && (
+            <div className="not-published-tag">Not Published</div>
+          )}
+        </div>
         <p className="font-serif text-base text-[#404040]">
           {post.frontmatter.description || post.excerpt}
         </p>
