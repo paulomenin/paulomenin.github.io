@@ -18,17 +18,16 @@ const AboutPage = ({ data, location }) => {
           </p>
           <p>I help teams grow high-quality software solutions.</p>
 
-          <h3 className="mb-2 mt-2">What I write about</h3>
+          <h2 className="mb-2 mt-2">What I write about</h2>
           <p>This site is divided into two main categories:</p>
           <ul className="list-disc list-inside">
             <li>
-              <strong>Articles:</strong> where I write about technology, tips,
-              how-tos, anything related to the professional world of the
-              Computer Science.
+              Articles: where I write about technology, tips, how-tos, anything
+              related to technology.
             </li>
             <li>
-              <strong>Blog:</strong> where I write about my hobbies, daily-life
-              and subjects not related to the work environment.
+              Blog: where I write about my hobbies, daily-life and other
+              subjects.
             </li>
           </ul>
 

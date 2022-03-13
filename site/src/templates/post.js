@@ -1,8 +1,8 @@
 import * as React from "react"
 import { Link, graphql } from "gatsby"
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCalendar, faClock } from "@fortawesome/free-regular-svg-icons"
+import { CalendarIcon, ClockIcon } from "@heroicons/react/outline"
+import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/solid"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
@@ -41,11 +41,11 @@ const BlogPostTemplate = ({ data, location }) => {
               <InlineBio />
               <div className="flex flex-col justify-evenly font-sans text-sm">
                 <div className="m-0 p-0 flex items-center gap-1">
-                  <FontAwesomeIcon icon={faCalendar} />
+                  <CalendarIcon className="h-4 w-4" />
                   {post.frontmatter.date}
                 </div>
                 <div className="m-0 p-0 flex items-center gap-1">
-                  <FontAwesomeIcon icon={faClock} />
+                  <ClockIcon className="h-4 w-4" />
                   {post.fields.readingTime.text}
                 </div>
               </div>
@@ -55,8 +55,7 @@ const BlogPostTemplate = ({ data, location }) => {
           </header>
 
           <section
-            className="first-letter:text-5xl first-letter:font-bold first-letter:text-slate-800
-            first-letter:mr-2 first-letter:float-left"
+            className="hover:prose-a:text-purple-800"
             itemProp="articleBody"
             dangerouslySetInnerHTML={{ __html: post.html }}
           />
@@ -64,19 +63,29 @@ const BlogPostTemplate = ({ data, location }) => {
       </div>
 
       {(previous || next) && (
-        <nav className="card mt-4">
-          <ul className="flex justify-evenly">
-            <li>
+        <nav className="flex justify-center card mt-4">
+          <ul className="flex flex-wrap justify-between gap-4 w-full max-w-[700px]">
+            <li className="nav-link">
               {previous && (
-                <Link className="nav-link" to={previous.fields.slug} rel="prev">
-                  ← {previous.frontmatter.title}
+                <Link
+                  to={previous.fields.slug}
+                  rel="prev"
+                  className="flex items-center gap-1"
+                >
+                  <ArrowLeftIcon className="h-4 w-4 inline-block text-neutral-700" />
+                  {previous.frontmatter.title}
                 </Link>
               )}
             </li>
-            <li>
+            <li className="nav-link">
               {next && (
-                <Link className="nav-link" to={next.fields.slug} rel="next">
-                  {next.frontmatter.title} →
+                <Link
+                  to={next.fields.slug}
+                  rel="next"
+                  className="flex items-center gap-1"
+                >
+                  {next.frontmatter.title}
+                  <ArrowRightIcon className="h-4 w-4 inline-block text-neutral-700" />
                 </Link>
               )}
             </li>

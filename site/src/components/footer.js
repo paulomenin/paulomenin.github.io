@@ -1,9 +1,6 @@
 import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
-import { faCopyright } from "@fortawesome/free-regular-svg-icons"
-
 const Footer = () => {
   const data = useStaticQuery(graphql`
     query FooterQuery {
@@ -12,11 +9,17 @@ const Footer = () => {
           author {
             name
           }
+          social {
+            github
+            linkedin
+          }
         }
       }
     }
   `)
+
   const author = data.site.siteMetadata?.author
+  const social = data.site.siteMetadata?.social
 
   return (
     <footer
@@ -28,7 +31,7 @@ const Footer = () => {
         bg-neutral-200 drop-shadow-md"
     >
       <div>
-        Copyright <FontAwesomeIcon icon={faCopyright} />{" "}
+        Copyright <span className="font-bold text-[1.02rem]">©</span>{" "}
         {new Date().getFullYear()} {author.name}
       </div>
 
@@ -38,11 +41,7 @@ const Footer = () => {
             items-end justify-center
             gap-2"
       >
-        <a
-          href="https://linkedin.com/in/paulo-henrique-menin"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a href={social.linkedin} target="_blank" rel="noopener noreferrer">
           <div className="w-5 h-5 fill-gray-600 hover:fill-[#0A66C2]">
             <svg
               role="img"
@@ -55,11 +54,7 @@ const Footer = () => {
           </div>
         </a>
 
-        <a
-          href="https://github.com/paulomenin"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a href={social.github} target="_blank" rel="noopener noreferrer">
           <div className="w-5 h-5 fill-gray-600 hover:fill-black">
             <svg
               role="img"

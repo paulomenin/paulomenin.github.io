@@ -8,19 +8,11 @@
   }
 
   h1 {
-    @apply font-bold text-xl;
-  }
-
-  h2 {
     @apply font-bold text-lg;
   }
 
-  h3 {
+  h2 {
     @apply font-bold;
-  }
-
-  h4 {
-    @apply font-semibold;
   }
 }
 
@@ -32,7 +24,7 @@
   .tag-link {
     @apply rounded-md px-1 font-bold no-underline font-sans text-sm
     transition-all duration-300
-    bg-neutral-200 text-neutral-800
+    bg-neutral-200 text-neutral-700
     hover:bg-purple-800 hover:text-white;
   }
 

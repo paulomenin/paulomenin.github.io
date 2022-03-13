@@ -1,33 +1,43 @@
 import * as React from "react"
 import { Link } from "gatsby"
 
+import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/solid"
+
 const Pagination = ({ pageContext }) => {
   return (
-    <div className="flex justify-evenly w-full">
-      <div className="min-w-[100px]">
-        {pageContext.previousPagePath && (
-          <Link
-            className="nav-link"
-            to={pageContext.previousPagePath}
-            rel="next"
-          >
-            ← Previous
-          </Link>
-        )}
-      </div>
+    <nav className="flex justify-center w-full">
+      <ul className="flex flex-wrap justify-between gap-4 w-full max-w-[700px]">
+        <li className="nav-link">
+          {pageContext.previousPagePath && (
+            <Link
+              to={pageContext.previousPagePath}
+              rel="prev"
+              className="flex items-center gap-1"
+            >
+              <ArrowLeftIcon className="h-4 w-4 inline-block text-neutral-700" />
+              Previous
+            </Link>
+          )}
+        </li>
 
-      <div>
-        {pageContext.humanPageNumber} / {pageContext.numberOfPages}
-      </div>
+        <li>
+          {pageContext.humanPageNumber} / {pageContext.numberOfPages}
+        </li>
 
-      <div className="min-w-[100px]">
-        {pageContext.nextPagePath && (
-          <Link className="nav-link" to={pageContext.nextPagePath} rel="next">
-            Next →
-          </Link>
-        )}
-      </div>
-    </div>
+        <li className="nav-link">
+          {pageContext.nextPagePath && (
+            <Link
+              to={pageContext.nextPagePath}
+              rel="next"
+              className="flex items-center gap-1"
+            >
+              Next
+              <ArrowRightIcon className="h-4 w-4 inline-block text-neutral-700" />
+            </Link>
+          )}
+        </li>
+      </ul>
+    </nav>
   )
 }
 

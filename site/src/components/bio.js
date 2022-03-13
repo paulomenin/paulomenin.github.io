@@ -20,7 +20,7 @@ const Bio = () => {
   return (
     <div className="flex flex-col gap-2 items-center">
       <StaticImage
-        className="rounded-full drop-shadow-lg"
+        className="rounded-full drop-shadow-xl"
         layout="fixed"
         formats={["auto", "webp", "avif"]}
         src="../images/profile-pic.jpg"
@@ -30,7 +30,9 @@ const Bio = () => {
         alt="Profile picture"
       />
       <div className="text-center">
-        <p className="font-bold text-xl">{author?.name || null}</p>
+        <p className="font-bold text-lg text-neutral-800">
+          {author?.name || null}
+        </p>
         <p>{author?.summary || null}</p>
       </div>
     </div>
