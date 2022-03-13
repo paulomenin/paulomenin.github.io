@@ -1,9 +1,13 @@
 import * as React from "react"
 import { Link, graphql } from "gatsby"
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faCalendar, faClock } from "@fortawesome/free-regular-svg-icons"
+
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import TagList from "../components/tagList"
+import InlineBio from "../components/inlineBio"
 
 const BlogPostTemplate = ({ data, location }) => {
   const post = data.markdownRemark
@@ -19,7 +23,7 @@ const BlogPostTemplate = ({ data, location }) => {
       {console.log(post.fields.draft)}
       <div className="card flex justify-center">
         <article
-          className="prose prose-neutral font-serif prose-headings:font-sans"
+          className="lg:min-w-[700px] max-w-[700px] prose prose-neutral font-serif prose-headings:font-sans"
           itemScope
           itemType="http://schema.org/Article"
         >
@@ -30,15 +34,29 @@ const BlogPostTemplate = ({ data, location }) => {
                 {post.frontmatter.draft && <span> marked as DRAFT</span>}
               </div>
             )}
+
             <h1 itemProp="headline">{post.frontmatter.title}</h1>
-            <TagList tags={post.frontmatter.tags} />
-            <div className="flex gap-2 justify-between">
-              <div>{post.frontmatter.date}</div>
-              <div className="mr-2">{post.fields.readingTime.text}</div>
+
+            <div className="flex justify-between mb-4">
+              <InlineBio />
+              <div className="flex flex-col justify-evenly font-sans text-sm">
+                <div className="m-0 p-0 flex items-center gap-1">
+                  <FontAwesomeIcon icon={faCalendar} />
+                  {post.frontmatter.date}
+                </div>
+                <div className="m-0 p-0 flex items-center gap-1">
+                  <FontAwesomeIcon icon={faClock} />
+                  {post.fields.readingTime.text}
+                </div>
+              </div>
             </div>
+
+            <TagList tags={post.frontmatter.tags} />
           </header>
 
           <section
+            className="first-letter:text-5xl first-letter:font-bold first-letter:text-slate-800
+            first-letter:mr-2 first-letter:float-left"
             itemProp="articleBody"
             dangerouslySetInnerHTML={{ __html: post.html }}
           />

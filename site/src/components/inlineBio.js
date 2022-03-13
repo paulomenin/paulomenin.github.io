@@ -2,9 +2,9 @@ import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 
-const Bio = () => {
+const InlineBio = () => {
   const data = useStaticQuery(graphql`
-    query BioQuery {
+    query InlineBioQuery {
       site {
         siteMetadata {
           author {
@@ -18,23 +18,23 @@ const Bio = () => {
   const author = data.site.siteMetadata?.author
 
   return (
-    <div className="flex flex-col gap-2 items-center">
+    <div className="flex flex-nowrap gap-2 h-16 items-center">
       <StaticImage
         className="rounded-full drop-shadow-lg"
         layout="fixed"
         formats={["auto", "webp", "avif"]}
         src="../images/profile-pic.jpg"
-        width={90}
-        height={90}
+        width={52}
+        height={52}
         quality={95}
         alt="Profile picture"
       />
-      <div className="text-center">
-        <p className="font-bold text-xl">{author?.name || null}</p>
-        <p>{author?.summary || null}</p>
+      <div className="flex flex-col justify-evenly h-16 font-sans text-base">
+        <p className="font-bold text-sm p-0 m-0">{author?.name || null}</p>
+        <p className="p-0 m-0 text-sm">{author?.summary || null}</p>
       </div>
     </div>
   )
 }
 
-export default Bio
+export default InlineBio

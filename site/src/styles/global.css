@@ -31,16 +31,17 @@
 
   .tag-link {
     @apply rounded-md px-1 font-bold no-underline font-sans text-sm
+    transition-all duration-300
     bg-neutral-200 text-neutral-800
     hover:bg-purple-800 hover:text-white;
   }
 
   .nav-link {
-    @apply px-2 rounded-full hover:bg-neutral-200;
+    @apply px-2 rounded-full hover:bg-neutral-200 transition-all duration-300;
   }
 
   .menu-link {
-    @apply font-bold nav-link;
+    @apply font-bold nav-link flex justify-center items-center;
   }
 
   .not-published-tag {

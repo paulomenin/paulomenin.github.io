@@ -6,7 +6,7 @@ const PostCard = ({ post }) => {
     <div className="card">
       <Link to={post.fields.slug}>
         <div className="flex justify-between">
-          <h3>{post.frontmatter.title}</h3>
+          <h3 className="font-normal">{post.frontmatter.title}</h3>
           {!post.fields.published && (
             <div className="not-published-tag">Not Published</div>
           )}

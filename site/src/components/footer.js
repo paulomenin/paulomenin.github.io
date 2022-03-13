@@ -1,6 +1,9 @@
 import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome"
+import { faCopyright } from "@fortawesome/free-regular-svg-icons"
+
 const Footer = () => {
   const data = useStaticQuery(graphql`
     query FooterQuery {
@@ -21,11 +24,12 @@ const Footer = () => {
         flex flex-row justify-between
         content-center items-center
         h-10 m-4 mb-2 px-3 rounded-lg
-        font-bold
+        text-sm
         bg-neutral-200 drop-shadow-md"
     >
       <div>
-        Copyright © {new Date().getFullYear()} {author.name}
+        Copyright <FontAwesomeIcon icon={faCopyright} />{" "}
+        {new Date().getFullYear()} {author.name}
       </div>
 
       <div

@@ -36,16 +36,18 @@ const LandingPage = ({ data, location }) => {
             <div className="flex justify-between card mb-4">
               <h1>Recent Articles</h1>
               <Link className="menu-link" to="/article">
-                <span className="inline-block align-middle">All Articles</span>
+                <span className="inline-block align-middle font-normal">
+                  All Articles
+                </span>
               </Link>
             </div>
             <PostList posts={articlePosts} />
           </div>
           <div>
             <div className="flex justify-between card mb-4 mt-4">
-              <h1>Recent Blog Entries</h1>
+              <h1>Recent Blog Posts</h1>
               <Link className="menu-link" to="/blog">
-                <span className="inline-block align-middle">
+                <span className="inline-block align-middle font-normal">
                   All Blog Posts
                 </span>
               </Link>

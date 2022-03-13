@@ -1,7 +1,7 @@
 ---
 title: V60 Coffee Brew
 slug: v60c
-date: "2022-02-01T22:12:03.284Z"
+date: "2022-03-08 19:14:52"
 description: "My recipe of V60 coffee brew"
 tags: ["Coffee", "V60"]
 ---

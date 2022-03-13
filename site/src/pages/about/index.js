@@ -3,6 +3,7 @@ import { graphql } from "gatsby"
 import Layout from "../../components/layout"
 import Seo from "../../components/seo"
 import TechIcons from "./techIcons"
+import Accordion from "./accordion"
 
 const AboutPage = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
@@ -31,12 +32,11 @@ const AboutPage = ({ data, location }) => {
             </li>
           </ul>
 
-          <h3 className="mb-2 mt-2">Tech Stack</h3>
-          <p className="mb-3">
-            These are some of the technologies that I had worked with in my
-            carrer.
-          </p>
-          <TechIcons />
+          <div className="mt-4">
+            <Accordion id="tech-stack" label="Tech Stack">
+              <TechIcons />
+            </Accordion>
+          </div>
         </div>
       </div>
     </Layout>

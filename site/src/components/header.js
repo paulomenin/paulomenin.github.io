@@ -14,20 +14,22 @@ const Header = ({ title }) => {
     "
     >
       <div className="flex flex-row justify-between">
-        <Link className="font-sans font-bold text-2xl ml-2" to="/">
+        <Link className="flex items-center ml-2" to="/">
           <StaticImage
-            src="../images/logo.svg"
+            src="../images/profile_logo_src.svg"
             alt="Logo"
-            className="mr-3 w-[65px]"
+            className="mr-3 w-[54px]"
             placeholder="none"
             backgroundColor="#ffffff"
           />
-          {title}
+          <span className="font-sans font-bold text-2xl">{title}</span>
         </Link>
 
-        <div className="items-end text-gray-700 hover:text-black">
+        <div className="items-end">
           <Link to="/rss.xml" title="RSS">
-            <RssIcon className="h-7 w-7" />
+            <div className="hover:rounded-md hover:bg-neutral-200">
+              <RssIcon className="h-7 w-7" />
+            </div>
           </Link>
         </div>
       </div>
