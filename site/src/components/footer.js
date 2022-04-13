@@ -21,6 +21,11 @@ const Footer = () => {
   const author = data.site.siteMetadata?.author
   const social = data.site.siteMetadata?.social
 
+  const copyrightYear =
+    new Date().getFullYear() === 2022
+      ? "2022"
+      : `2022-${new Date().getFullYear()}`
+
   return (
     <footer
       className="
@@ -28,11 +33,12 @@ const Footer = () => {
         content-center items-center
         h-10 m-4 mb-2 px-3 rounded-lg
         text-sm
-        bg-neutral-200 drop-shadow-md"
+        bg-neutral-200 dark:bg-neutral-800
+        drop-shadow-md"
     >
       <div>
-        Copyright <span className="font-bold text-[1.02rem]">©</span>{" "}
-        {new Date().getFullYear()} {author.name}
+        <span className="font-bold text-[1.02rem]">©</span>
+        {copyrightYear} by {author.name}. All Rights Reserved.
       </div>
 
       <div

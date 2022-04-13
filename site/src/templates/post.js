@@ -23,7 +23,7 @@ const BlogPostTemplate = ({ data, location }) => {
       {console.log(post.fields.draft)}
       <div className="card flex justify-center">
         <article
-          className="lg:min-w-[700px] max-w-[700px] prose prose-neutral font-serif prose-headings:font-sans"
+          className="lg:min-w-[700px] max-w-[700px] prose prose-neutral dark:prose-invert font-serif prose-headings:font-sans"
           itemScope
           itemType="http://schema.org/Article"
         >
@@ -55,7 +55,7 @@ const BlogPostTemplate = ({ data, location }) => {
           </header>
 
           <section
-            className="hover:prose-a:text-purple-800"
+            className="hover:prose-a:text-purple-800 dark:hover:prose-a:text-purple-600"
             itemProp="articleBody"
             dangerouslySetInnerHTML={{ __html: post.html }}
           />
@@ -72,7 +72,7 @@ const BlogPostTemplate = ({ data, location }) => {
                   rel="prev"
                   className="flex items-center gap-1"
                 >
-                  <ArrowLeftIcon className="h-4 w-4 inline-block text-neutral-700" />
+                  <ArrowLeftIcon className="h-4 w-4 inline-block text-neutral-700 dark:text-neutral-200" />
                   {previous.frontmatter.title}
                 </Link>
               )}
@@ -85,7 +85,7 @@ const BlogPostTemplate = ({ data, location }) => {
                   className="flex items-center gap-1"
                 >
                   {next.frontmatter.title}
-                  <ArrowRightIcon className="h-4 w-4 inline-block text-neutral-700" />
+                  <ArrowRightIcon className="h-4 w-4 inline-block text-neutral-700 dark:text-neutral-200" />
                 </Link>
               )}
             </li>

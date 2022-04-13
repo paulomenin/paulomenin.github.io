@@ -1,7 +1,9 @@
 import * as React from "react"
 import { useStaticQuery, graphql, Link } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
+import useDarkMode from "use-dark-mode"
 import { RssIcon } from "@heroicons/react/solid"
+import DarkModeToggle from "react-dark-mode-toggle"
 import Menu from "./menu"
 
 const Header = () => {
@@ -25,6 +27,10 @@ const Header = () => {
   const social = data.site.siteMetadata?.social
   const title = author.name
 
+  const darkMode = useDarkMode(false, {
+    onChange: () => {}, // Avoid hook to add unwanted class on body element.
+  })
+
   return (
     <header
       className="
@@ -46,12 +52,20 @@ const Header = () => {
         </Link>
 
         <div className="flex gap-2 items-start">
+          <div className="flex flex-col justify-center h-7 ">
+            <DarkModeToggle
+              onChange={darkMode.toggle}
+              checked={darkMode.value}
+              size={41}
+            />
+          </div>
+
           <a href={social.linkedin} target="_blank" rel="noopener noreferrer">
             <div
-              className="h-7 w-7 hover:rounded-md hover:bg-neutral-200 transition-all duration-300
+              className="h-7 w-7 rounded-md hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-all duration-300
               flex justify-center items-center"
             >
-              <div className="h-5 w-5">
+              <div className="h-5 w-5 dark:fill-neutral-200 transition-colors duration-300">
                 <svg
                   role="img"
                   viewBox="0 0 24 24"
@@ -66,10 +80,10 @@ const Header = () => {
 
           <a href={social.github} target="_blank" rel="noopener noreferrer">
             <div
-              className="h-7 w-7 hover:rounded-md hover:bg-neutral-200 transition-all duration-300
+              className="h-7 w-7 rounded-md hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-all duration-300
               flex justify-center items-center"
             >
-              <div className="h-5 w-5">
+              <div className="h-5 w-5 dark:fill-neutral-200 transition-colors duration-300">
                 <svg
                   role="img"
                   viewBox="0 0 24 24"
@@ -83,8 +97,13 @@ const Header = () => {
           </a>
 
           <Link to="/rss.xml" title="RSS">
-            <div className="hover:rounded-md hover:bg-neutral-200 transition-all duration-300">
-              <RssIcon className="h-7 w-7" />
+            <div
+              className="rounded-md
+              text-neutral-900 dark:text-neutral-200  
+              hover:bg-neutral-200 dark:hover:bg-neutral-700
+              transition-colors duration-300"
+            >
+              <RssIcon className="h-7 w-7=" />
             </div>
           </Link>
         </div>

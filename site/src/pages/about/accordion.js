@@ -4,26 +4,49 @@ import { ChevronDownIcon } from "@heroicons/react/outline"
 
 const Accordion = ({ id, label, children }) => {
   const tabId = `${id}-input`
+
+  const [opened, setOpened] = React.useState(false)
+
+  const toggle = () => {
+    setOpened(!opened)
+  }
+
   return (
-    <div className="relative box-border w-full border-[1px] rounded-lg overflow-hidden">
-      <input id={tabId} type="checkbox" className="group peer hidden"></input>
+    <div
+      className="relative w-full rounded-lg overflow-hidden p-0
+      border-[1px] border-neutral-200 dark:border-neutral-700
+      bg-neutral-200 dark:bg-neutral-700"
+    >
+      <input
+        id={tabId}
+        type="checkbox"
+        className="peer hidden"
+        checked={opened}
+        readOnly
+      />
       <label
-        for={tabId}
-        className="relative block p-4 cursor-pointer
+        className="relative block p-4 m-0 cursor-pointer
         transition-all duration-300
-        bg-white font-bold hover:text-purple-800
-        peer-checked:bg-purple-800 peer-checked:text-white "
+        font-bold
+        bg-neutral-200 text-neutral-800 hover:text-purple-800
+        dark:bg-neutral-700 dark:text-neutral-200 dark:hover:text-purple-500
+        peer-checked:bg-purple-800 peer-checked:text-neutral-200 peer-checked:hover:text-neutral-200"
+        onClick={toggle}
       >
         {label}
       </label>
       <ChevronDownIcon
-        className="w-6 h-6 block absolute right-4 top-4
+        className="w-6 h-6 block absolute right-4 top-4 cursor-pointer
         transition-all duration-300
-        peer-checked:rotate-[-180deg] peer-checked:text-white"
+        peer-checked:rotate-[-180deg] 
+        text-neutral-800 peer-checked:text-neutral-200
+        dark:text-neutral-200 dark:peer-checked:text-neutral-200"
+        onClick={toggle}
       />
       <div
         className="border-box overflow-hidden h-0
-          peer-checked:h-auto"
+          peer-checked:h-auto
+          bg-white dark:bg-neutral-800"
       >
         <div className="p-4">{children}</div>
       </div>

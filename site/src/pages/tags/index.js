@@ -12,11 +12,7 @@ const TagsIndex = ({ data, location }) => {
   return (
     <Layout location={location} title={siteTitle}>
       <Seo title="All Tags" />
-      <div
-        className="
-    flex flex-col
-    rounded-lg bg-white m-0 p-5"
-      >
+      <div className="card flex flex-col">
         <h1 className="mb-3">All Tags</h1>
         <TagListContainer />
         <div className="h-4" />
