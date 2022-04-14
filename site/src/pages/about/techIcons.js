@@ -4,7 +4,7 @@ import simpleIcons from "simple-icons"
 const SimpleIcon = ({ slug, label, fillColor }) => {
   const icon = simpleIcons.Get(slug)
   return (
-    <div className="flex flex-col items-center justify-center">
+    <div className="flex flex-col items-center justify-start font-sans min-w-[80px] max-w-[80px]">
       <div className="w-10 h-10 justify-self-center">
         <svg
           role="img"
@@ -15,7 +15,7 @@ const SimpleIcon = ({ slug, label, fillColor }) => {
           <path d={icon.path}></path>
         </svg>
       </div>
-      <div>{label}</div>
+      <div className="text-center leading-tight">{label}</div>
     </div>
   )
 }
@@ -99,7 +99,6 @@ const TechIcons = () => {
       <h4>Others</h4>
       <div className="flex flex-wrap gap-3">
         <SimpleIcon slug="git" label="Git" fillColor="#F05032" />
-
         <SimpleIcon slug="dotnet" label=".NET" fillColor="#512BD4" />
         <SimpleIcon
           slug="apachespark"

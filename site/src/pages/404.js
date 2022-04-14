@@ -7,13 +7,20 @@ import Seo from "../components/seo"
 const NotFoundPage = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata.title
 
+  React.useEffect(() => {
+    setTimeout(() => {
+      document.location.href = "/"
+    }, 10000)
+  }, [])
+
   return (
     <Layout location={location} title={siteTitle}>
       <Seo title="404: Not Found" />
-      <div className="flex justify-center align-middle">
-        <div className="rounded-lg bg-white m-0 p-5">
+      <div className="card w-full flex justify-center align-middle">
+        <div>
           <h1>404: Not Found</h1>
           <p>You just hit a route that doesn&#39;t exist...</p>
+          <p>Redirecting to home page.</p>
         </div>
       </div>
     </Layout>
