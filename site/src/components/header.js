@@ -32,13 +32,7 @@ const Header = () => {
   })
 
   return (
-    <header
-      className="
-        card
-        flex flex-col
-        m-4 gap-2
-    "
-    >
+    <header className="card flex flex-col m-4 gap-2">
       <div className="flex flex-row justify-between">
         <Link className="flex items-center ml-2" to="/">
           <StaticImage
@@ -48,11 +42,13 @@ const Header = () => {
             placeholder="none"
             backgroundColor="#ffffff"
           />
-          <span className="font-sans font-bold text-2xl">{title}</span>
+          <span className="font-sans font-bold text-2xl dark:text-white">
+            {title}
+          </span>
         </Link>
 
         <div className="flex gap-2 items-start">
-          <div className="flex flex-col justify-center h-7 ">
+          <div className="flex flex-col justify-center h-7">
             <DarkModeToggle
               onChange={darkMode.toggle}
               checked={darkMode.value}
