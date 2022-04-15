@@ -13,6 +13,7 @@ const Menu = () => {
       {[
         ["/article", "Articles"],
         ["/blog", "Blog"],
+        ["/slidedeck", "Slide Decks"],
         ["/tags", "Tags"],
         ["/about", "About"],
       ].map(([url, label]) => (

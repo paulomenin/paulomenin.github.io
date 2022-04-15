@@ -30,8 +30,8 @@ const AboutPage = ({ data, location }) => {
               layout="fixed"
               formats={["auto", "webp", "avif"]}
               src="../../images/profile-pic.jpg"
-              width={90}
-              height={90}
+              width={160}
+              height={160}
               quality={95}
               alt="Profile picture"
             />

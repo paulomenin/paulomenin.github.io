@@ -17,7 +17,7 @@ const computeTagList = nodes => {
 const TagListContainer = () => {
   const data = useStaticQuery(graphql`
     query {
-      allMarkdownRemark(filter: { fields: { visible: { eq: true } } }) {
+      allMdx(filter: { fields: { visible: { eq: true } } }) {
         nodes {
           frontmatter {
             tags
@@ -27,7 +27,7 @@ const TagListContainer = () => {
     }
   `)
 
-  const tagList = computeTagList(data.allMarkdownRemark.nodes)
+  const tagList = computeTagList(data.allMdx.nodes)
 
   return <TagList tags={tagList} />
 }

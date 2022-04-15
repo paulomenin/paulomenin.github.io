@@ -54,7 +54,7 @@ const BlogPostTemplate = ({ data, location }) => {
 
             <TagList tags={post.frontmatter.tags} />
           </header>
-
+          <section>SLIDESSSSSSSS</section>
           <section
             className="hover:prose-a:text-purple-800 dark:hover:prose-a:text-purple-600"
             itemProp="articleBody"
@@ -101,7 +101,7 @@ const BlogPostTemplate = ({ data, location }) => {
 export default BlogPostTemplate
 
 export const pageQuery = graphql`
-  query BlogPostBySlug(
+  query SlidedeckPostBySlug(
     $id: String!
     $previousPostId: String
     $nextPostId: String

@@ -69,7 +69,7 @@ export const pageQuery = graphql`
         title
       }
     }
-    blogPosts: allMarkdownRemark(
+    blogPosts: allMdx(
       filter: { fields: { category: { eq: "blog" }, visible: { eq: true } } }
       sort: { fields: [frontmatter___date], order: DESC }
       limit: 3
@@ -88,7 +88,7 @@ export const pageQuery = graphql`
         }
       }
     }
-    articlePosts: allMarkdownRemark(
+    articlePosts: allMdx(
       filter: { fields: { category: { eq: "article" }, visible: { eq: true } } }
       sort: { fields: [frontmatter___date], order: DESC }
       limit: 3

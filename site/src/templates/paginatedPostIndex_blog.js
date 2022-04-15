@@ -8,7 +8,7 @@ import Pagination from "../components/pagination"
 
 const BlogIndex = ({ data, location, pageContext }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
-  const posts = data.allMarkdownRemark.nodes
+  const posts = data.allMdx.nodes
 
   return (
     <Layout location={location} title={siteTitle}>
@@ -38,7 +38,7 @@ export const pageQuery = graphql`
         title
       }
     }
-    allMarkdownRemark(
+    allMdx(
       filter: { fields: { category: { eq: "blog" }, visible: { eq: true } } }
       sort: { fields: [frontmatter___date], order: DESC }
       skip: $skip

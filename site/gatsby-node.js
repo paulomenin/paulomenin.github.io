@@ -1,15 +1,16 @@
 const path = require(`path`)
+const fs = require(`fs`)
 const { createFilePath } = require(`gatsby-source-filesystem`)
 const { paginate } = require("gatsby-awesome-pagination")
 
 const POST_FILENAME_REGEX = /^\/(?<category>.+)\/(\/?\d+)*\/(?<slug>.*)/
-const ITEMS_PER_PAGE = 10
-const CATEGORIES = ["blog", "article"]
+const ITEMS_PER_PAGE = 2
+const CATEGORIES = ["blog", "article", "slidedeck"]
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
 
-  if (node.internal.type !== `MarkdownRemark`) {
+  if (node.internal.type !== `Mdx`) {
     return
   }
 
@@ -49,6 +50,14 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       value: year,
     })
   }
+
+  // if (categoryValue === "slidedeck") {
+  //   createNodeField({
+  //     name: `slideSlug`,
+  //     node,
+  //     value: `${slugValue}/show`,
+  //   })
+  // }
 }
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
@@ -93,13 +102,18 @@ const createPagesForCategory = async ({
 }) => {
   const { createPage } = actions
 
-  const postTemplate = path.resolve(`./src/templates/post.js`)
+  let postTemplate = path.resolve(`./src/templates/post_${category}.js`)
+  try {
+    fs.accessSync(postTemplate, fs.constants.R_OK)
+  } catch {
+    postTemplate = path.resolve(`./src/templates/post.js`)
+  }
 
   // Get all markdown posts in a folder sorted by date
   const result = await graphql(
     `
       {
-        allMarkdownRemark(
+        allMdx(
           filter: {
             fileAbsolutePath: { glob: "**/${category}/**" }
             fields: { visible: { eq: true } }
@@ -125,7 +139,7 @@ const createPagesForCategory = async ({
     return
   }
 
-  const posts = result.data.allMarkdownRemark.nodes
+  const posts = result.data.allMdx.nodes
 
   if (posts.length > 0) {
     posts.forEach((post, index) => {
@@ -161,7 +175,7 @@ const createPaginatedIndexForCategory = async ({
   const result = await graphql(
     `
       {
-        allMarkdownRemark(
+        allMdx(
           filter: {
             fileAbsolutePath: { glob: "**/${category}/**" }
             fields: { visible: { eq: true } }
@@ -183,7 +197,7 @@ const createPaginatedIndexForCategory = async ({
     return
   }
 
-  const posts = result.data.allMarkdownRemark.nodes
+  const posts = result.data.allMdx.nodes
 
   // Creates pages like `/category`, `/category/2`, etc
   paginate({
@@ -218,7 +232,7 @@ const createPaginatedTagIndexPages = async ({ graphql, actions, reporter }) => {
   const result = await graphql(
     `
       {
-        allMarkdownRemark(filter: { fields: { visible: { eq: true } } }) {
+        allMdx(filter: { fields: { visible: { eq: true } } }) {
           nodes {
             id
             frontmatter {
@@ -238,11 +252,11 @@ const createPaginatedTagIndexPages = async ({ graphql, actions, reporter }) => {
     return
   }
 
-  const tags = getTags(result.data.allMarkdownRemark.nodes)
+  const tags = getTags(result.data.allMdx.nodes)
 
   if (tags.length > 0) {
     tags.forEach((tag, _) => {
-      const posts = result.data.allMarkdownRemark.nodes.filter(node => {
+      const posts = result.data.allMdx.nodes.filter(node => {
         lowercaseTags = node.frontmatter.tags.map(tag => tag.toLowerCase())
         return lowercaseTags.includes(tag)
       })
@@ -285,7 +299,7 @@ const createPaginatedYearIndexPages = async ({
   const result = await graphql(
     `
       {
-        allMarkdownRemark(filter: { fields: { visible: { eq: true } } }) {
+        allMdx(filter: { fields: { visible: { eq: true } } }) {
           group(field: fields___year) {
             nodes {
               id
@@ -305,8 +319,8 @@ const createPaginatedYearIndexPages = async ({
     return
   }
 
-  if (result.data.allMarkdownRemark.group.length > 0) {
-    result.data.allMarkdownRemark.group.forEach((group, _) => {
+  if (result.data.allMdx.group.length > 0) {
+    result.data.allMdx.group.forEach((group, _) => {
       const year = group.fieldValue
       const posts = group.nodes
 
@@ -341,7 +355,7 @@ exports.createSchemaCustomization = ({ actions }) => {
   // This way those will always be defined even if removed from gatsby-config.js
 
   // Also explicitly define the Markdown frontmatter
-  // This way the "MarkdownRemark" queries will return `null` even when no
+  // This way the "Mdx" queries will return `null` even when no
   // blog posts are stored inside "content/" instead of returning an error
   createTypes(`
     type SiteSiteMetadata {
@@ -362,10 +376,10 @@ exports.createSchemaCustomization = ({ actions }) => {
     }
 
     type Contact {
-        email: String
-      }
+      email: String
+    }
 
-    type MarkdownRemark implements Node {
+    type Mdx implements Node {
       frontmatter: Frontmatter
       fields: Fields
     }
@@ -378,12 +392,17 @@ exports.createSchemaCustomization = ({ actions }) => {
       draft: Boolean
     }
 
+    type ReadingTime {
+      text: String
+    }
+
     type Fields {
       slug: String
       category: String
       year: String
       visible: Boolean
       published: Boolean
+      readingTime: ReadingTime
     }
   `)
 }

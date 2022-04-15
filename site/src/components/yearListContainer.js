@@ -11,7 +11,7 @@ const computeYearList = groups => {
 const YearListContainer = () => {
   const data = useStaticQuery(graphql`
     query {
-      allMarkdownRemark(filter: { fields: { visible: { eq: true } } }) {
+      allMdx(filter: { fields: { visible: { eq: true } } }) {
         group(field: fields___year) {
           fieldValue
         }
@@ -19,7 +19,7 @@ const YearListContainer = () => {
     }
   `)
 
-  const tagList = computeYearList(data.allMarkdownRemark.group)
+  const tagList = computeYearList(data.allMdx.group)
 
   return <TagList tags={tagList} prefix="year" />
 }

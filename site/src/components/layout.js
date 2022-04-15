@@ -1,8 +1,13 @@
 import * as React from "react"
-import Helmet from "react-helmet"
+import { Helmet } from "react-helmet"
 import useDarkMode from "use-dark-mode"
+import { MDXProvider } from "@mdx-js/react"
 import Header from "./header"
 import Footer from "./footer"
+
+import RevealJsSlides from "./revealJsSlides"
+
+const mdxComponents = { RevealJsSlides }
 
 const Layout = ({ location, title, children }) => {
   const rootPath = `${__PATH_PREFIX__}/`
@@ -20,7 +25,9 @@ const Layout = ({ location, title, children }) => {
 
       <div className="flex flex-col h-full" data-is-root-path={isRootPath}>
         <Header />
-        <main className="mb-auto mx-4 relative">{children}</main>
+        <MDXProvider components={mdxComponents}>
+          <main className="mb-auto mx-4 relative">{children}</main>
+        </MDXProvider>
         <Footer />
       </div>
     </>

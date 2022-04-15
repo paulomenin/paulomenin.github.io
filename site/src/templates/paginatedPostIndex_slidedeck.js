@@ -6,18 +6,16 @@ import Seo from "../components/seo"
 import PostList from "../components/postList"
 import Pagination from "../components/pagination"
 
-const TagIndexTemplate = ({ data, location, pageContext }) => {
+const SlideDeckIndex = ({ data, location, pageContext }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
-  const posts = data.allMdx.edges.map(edge => {
-    return edge.node
-  })
+  const posts = data.allMdx.nodes
 
   return (
     <Layout location={location} title={siteTitle}>
-      <Seo title={`During ${pageContext.year}`} />
+      <Seo title="All Slide Decks" />
 
-      <div className="card mb-4">
-        <h1>During: {pageContext.year}</h1>
+      <div className="flex justify-between card mb-4">
+        <h1>All Slide Decks</h1>
       </div>
 
       <PostList posts={posts} />
@@ -31,34 +29,35 @@ const TagIndexTemplate = ({ data, location, pageContext }) => {
   )
 }
 
-export default TagIndexTemplate
+export default SlideDeckIndex
 
 export const pageQuery = graphql`
-  query YearIndexPageQuery($ids: [String]!, $skip: Int!, $limit: Int!) {
+  query ($skip: Int!, $limit: Int!) {
     site {
       siteMetadata {
         title
       }
     }
     allMdx(
-      filter: { id: { in: $ids } }
+      filter: {
+        fields: { category: { eq: "slidedeck" }, visible: { eq: true } }
+      }
       sort: { fields: [frontmatter___date], order: DESC }
       skip: $skip
       limit: $limit
     ) {
-      edges {
-        node {
-          excerpt
-          frontmatter {
-            title
-            date(formatString: "MMM D, YYYY")
-            description
-          }
-          fields {
-            slug
-            category
-            published
-          }
+      nodes {
+        excerpt
+        fields {
+          slug
+          category
+          published
+        }
+        frontmatter {
+          date(formatString: "MMMM DD, YYYY")
+          title
+          description
+          tags
         }
       }
     }
