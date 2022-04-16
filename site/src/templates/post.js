@@ -21,7 +21,6 @@ const BlogPostTemplate = ({ data, location }) => {
         title={post.frontmatter.title}
         description={post.frontmatter.description || post.excerpt}
       />
-      {console.log(post.fields.draft)}
       <div className="card flex justify-center">
         <article
           className="lg:min-w-[700px] max-w-[700px] prose prose-neutral dark:prose-invert font-serif prose-headings:font-sans"

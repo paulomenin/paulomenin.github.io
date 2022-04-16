@@ -1,16 +1,11 @@
 import * as React from "react"
 
-const RevealJsSlides = ({ src, children }) => {
+const RevealJsSlides = ({ src, fullscreen }) => {
+  const heightClass = fullscreen ? "h-screen" : "h-96"
   return (
     <>
-      <div className="w-full h-96">
-        {src && <iframe className="w-full h-full" src={src}></iframe>}
-        {!src && (
-          <>
-            <h1>internal</h1>
-            {children}
-          </>
-        )}
+      <div className={`w-full ${heightClass}`}>
+        <iframe className="w-full h-full" src={src}></iframe>
       </div>
     </>
   )

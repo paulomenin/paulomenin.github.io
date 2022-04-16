@@ -6,7 +6,7 @@ module.exports = {
       summary: `Software Engineer | Architect`,
     },
     description: `Paulo Menin's personal Blog and Portfolio`,
-    siteUrl: `https://github.com/paulomenin`,
+    siteUrl: `https://paulomenin.dev`,
     social: {
       github: `https://github.com/paulomenin`,
       linkedin: `https://linkedin.com/in/paulo-henrique-menin`,
@@ -19,6 +19,12 @@ module.exports = {
   plugins: [
     `gatsby-plugin-image`,
     `gatsby-plugin-postcss`,
+    {
+      resolve: "gatsby-plugin-static-folders",
+      options: {
+        folders: [`./slide-decks`],
+      },
+    },
     {
       resolve: `gatsby-source-filesystem`,
       options: {

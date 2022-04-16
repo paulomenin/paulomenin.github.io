@@ -4,8 +4,9 @@ const { createFilePath } = require(`gatsby-source-filesystem`)
 const { paginate } = require("gatsby-awesome-pagination")
 
 const POST_FILENAME_REGEX = /^\/(?<category>.+)\/(\/?\d+)*\/(?<slug>.*)/
-const ITEMS_PER_PAGE = 2
-const CATEGORIES = ["blog", "article", "slidedeck"]
+const ITEMS_PER_PAGE = 10
+const SLIDEDECK_CATEGORY = "slidedeck"
+const CATEGORIES = ["blog", "article", SLIDEDECK_CATEGORY]
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
@@ -40,6 +41,14 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
     value: categoryValue,
   })
 
+  if (categoryValue === SLIDEDECK_CATEGORY) {
+    createNodeField({
+      name: `slugSlide`,
+      node,
+      value: `${slugValue}show`,
+    })
+  }
+
   if (node.frontmatter.date) {
     const date = new Date(node.frontmatter.date)
     const year = date.getFullYear()
@@ -50,14 +59,6 @@ exports.onCreateNode = ({ node, actions, getNode }) => {
       value: year,
     })
   }
-
-  // if (categoryValue === "slidedeck") {
-  //   createNodeField({
-  //     name: `slideSlug`,
-  //     node,
-  //     value: `${slugValue}/show`,
-  //   })
-  // }
 }
 
 exports.createPages = async ({ graphql, actions, reporter }) => {
@@ -102,6 +103,7 @@ const createPagesForCategory = async ({
 }) => {
   const { createPage } = actions
 
+  const slideShowTemplate = path.resolve(`./src/templates/slide_show.js`)
   let postTemplate = path.resolve(`./src/templates/post_${category}.js`)
   try {
     fs.accessSync(postTemplate, fs.constants.R_OK)
@@ -124,6 +126,8 @@ const createPagesForCategory = async ({
             id
             fields {
               slug
+              slugSlide
+              category
             }
           }
         }
@@ -155,6 +159,16 @@ const createPagesForCategory = async ({
           nextPostId,
         },
       })
+
+      if (post.fields.category === SLIDEDECK_CATEGORY) {
+        createPage({
+          path: post.fields.slugSlide,
+          component: slideShowTemplate,
+          context: {
+            id: post.id,
+          },
+        })
+      }
     })
   }
 }
@@ -390,6 +404,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       date: Date @dateformat
       tags: [String]
       draft: Boolean
+      slide_url: String
     }
 
     type ReadingTime {
@@ -398,6 +413,7 @@ exports.createSchemaCustomization = ({ actions }) => {
 
     type Fields {
       slug: String
+      slugSlide: String
       category: String
       year: String
       visible: Boolean

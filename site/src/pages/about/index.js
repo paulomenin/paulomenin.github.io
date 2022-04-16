@@ -3,8 +3,8 @@ import { graphql } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 import Layout from "../../components/layout"
 import Seo from "../../components/seo"
-import TechIcons from "./techIcons"
-import Accordion from "./accordion"
+import TechIcons from "./_techIcons"
+import Accordion from "./_accordion"
 
 const AboutPage = ({ data, location }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`

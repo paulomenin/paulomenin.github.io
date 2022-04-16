@@ -10,7 +10,7 @@ const PostCard = ({ post }) => {
             className="font-bold 
             text-neutral-700 dark:text-neutral-200
             group-hover:text-purple-800 dark:group-hover:text-purple-600
-            transition-all duration-300"
+            transition-colors duration-300"
           >
             {post.frontmatter.title}
           </h3>
