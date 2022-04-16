@@ -13,12 +13,17 @@ const LandingPage = ({ data, location }) => {
 
   const blogPosts = data.blogPosts.nodes
   const articlePosts = data.articlePosts.nodes
+  const slidesPosts = data.slidesPosts.nodes
 
   return (
     <Layout location={location} title={siteTitle}>
       <Seo title="Recent Posts" />
 
-      <div className="flex flex-wrap flex-col gap-4 sm:flex-row sm:gap-2">
+      <div
+        className="flex flex-wrap 
+           flex-col    gap-4
+        sm:flex-row sm:gap-2"
+      >
         <div className="flex flex-col shrink-0 grow sm:grow-0 basis-1/4 gap-2">
           <div className="card">
             <Bio />
@@ -31,8 +36,8 @@ const LandingPage = ({ data, location }) => {
           </div>
         </div>
 
-        <div className="basis-1/2 grow">
-          <div>
+        <div className="flex flex-col sm:flex-row grow gap-2">
+          <div className="grow">
             <div className="flex justify-between card mb-4">
               <h1>Recent Articles</h1>
               <Link className="menu-link" to="/article">
@@ -43,8 +48,8 @@ const LandingPage = ({ data, location }) => {
             </div>
             <PostList posts={articlePosts} />
           </div>
-          <div>
-            <div className="flex justify-between card mb-4 mt-4">
+          <div className="grow">
+            <div className="flex justify-between card mb-4">
               <h1>Recent Blog Posts</h1>
               <Link className="menu-link" to="/blog">
                 <span className="inline-block align-middle font-normal">
@@ -53,6 +58,17 @@ const LandingPage = ({ data, location }) => {
               </Link>
             </div>
             <PostList posts={blogPosts} />
+          </div>
+          <div className="grow">
+            <div className="flex justify-between card mb-4">
+              <h1>Recent Slide Decks</h1>
+              <Link className="menu-link" to="/slidedeck">
+                <span className="inline-block align-middle font-normal">
+                  All Slide Decks
+                </span>
+              </Link>
+            </div>
+            <PostList posts={slidesPosts} />
           </div>
         </div>
       </div>
@@ -72,7 +88,7 @@ export const pageQuery = graphql`
     blogPosts: allMdx(
       filter: { fields: { category: { eq: "blog" }, visible: { eq: true } } }
       sort: { fields: [frontmatter___date], order: DESC }
-      limit: 3
+      limit: 5
     ) {
       nodes {
         excerpt
@@ -90,6 +106,27 @@ export const pageQuery = graphql`
     }
     articlePosts: allMdx(
       filter: { fields: { category: { eq: "article" }, visible: { eq: true } } }
+      sort: { fields: [frontmatter___date], order: DESC }
+      limit: 3
+    ) {
+      nodes {
+        excerpt
+        fields {
+          slug
+          category
+          published
+        }
+        frontmatter {
+          date(formatString: "MMMM DD, YYYY")
+          title
+          description
+        }
+      }
+    }
+    slidesPosts: allMdx(
+      filter: {
+        fields: { category: { eq: "slidedeck" }, visible: { eq: true } }
+      }
       sort: { fields: [frontmatter___date], order: DESC }
       limit: 3
     ) {

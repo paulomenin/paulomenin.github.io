@@ -26,7 +26,7 @@ const AboutPage = ({ data, location }) => {
             itemProp="articleBody"
           >
             <StaticImage
-              className="rounded-full drop-shadow-md float-right"
+              className="rounded-full shadow-md shadow-black/60 float-right"
               layout="fixed"
               formats={["auto", "webp", "avif"]}
               src="../../images/profile-pic.jpg"

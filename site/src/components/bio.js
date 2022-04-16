@@ -20,7 +20,7 @@ const Bio = () => {
   return (
     <div className="flex flex-col gap-2 items-center">
       <StaticImage
-        className="rounded-full drop-shadow-md"
+        className="rounded-full shadow-md shadow-black/60"
         layout="fixed"
         formats={["auto", "webp", "avif"]}
         src="../images/profile-pic.jpg"
