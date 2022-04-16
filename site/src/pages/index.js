@@ -19,56 +19,36 @@ const LandingPage = ({ data, location }) => {
     <Layout location={location} title={siteTitle}>
       <Seo title="Recent Posts" />
 
-      <div
-        className="flex flex-wrap 
-           flex-col    gap-4
-        sm:flex-row sm:gap-2"
-      >
-        <div className="flex flex-col shrink-0 grow sm:grow-0 basis-1/4 gap-2">
-          <div className="card">
-            <Bio />
+      <div className="card flex justify-center">
+        <div className="lg:min-w-[700px] max-w-[700px]">
+          <div className="flex justify-between mb-4 ml-2">
+            <h1>Recent Articles</h1>
           </div>
-          <div className="card text-center">
-            <h1 className="mb-3">Tags</h1>
+          <PostList posts={articlePosts} />
+
+          <hr className="bg-purple-900 dark:bg-purple-600 border-0 mt-4 h-1" />
+
+          <div className="flex justify-between mb-4 ml-2 mt-4">
+            <h1>Recent Blog Posts</h1>
+          </div>
+          <PostList posts={blogPosts} />
+
+          <hr className="bg-purple-900 dark:bg-purple-600 border-0 mt-4 h-1" />
+
+          <div className="flex justify-between mb-4 ml-2 mt-4">
+            <h1>Recent Slide Decks</h1>
+          </div>
+          <PostList posts={slidesPosts} />
+
+          <hr className="bg-purple-900 dark:bg-purple-600 border-0 mt-4 h-1" />
+
+          <div className="ml-2 mt-4">
+            <div className="flex justify-between mb-4">
+              <h1>Tags</h1>
+            </div>
             <TagListContainer />
             <div className="h-4" />
             <YearListContainer />
-          </div>
-        </div>
-
-        <div className="flex flex-col sm:flex-row grow gap-2">
-          <div className="grow">
-            <div className="flex justify-between card mb-4">
-              <h1>Recent Articles</h1>
-              <Link className="menu-link" to="/article">
-                <span className="inline-block align-middle font-normal">
-                  All Articles
-                </span>
-              </Link>
-            </div>
-            <PostList posts={articlePosts} />
-          </div>
-          <div className="grow">
-            <div className="flex justify-between card mb-4">
-              <h1>Recent Blog Posts</h1>
-              <Link className="menu-link" to="/blog">
-                <span className="inline-block align-middle font-normal">
-                  All Blog Posts
-                </span>
-              </Link>
-            </div>
-            <PostList posts={blogPosts} />
-          </div>
-          <div className="grow">
-            <div className="flex justify-between card mb-4">
-              <h1>Recent Slide Decks</h1>
-              <Link className="menu-link" to="/slidedeck">
-                <span className="inline-block align-middle font-normal">
-                  All Slide Decks
-                </span>
-              </Link>
-            </div>
-            <PostList posts={slidesPosts} />
           </div>
         </div>
       </div>

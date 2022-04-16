@@ -6,19 +6,23 @@ import Seo from "../components/seo"
 import PostList from "../components/postList"
 import Pagination from "../components/pagination"
 
-const SlideDeckIndex = ({ data, location, pageContext }) => {
+const PaginatedPostIndex = ({ data, location, pageContext }) => {
   const siteTitle = data.site.siteMetadata?.title || `Title`
   const posts = data.allMdx.nodes
 
   return (
     <Layout location={location} title={siteTitle}>
-      <Seo title="All Slide Decks" />
+      <Seo title={pageContext.pageTitle} />
 
-      <div className="flex justify-between card mb-4">
-        <h1>All Slide Decks</h1>
+      <div className="card flex justify-center">
+        <div className="lg:min-w-[700px] max-w-[700px]">
+          <div className="flex justify-between mb-4 ml-2">
+            <h1>{pageContext.pageTitle}</h1>
+          </div>
+
+          <PostList posts={posts} />
+        </div>
       </div>
-
-      <PostList posts={posts} />
 
       {pageContext.numberOfPages > 1 && (
         <div className="flex justify-between card mt-4">
@@ -29,19 +33,17 @@ const SlideDeckIndex = ({ data, location, pageContext }) => {
   )
 }
 
-export default SlideDeckIndex
+export default PaginatedPostIndex
 
 export const pageQuery = graphql`
-  query ($skip: Int!, $limit: Int!) {
+  query ($skip: Int!, $limit: Int!, $category: String!) {
     site {
       siteMetadata {
         title
       }
     }
     allMdx(
-      filter: {
-        fields: { category: { eq: "slidedeck" }, visible: { eq: true } }
-      }
+      filter: { fields: { category: { eq: $category }, visible: { eq: true } } }
       sort: { fields: [frontmatter___date], order: DESC }
       skip: $skip
       limit: $limit

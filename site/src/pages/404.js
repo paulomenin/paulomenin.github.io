@@ -10,7 +10,7 @@ const NotFoundPage = ({ data, location }) => {
   React.useEffect(() => {
     setTimeout(() => {
       document.location.href = "/"
-    }, 10000)
+    }, 8000)
   }, [])
 
   return (
@@ -20,7 +20,7 @@ const NotFoundPage = ({ data, location }) => {
         <div>
           <h1>404: Not Found</h1>
           <p>You just hit a route that doesn&#39;t exist...</p>
-          <p>Redirecting to home page.</p>
+          <p>Redirecting to home page...</p>
         </div>
       </div>
     </Layout>

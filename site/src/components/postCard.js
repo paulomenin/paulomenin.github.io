@@ -3,7 +3,7 @@ import { Link } from "gatsby"
 
 const PostCard = ({ post }) => {
   return (
-    <div className="card group">
+    <div className="group p-2 rounded-md hover:bg-neutral-200 dark:hover:bg-neutral-700 duration-300">
       <Link to={post.fields.slug}>
         <div className="flex justify-between">
           <h3
@@ -19,7 +19,7 @@ const PostCard = ({ post }) => {
           )}
         </div>
         <p className="font-sans text-base text-neutral-700 dark:text-neutral-200">
-          {post.frontmatter.description || post.excerpt}
+          {post.excerpt || post.frontmatter.description}
         </p>
         <p className="text-xs text-gray-500 dark:text-gray-400">
           {post.frontmatter.date}

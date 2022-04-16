@@ -55,7 +55,7 @@ const BlogPostTemplate = ({ data, location }) => {
           </header>
 
           <section
-            className="hover:prose-a:text-purple-800 dark:hover:prose-a:text-purple-600"
+            className="hover:prose-a:text-purple-800 dark:hover:prose-a:text-purple-600 mt-4"
             itemProp="articleBody"
           >
             <MDXRenderer>{post.body}</MDXRenderer>

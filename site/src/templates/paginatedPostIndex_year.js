@@ -15,12 +15,15 @@ const TagIndexTemplate = ({ data, location, pageContext }) => {
   return (
     <Layout location={location} title={siteTitle}>
       <Seo title={`During ${pageContext.year}`} />
+      <div className="card flex justify-center">
+        <div className="lg:min-w-[700px] max-w-[700px]">
+          <div className="flex justify-between mb-4 ml-2">
+            <h1>During: {pageContext.year}</h1>
+          </div>
 
-      <div className="card mb-4">
-        <h1>During: {pageContext.year}</h1>
+          <PostList posts={posts} />
+        </div>
       </div>
-
-      <PostList posts={posts} />
 
       {pageContext.numberOfPages > 1 && (
         <div className="flex justify-between card mt-4">

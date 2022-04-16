@@ -6,7 +6,11 @@ const { paginate } = require("gatsby-awesome-pagination")
 const POST_FILENAME_REGEX = /^\/(?<category>.+)\/(\/?\d+)*\/(?<slug>.*)/
 const ITEMS_PER_PAGE = 10
 const SLIDEDECK_CATEGORY = "slidedeck"
-const CATEGORIES = ["blog", "article", SLIDEDECK_CATEGORY]
+const CATEGORIES = [
+  { slug: "blog", indexPageTitle: "All Blog Posts" },
+  { slug: "article", indexPageTitle: "All Articles" },
+  { slug: SLIDEDECK_CATEGORY, indexPageTitle: "All Slide Decks" },
+]
 
 exports.onCreateNode = ({ node, actions, getNode }) => {
   const { createNodeField } = actions
@@ -104,20 +108,20 @@ const createPagesForCategory = async ({
   const { createPage } = actions
 
   const slideShowTemplate = path.resolve(`./src/templates/slide_show.js`)
-  let postTemplate = path.resolve(`./src/templates/post_${category}.js`)
+  let postTemplate = path.resolve(`./src/templates/post_${category.slug}.js`)
   try {
     fs.accessSync(postTemplate, fs.constants.R_OK)
   } catch {
     postTemplate = path.resolve(`./src/templates/post.js`)
   }
 
-  // Get all markdown posts in a folder sorted by date
+  // Get all markdown posts in a folder
   const result = await graphql(
     `
       {
         allMdx(
           filter: {
-            fileAbsolutePath: { glob: "**/${category}/**" }
+            fileAbsolutePath: { glob: "**/${category.slug}/**" }
             fields: { visible: { eq: true } }
           }
           sort: { fields: [frontmatter___date], order: ASC }
@@ -160,6 +164,7 @@ const createPagesForCategory = async ({
         },
       })
 
+      // Additional page for slides fullscreen preview
       if (post.fields.category === SLIDEDECK_CATEGORY) {
         createPage({
           path: post.fields.slugSlide,
@@ -181,9 +186,14 @@ const createPaginatedIndexForCategory = async ({
 }) => {
   const { createPage } = actions
 
-  const postTemplate = path.resolve(
-    `./src/templates/paginatedPostIndex_${category}.js`
+  let postTemplate = path.resolve(
+    `./src/templates/paginatedPostIndex_${category.slug}.js`
   )
+  try {
+    fs.accessSync(postTemplate, fs.constants.R_OK)
+  } catch {
+    postTemplate = path.resolve(`./src/templates/paginatedPostIndex.js`)
+  }
 
   // Get all markdown posts in a folder sorted by date
   const result = await graphql(
@@ -191,7 +201,7 @@ const createPaginatedIndexForCategory = async ({
       {
         allMdx(
           filter: {
-            fileAbsolutePath: { glob: "**/${category}/**" }
+            fileAbsolutePath: { glob: "**/${category.slug}/**" }
             fields: { visible: { eq: true } }
           }
         ) {
@@ -213,12 +223,25 @@ const createPaginatedIndexForCategory = async ({
 
   const posts = result.data.allMdx.nodes
 
+  const wrapperCreatePage = page => {
+    const pageWithNewContext = {
+      ...page,
+      context: {
+        ...page.context,
+        category: category.slug,
+        pageTitle: category.indexPageTitle,
+      },
+    }
+
+    return createPage(pageWithNewContext)
+  }
+
   // Creates pages like `/category`, `/category/2`, etc
   paginate({
-    createPage,
+    createPage: wrapperCreatePage,
     items: posts,
     itemsPerPage: ITEMS_PER_PAGE,
-    pathPrefix: `/${category}`,
+    pathPrefix: `/${category.slug}`,
     component: postTemplate,
   })
 }
