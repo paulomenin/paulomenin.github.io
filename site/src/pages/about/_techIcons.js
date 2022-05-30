@@ -1,7 +1,7 @@
 import * as React from "react"
 import simpleIcons from "simple-icons"
 
-const SimpleIcon = ({ slug, label, fillColor }) => {
+function SimpleIcon({ slug, label, fillColor }) {
   const icon = simpleIcons.Get(slug)
   return (
     <div className="flex flex-col items-center justify-start font-sans min-w-[88px] max-w-[88px]">
@@ -23,7 +23,7 @@ const SimpleIcon = ({ slug, label, fillColor }) => {
   )
 }
 
-const TechIcons = () => {
+function TechIcons() {
   return (
     <div className="flex flex-col gap-4">
       <h4>Operating Systems</h4>

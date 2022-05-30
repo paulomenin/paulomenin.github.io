@@ -1,10 +1,10 @@
 import * as React from "react"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 
 import Seo from "../components/seo"
 import RevealJsSlides from "../components/revealJsSlides"
 
-const SlideShowTemplate = ({ data, location }) => {
+function SlideShowTemplate({ data }) {
   const post = data.mdx
 
   return (

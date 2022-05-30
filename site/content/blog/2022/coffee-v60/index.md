@@ -1,11 +1,16 @@
 ---
-title: Test 1
-date: "2022-02-01T22:12:03.284Z"
-description: "Test article"
-tags: ["Coffee", "Test"]
+title: V60 Coffee Brew
+slug: v60c
+date: "2022-03-08 19:14:52"
+description: "My recipe of V60 coffee brew"
+tags: ["coffee", "V60"]
 ---
 
-Do do fugiat elit voluptate nostrud anim veniam incididunt esse ipsum consectetur ullamco quis elit. Ea eiusmod sit esse aute irure do fugiat labore quis eiusmod nulla quis cupidatat dolore. Consectetur deserunt labore eiusmod laborum Lorem est Lorem anim veniam do. Reprehenderit enim laboris ut deserunt culpa ad in sit aliqua.
+Do do fugiat elit voluptate [paulomenin.dev](http://paulomenin.dev) nostrud anim veniam incididunt esse ipsum consectetur ullamco quis elit. Ea eiusmod sit esse aute irure do fugiat labore quis eiusmod nulla quis cupidatat dolore. Consectetur deserunt labore eiusmod laborum Lorem est Lorem anim veniam do. Reprehenderit enim laboris ut deserunt culpa ad in sit aliqua.
+
+[paulomenin.dev](http://paulomenin.dev)
+
+[ABOUT](/about)
 
 Ex nostrud laboris ea ullamco ipsum qui magna laboris sint ex eu do. Pariatur enim quis amet elit nostrud. Incididunt et minim tempor ipsum in esse quis in adipisicing nostrud. Proident aute nostrud quis est.
 

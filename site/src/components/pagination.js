@@ -1,16 +1,15 @@
 import * as React from "react"
-import { Link } from "gatsby"
-
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/solid"
+import Link from "./link"
 
-const Pagination = ({ pageContext }) => {
+function Pagination({ pageContext }) {
   return (
     <nav className="flex justify-center w-full">
       <ul className="flex flex-wrap justify-between gap-4 w-full max-w-[700px]">
         <li className="nav-link">
           {pageContext.previousPagePath && (
             <Link
-              to={pageContext.previousPagePath}
+              href={pageContext.previousPagePath}
               rel="prev"
               className="flex items-center gap-1"
             >
@@ -27,7 +26,7 @@ const Pagination = ({ pageContext }) => {
         <li className="nav-link">
           {pageContext.nextPagePath && (
             <Link
-              to={pageContext.nextPagePath}
+              href={pageContext.nextPagePath}
               rel="next"
               className="flex items-center gap-1"
             >

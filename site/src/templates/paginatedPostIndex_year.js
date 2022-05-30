@@ -6,7 +6,7 @@ import Seo from "../components/seo"
 import PostList from "../components/postList"
 import Pagination from "../components/pagination"
 
-const TagIndexTemplate = ({ data, location, pageContext }) => {
+function TagIndexTemplate({ data, location, pageContext }) {
   const siteTitle = data.site.siteMetadata?.title || `Title`
   const posts = data.allMdx.edges.map(edge => {
     return edge.node

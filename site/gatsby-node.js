@@ -151,8 +151,9 @@ const createPagesForCategory = async ({
 
   if (posts.length > 0) {
     posts.forEach((post, index) => {
-      const previousPostId = index === 0 ? null : posts[index - 1].id
-      const nextPostId = index === posts.length - 1 ? null : posts[index + 1].id
+      const previousPostId =
+        index === posts.length - 1 ? null : posts[index + 1].id
+      const nextPostId = index === 0 ? null : posts[index - 1].id
 
       createPage({
         path: post.fields.slug,
@@ -425,6 +426,7 @@ exports.createSchemaCustomization = ({ actions }) => {
       title: String
       description: String
       date: Date @dateformat
+      updated: Date @dateformat
       tags: [String]
       draft: Boolean
       slide_url: String

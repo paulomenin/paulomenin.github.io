@@ -1,11 +1,24 @@
 {
   "root": true,
-  "plugins": ["react"],
+  "env": {
+    "node": true,
+    "browser": true
+  },
+  "plugins": ["react", "prettier"],
   "extends": [
-    "eslint:recommended",
     "plugin:react/recommended",
-    "plugin:react/jsx-runtime"
+    "plugin:react/jsx-runtime",
+    "prettier"
   ],
+  "parser": "@babel/eslint-parser",
+  "parserOptions": {
+    "sourceType": "module",
+    "ecmaVersion": "latest",
+    "ecmaFeatures": { "jsx": true }
+  },
+  "rules": {
+    "react/prop-types": "off"
+  },
   "settings": {
     "react": {
       "version": "detect"

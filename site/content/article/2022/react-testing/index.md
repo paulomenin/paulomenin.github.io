@@ -2,7 +2,7 @@
 title: React Testing
 date: "2022-02-01T22:12:03.284Z"
 description: "Lorem ipsum description"
-tags: ["React", "Testing"]
+tags: ["react", "testing"]
 ---
 
 Do do fugiat elit voluptate nostrud anim veniam incididunt esse ipsum consectetur ullamco quis elit. Ea eiusmod sit esse aute irure do fugiat labore quis eiusmod nulla quis cupidatat dolore. Consectetur deserunt labore eiusmod laborum Lorem est Lorem anim veniam do. Reprehenderit enim laboris ut deserunt culpa ad in sit aliqua.

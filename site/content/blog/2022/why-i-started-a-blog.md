@@ -1,8 +1,9 @@
 ---
 title: Why I started a blog in 2022
 date: "2022-05-05T22:12:03.284Z"
+updated: "2022-05-30T22:12:03.284Z"
 description: "In this post I write about some reasons to start writing."
-tags: ["blog", "Test"]
+tags: ["blog"]
 draft: false
 ---
 

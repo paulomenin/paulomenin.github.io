@@ -1,12 +1,13 @@
 import * as React from "react"
-import { useStaticQuery, graphql, Link } from "gatsby"
+import { useStaticQuery, graphql } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
 import useDarkMode from "use-dark-mode"
 import { RssIcon } from "@heroicons/react/solid"
 import DarkModeToggle from "react-dark-mode-toggle"
+import Link from "./link"
 import Menu from "./menu"
 
-const Header = () => {
+function Header() {
   const data = useStaticQuery(graphql`
     query HeaderQuery {
       site {
@@ -34,10 +35,10 @@ const Header = () => {
   return (
     <header className="card flex flex-col m-4 gap-2">
       <div className="flex flex-row justify-between">
-        <Link className="flex items-center ml-2" to="/">
+        <Link className="flex items-center ml-2" href="/">
           <StaticImage
             src="../images/profile_logo_src.svg"
-            alt="Logo"
+            alt={title}
             className="mr-3 w-[54px]"
             placeholder="none"
             backgroundColor="#ffffff"
@@ -56,7 +57,7 @@ const Header = () => {
             />
           </div>
 
-          <a href={social.linkedin} target="_blank" rel="noopener noreferrer">
+          <Link href={social.linkedin}>
             <div
               className="h-7 w-7 rounded-md hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-all duration-300
               flex justify-center items-center"
@@ -72,9 +73,9 @@ const Header = () => {
                 </svg>
               </div>
             </div>
-          </a>
+          </Link>
 
-          <a href={social.github} target="_blank" rel="noopener noreferrer">
+          <Link href={social.github}>
             <div
               className="h-7 w-7 rounded-md hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-all duration-300
               flex justify-center items-center"
@@ -90,16 +91,16 @@ const Header = () => {
                 </svg>
               </div>
             </div>
-          </a>
+          </Link>
 
-          <Link to="/rss.xml" title="RSS">
+          <Link href="/rss.xml" title="RSS">
             <div
               className="rounded-md
               text-neutral-900 dark:text-neutral-200  
               hover:bg-neutral-200 dark:hover:bg-neutral-700
               transition-colors duration-300"
             >
-              <RssIcon className="h-7 w-7=" />
+              <RssIcon className="h-7 w-7" />
             </div>
           </Link>
         </div>

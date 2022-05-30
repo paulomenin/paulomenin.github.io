@@ -1,8 +1,8 @@
 import * as React from "react"
-import { Link } from "gatsby"
+import Link from "./link"
 import Tag from "./tag"
 
-const TagList = ({ tags, prefix }) => {
+function TagList({ tags, prefix }) {
   const urlPrefix = prefix || "tag"
   return (
     <div className="flex gap-2 flex-wrap content-center">
@@ -12,7 +12,7 @@ const TagList = ({ tags, prefix }) => {
           <Link
             className="no-underline"
             key={tagKey}
-            to={`/${urlPrefix}/${tagKey}`}
+            href={`/${urlPrefix}/${tagKey}`}
           >
             <Tag name={tag} />
           </Link>

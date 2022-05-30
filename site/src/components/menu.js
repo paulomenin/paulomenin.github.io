@@ -1,7 +1,7 @@
 import * as React from "react"
-import { Link } from "gatsby"
+import Link from "./link"
 
-const Menu = () => {
+function Menu() {
   return (
     <nav
       className="
@@ -17,7 +17,7 @@ const Menu = () => {
         ["/tags", "Tags"],
         ["/about", "About"],
       ].map(([url, label]) => (
-        <Link key={url} className="menu-link" to={url}>
+        <Link key={url} className="menu-link" href={url}>
           {label}
         </Link>
       ))}

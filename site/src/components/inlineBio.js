@@ -1,8 +1,9 @@
 import * as React from "react"
-import { useStaticQuery, graphql, Link } from "gatsby"
+import { useStaticQuery, graphql } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
+import Link from "./link"
 
-const InlineBio = () => {
+function InlineBio() {
   const data = useStaticQuery(graphql`
     query InlineBioQuery {
       site {
@@ -18,7 +19,7 @@ const InlineBio = () => {
   const author = data.site.siteMetadata?.author
 
   return (
-    <Link className="no-underline" to="/about">
+    <Link className="no-underline" href="/about">
       <div className="flex flex-nowrap gap-2 h-16 items-center">
         <StaticImage
           className="rounded-full shadow-md shadow-black/60"

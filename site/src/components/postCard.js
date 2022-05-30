@@ -1,10 +1,10 @@
 import * as React from "react"
-import { Link } from "gatsby"
+import Link from "./link"
 
-const PostCard = ({ post }) => {
+function PostCard({ post }) {
   return (
     <div className="group p-2 rounded-md hover:bg-neutral-200 dark:hover:bg-neutral-700 duration-300">
-      <Link to={post.fields.slug}>
+      <Link href={post.fields.slug}>
         <div className="flex justify-between">
           <h3
             className="font-bold 

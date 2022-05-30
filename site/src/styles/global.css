@@ -11,6 +11,10 @@
     @apply bg-neutral-900 transition-colors duration-200 text-neutral-200;
   }
 
+  html.resume {
+    @apply bg-neutral-100;
+  }
+
   h1 {
     @apply font-bold text-2xl;
   }
@@ -31,7 +35,7 @@
     bg-neutral-200 text-neutral-700
     hover:bg-purple-800 hover:text-white
     dark:bg-neutral-400 dark:text-neutral-800
-    dark:hover:bg-purple-800 dark:hover:text-white;
+    dark:hover:bg-purple-600 dark:hover:text-white;
   }
 
   .nav-link {
@@ -48,5 +52,15 @@
   .not-published-tag {
     @apply rounded-md px-1 font-bold no-underline font-sans text-sm text-center
     h-5 bg-red-300 text-red-800;
+  }
+}
+
+@layer components {
+  .resume {
+    @apply text-black;
+  }
+
+  .resume .card {
+    @apply print:shadow-none;
   }
 }

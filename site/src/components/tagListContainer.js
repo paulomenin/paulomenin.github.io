@@ -2,7 +2,7 @@ import * as React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import TagList from "./tagList"
 
-const computeTagList = nodes => {
+function computeTagList(nodes) {
   const uniqueTags = new Set()
 
   nodes.forEach(({ frontmatter }) => {
@@ -11,10 +11,12 @@ const computeTagList = nodes => {
     })
   })
 
-  return Array.from(uniqueTags).sort()
+  return Array.from(uniqueTags).sort((a, b) =>
+    a.toLowerCase().localeCompare(b.toLowerCase())
+  )
 }
 
-const TagListContainer = () => {
+function TagListContainer() {
   const data = useStaticQuery(graphql`
     query {
       allMdx(filter: { fields: { visible: { eq: true } } }) {

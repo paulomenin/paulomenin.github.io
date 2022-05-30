@@ -1,6 +1,6 @@
 import * as React from "react"
 
-const Tag = ({ name }) => {
+function Tag({ name }) {
   return <div className={`tag-link`}>{name}</div>
 }
 

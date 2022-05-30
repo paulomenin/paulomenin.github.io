@@ -21,12 +21,18 @@
   },
   "dependencies": {
     "@babel/core": "^7.17.5",
+    "@babel/eslint-parser": "^7.18.2",
+    "@babel/preset-react": "^7.17.12",
     "@heroicons/react": "^1.0.5",
     "@mdx-js/mdx": "v1",
     "@mdx-js/react": "v1",
+    "@tailwindcss/forms": "^0.5.1",
     "@tailwindcss/typography": "^0.5.2",
     "autoprefixer": "^10.4.2",
-    "babel-eslint": "^10.1.0",
+    "eslint": "^8.16.0",
+    "eslint-config-prettier": "^8.5.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "eslint-plugin-react": "^7.29.4",
     "gatsby": "^4.9.1",
     "gatsby-awesome-pagination": "^0.3.8",
     "gatsby-plugin-feed": "^4.7.0",
@@ -49,7 +55,9 @@
     "gatsby-remark-smartypants": "^5.7.0",
     "gatsby-source-filesystem": "^4.7.0",
     "gatsby-transformer-sharp": "^4.7.0",
+    "gh-pages": "^3.2.3",
     "postcss": "^8.4.6",
+    "prettier": "2.6.2",
     "prismjs": "^1.25.0",
     "prop-types": "^15.8.1",
     "react": "^17.0.1",
@@ -63,12 +71,6 @@
     "use-dark-mode": "^2.3.1",
     "webpack": "^5.69.1",
     "webpack-loader": "^0.0.1"
-  },
-  "devDependencies": {
-    "eslint": "^8.13.0",
-    "eslint-plugin-react": "^7.29.4",
-    "gh-pages": "^3.2.3",
-    "prettier": "^2.5.1"
   },
   "packageManager": "yarn@3.2.0"
 }

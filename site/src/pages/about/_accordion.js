@@ -2,7 +2,7 @@ import * as React from "react"
 
 import { ChevronDownIcon } from "@heroicons/react/outline"
 
-const Accordion = ({ id, label, children }) => {
+function Accordion({ id, label, children }) {
   const tabId = `${id}-input`
 
   const [opened, setOpened] = React.useState(false)
@@ -28,7 +28,7 @@ const Accordion = ({ id, label, children }) => {
         className="relative block p-4 m-0 cursor-pointer
         transition-all duration-300
         font-bold
-        bg-neutral-200 text-neutral-800 hover:text-purple-800
+        bg-neutral-200 text-neutral-800 hover:text-purple-900
         dark:bg-neutral-700 dark:text-neutral-200 dark:hover:text-purple-500
         peer-checked:bg-purple-800 peer-checked:text-neutral-200 peer-checked:hover:text-neutral-200"
         onClick={toggle}

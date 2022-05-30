@@ -2,13 +2,13 @@ import * as React from "react"
 import { graphql, useStaticQuery } from "gatsby"
 import TagList from "./tagList"
 
-const computeYearList = groups => {
+function computeYearList(groups) {
   const yearList = groups.map(group => group.fieldValue)
 
   return yearList.sort().reverse()
 }
 
-const YearListContainer = () => {
+function YearListContainer() {
   const data = useStaticQuery(graphql`
     query {
       allMdx(filter: { fields: { visible: { eq: true } } }) {

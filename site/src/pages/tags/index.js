@@ -6,7 +6,7 @@ import Seo from "../../components/seo"
 import TagListContainer from "../../components/tagListContainer"
 import YearListContainer from "../../components/yearListContainer"
 
-const TagsIndex = ({ data, location }) => {
+function TagsIndex({ data, location }) {
   const siteTitle = data.site.siteMetadata?.title || `Title`
 
   return (

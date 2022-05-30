@@ -1,16 +1,21 @@
 import * as React from "react"
-import { Link, graphql } from "gatsby"
+import { graphql } from "gatsby"
 import { MDXRenderer } from "gatsby-plugin-mdx"
 
-import { CalendarIcon, ClockIcon } from "@heroicons/react/outline"
+import {
+  CalendarIcon,
+  ClockIcon,
+  PencilAltIcon,
+} from "@heroicons/react/outline"
 import { ArrowLeftIcon, ArrowRightIcon } from "@heroicons/react/solid"
 
 import Layout from "../components/layout"
+import Link from "../components/link"
 import Seo from "../components/seo"
 import TagList from "../components/tagList"
 import InlineBio from "../components/inlineBio"
 
-const BlogPostTemplate = ({ data, location }) => {
+function BlogPostTemplate({ data, location }) {
   const post = data.mdx
   const siteTitle = data.site.siteMetadata?.title || `Title`
   const { previous, next } = data
@@ -23,7 +28,10 @@ const BlogPostTemplate = ({ data, location }) => {
       />
       <div className="card flex justify-center">
         <article
-          className="lg:min-w-[700px] max-w-[700px] prose prose-neutral dark:prose-invert font-serif prose-headings:font-sans"
+          className="lg:min-w-[700px] max-w-[700px] font-sans
+          prose prose-neutral dark:prose-invert
+          prose-a:text-purple-900
+          dark:prose-a:text-purple-600"
           itemScope
           itemType="http://schema.org/Article"
         >
@@ -42,8 +50,14 @@ const BlogPostTemplate = ({ data, location }) => {
               <div className="flex flex-col justify-evenly font-sans text-sm">
                 <div className="m-0 p-0 flex items-center gap-1">
                   <CalendarIcon className="h-4 w-4" />
-                  {post.frontmatter.date}
+                  Posted on {post.frontmatter.date}
                 </div>
+                {post.frontmatter.updated && (
+                  <div className="m-0 p-0 flex items-center gap-1">
+                    <PencilAltIcon className="h-4 w-4" />
+                    Edited on {post.frontmatter.updated}
+                  </div>
+                )}
                 <div className="m-0 p-0 flex items-center gap-1">
                   <ClockIcon className="h-4 w-4" />
                   {post.fields.readingTime.text}
@@ -69,7 +83,7 @@ const BlogPostTemplate = ({ data, location }) => {
             <li className="nav-link">
               {previous && (
                 <Link
-                  to={previous.fields.slug}
+                  href={previous.fields.slug}
                   rel="prev"
                   className="flex items-center gap-1"
                 >
@@ -81,7 +95,7 @@ const BlogPostTemplate = ({ data, location }) => {
             <li className="nav-link">
               {next && (
                 <Link
-                  to={next.fields.slug}
+                  href={next.fields.slug}
                   rel="next"
                   className="flex items-center gap-1"
                 >
@@ -117,6 +131,7 @@ export const pageQuery = graphql`
       frontmatter {
         title
         date(formatString: "MMMM DD, YYYY")
+        updated(formatString: "MMMM DD, YYYY")
         description
         tags
         draft

@@ -11,7 +11,7 @@
 
     <link rel="stylesheet" href="/revealjs/dist/reset.css" />
     <link rel="stylesheet" href="/revealjs/dist/reveal.css" />
-    <link rel="stylesheet" href="/revealjs/dist/theme/black.css" />
+    <link rel="stylesheet" href="/revealjs/dist/theme/pm.css" />
 
     <!-- Theme used for syntax highlighted code -->
     <link rel="stylesheet" href="/revealjs/plugin/highlight/monokai.css" />
@@ -19,8 +19,15 @@
   <body>
     <div class="reveal">
       <div class="slides">
-        <section>Slide 1</section>
-        <section>Slide 22</section>
+        <section>
+          <h1>Slide Deck</h1>
+          Slide 1
+        </section>
+        <section>
+          <section>Slide 2.1</section>
+          <section>Slide 2.2</section>
+        </section>
+        <section>Slide 3</section>
       </div>
     </div>
 
@@ -34,7 +41,8 @@
       // - https://revealjs.com/config/
       Reveal.initialize({
         hash: true,
-
+        hashOneBasedIndex: true,
+        slideNumber: "h/v",
         // Learn about plugins: https://revealjs.com/plugins/
         plugins: [RevealMarkdown, RevealHighlight, RevealNotes],
       })
