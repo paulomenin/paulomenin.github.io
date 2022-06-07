@@ -25,7 +25,7 @@ function InlineBio() {
           className="rounded-full shadow-md shadow-black/60"
           layout="fixed"
           formats={["auto", "webp", "avif"]}
-          src="../images/profile-pic.jpg"
+          src="../../images/profile-pic.jpg"
           width={52}
           height={52}
           quality={95}

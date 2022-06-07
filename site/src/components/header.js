@@ -37,13 +37,13 @@ function Header() {
       <div className="flex flex-row justify-between">
         <Link className="flex items-center ml-2" href="/">
           <StaticImage
-            src="../images/profile_logo_src.svg"
+            src="../../images/profile_logo_src.svg"
             alt={title}
             className="mr-3 w-[54px]"
             placeholder="none"
             backgroundColor="#ffffff"
           />
-          <span className="font-sans font-bold text-2xl dark:text-white">
+          <span className="font-sans font-bold text-2xl text-black dark:text-white">
             {title}
           </span>
         </Link>
@@ -58,10 +58,7 @@ function Header() {
           </div>
 
           <Link href={social.linkedin}>
-            <div
-              className="h-7 w-7 rounded-md hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-all duration-300
-              flex justify-center items-center"
-            >
+            <div className="icon-link flex justify-center items-center">
               <div className="h-5 w-5 dark:fill-neutral-200 transition-colors duration-300">
                 <svg
                   role="img"
@@ -76,10 +73,7 @@ function Header() {
           </Link>
 
           <Link href={social.github}>
-            <div
-              className="h-7 w-7 rounded-md hover:bg-neutral-200 dark:hover:bg-neutral-700 transition-all duration-300
-              flex justify-center items-center"
-            >
+            <div className="icon-link flex justify-center items-center">
               <div className="h-5 w-5 dark:fill-neutral-200 transition-colors duration-300">
                 <svg
                   role="img"
@@ -94,12 +88,7 @@ function Header() {
           </Link>
 
           <Link href="/rss.xml" title="RSS">
-            <div
-              className="rounded-md
-              text-neutral-900 dark:text-neutral-200  
-              hover:bg-neutral-200 dark:hover:bg-neutral-700
-              transition-colors duration-300"
-            >
+            <div className="icon-link text-neutral-900 dark:text-neutral-200">
               <RssIcon className="h-7 w-7" />
             </div>
           </Link>

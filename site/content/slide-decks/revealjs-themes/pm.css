@@ -3,7 +3,7 @@
  *
  * Based on White theme By Hakim El Hattab, http://hakim.se
  */
-@import url(./fonts/source-sans-pro/source-sans-pro.css);
+@import url(/vendor/revealjs/dist/theme/fonts/source-sans-pro/source-sans-pro.css);
 section.has-dark-background,
 section.has-dark-background h1,
 section.has-dark-background h2,

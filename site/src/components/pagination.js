@@ -13,7 +13,7 @@ function Pagination({ pageContext }) {
               rel="prev"
               className="flex items-center gap-1"
             >
-              <ArrowLeftIcon className="h-4 w-4 inline-block text-neutral-700 dark:text-neutral-200" />
+              <ArrowLeftIcon className="pagination-arrow" />
               Previous
             </Link>
           )}
@@ -31,7 +31,7 @@ function Pagination({ pageContext }) {
               className="flex items-center gap-1"
             >
               Next
-              <ArrowRightIcon className="h-4 w-4 inline-block text-neutral-700 dark:text-neutral-200" />
+              <ArrowRightIcon className="pagination-arrow" />
             </Link>
           )}
         </li>

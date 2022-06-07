@@ -26,7 +26,7 @@ function SidePanel({ resumeData, siteMetadata, fullContent }) {
           className="mx-auto rounded-full shadow-md shadow-black/60"
           layout="fixed"
           formats={["auto", "webp", "avif"]}
-          src="../../images/resume-pic.jpg"
+          src="../../../images/resume-pic.jpg"
           width={160}
           height={160}
           quality={95}

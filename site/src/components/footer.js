@@ -36,9 +36,23 @@ function Footer() {
         bg-neutral-200 dark:bg-neutral-800
         drop-shadow-md"
     >
-      <div>
-        <span className="font-bold text-[1.02rem]">©</span>
-        {copyrightYear} by {author.name}. All Rights Reserved.
+      <div className="flex flex-row gap-1 items-center">
+        <a
+          className="flex flex-row gap-1"
+          rel="license noopener noreferrer"
+          href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1"
+          target="_blank"
+        >
+          <img
+            className="inline-block h-5"
+            src="https://mirrors.creativecommons.org/presskit/icons/cc.svg?ref=chooser-v1"
+          />
+          <img
+            className="inline-block h-5"
+            src="https://mirrors.creativecommons.org/presskit/icons/by.svg?ref=chooser-v1"
+          />
+        </a>
+        {copyrightYear} by {author.name}. This work is licensed under CC BY 4.0
       </div>
 
       <div

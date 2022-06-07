@@ -5,7 +5,7 @@ module.exports = {
       name: `Paulo Menin`,
       summary: `Software Engineer`,
     },
-    description: `Paulo Menin's personal Blog and Portfolio`,
+    description: `Paulo Menin's website`,
     siteUrl: `https://paulomenin.dev`,
     social: {
       github: `https://github.com/paulomenin`,
@@ -22,21 +22,21 @@ module.exports = {
     {
       resolve: "gatsby-plugin-static-folders",
       options: {
-        folders: [`./slide-decks`],
+        folders: [`./content/slide-decks`],
       },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `posts`,
-        path: `${__dirname}/content/`,
+        path: `${__dirname}/content/posts`,
       },
     },
     {
       resolve: `gatsby-source-filesystem`,
       options: {
         name: `images`,
-        path: `${__dirname}/src/images`,
+        path: `${__dirname}/images`,
       },
     },
     {
@@ -66,12 +66,6 @@ module.exports = {
     `gatsby-transformer-sharp`,
     `gatsby-plugin-sharp`,
     `gatsby-plugin-published`,
-    // {
-    //   resolve: `gatsby-plugin-google-analytics`,
-    //   options: {
-    //     trackingId: `ADD YOUR TRACKING ID HERE`,
-    //   },
-    // },
     {
       resolve: `gatsby-plugin-feed`,
       options: {
@@ -103,7 +97,9 @@ module.exports = {
             query: `
               {
                 allMdx(
-                  sort: { order: DESC, fields: [frontmatter___date] },
+                  filter: { fields: { published: { eq: true } } }
+                  sort: { order: DESC, fields: [frontmatter___date] }
+                  limit: 15
                 ) {
                   nodes {
                     excerpt
@@ -128,7 +124,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-manifest`,
       options: {
-        name: `Paulo Menin Blog`,
+        name: `Paulo Menin's Website`,
         short_name: `Paulo Menin`,
         start_url: `/`,
         background_color: `#ffffff`,
@@ -136,10 +132,81 @@ module.exports = {
         // https://css-tricks.com/meta-theme-color-and-trickery/
         theme_color: `#663399`,
         display: `minimal-ui`,
-        icon: `src/images/profile_logo_src.svg`, // This path is relative to the root of the site.
+        icon: `images/profile_logo_src.svg`, // This path is relative to the root of the site.
       },
     },
     `gatsby-plugin-react-helmet`,
+    `gatsby-plugin-cname`,
+    `gatsby-plugin-robots-txt`,
+    {
+      resolve: `gatsby-plugin-sitemap`,
+      options: {
+        excludes: ["/slidedeck/**/show"],
+        query: `
+        {
+          site {
+              siteMetadata {
+                siteUrl
+              }
+            }
+            allSitePage {
+              nodes {
+                path
+              }
+            }
+            allMdx {
+              nodes {
+                frontmatter {
+                  date
+                  updated
+                }
+                fields {
+                  slug
+                }
+              }
+            }
+          }
+          `,
+        resolvePages: ({
+          allSitePage: { nodes: allPages },
+          allMdx: { nodes: allMdxNodes },
+        }) => {
+          const mdxNodeMap = allMdxNodes.reduce((acc, node) => {
+            const {
+              fields: { slug },
+            } = node
+            acc[slug] = { ...node, priority: 0.7 }
+
+            return acc
+          }, {})
+
+          return allPages.map(page => {
+            return { ...page, ...mdxNodeMap[page.path] }
+          })
+        },
+        serialize: ({ path, frontmatter, priority }) => {
+          let lastmod = undefined
+
+          if (frontmatter) {
+            const { date, updated } = frontmatter
+            lastmod = updated || date
+          }
+
+          return {
+            url: path,
+            lastmod,
+            changefreq: "daily",
+            priority: priority || 0.5,
+          }
+        },
+      },
+    },
+    // {
+    //   resolve: `gatsby-plugin-google-analytics`,
+    //   options: {
+    //     trackingId: `ADD YOUR TRACKING ID HERE`,
+    //   },
+    // },
     // this (optional) plugin enables Progressive Web App + Offline functionality
     // To learn more, visit: https://gatsby.dev/offline
     // `gatsby-plugin-offline`,

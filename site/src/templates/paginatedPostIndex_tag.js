@@ -3,34 +3,23 @@ import { graphql } from "gatsby"
 
 import Layout from "../components/layout"
 import Seo from "../components/seo"
-import PostList from "../components/postList"
-import Pagination from "../components/pagination"
+import PaginatedIndex from "../components/paginatedIndex"
 
 function TagIndexTemplate({ data, location, pageContext }) {
   const siteTitle = data.site.siteMetadata?.title || `Title`
+  const pageTitle = `Tagged by: ${pageContext.tag}`
   const posts = data.allMdx.edges.map(edge => {
     return edge.node
   })
 
   return (
     <Layout location={location} title={siteTitle}>
-      <Seo title={`Tagged by ${pageContext.tag}`} />
-
-      <div className="card flex justify-center">
-        <div className="lg:min-w-[700px] max-w-[700px]">
-          <div className="flex justify-between mb-4 ml-2">
-            <h1>Tagged by: {pageContext.tag}</h1>
-          </div>
-
-          <PostList posts={posts} />
-        </div>
-      </div>
-
-      {pageContext.numberOfPages > 1 && (
-        <div className="flex justify-between card mt-4">
-          <Pagination pageContext={pageContext} />
-        </div>
-      )}
+      <Seo title={pageTitle} />
+      <PaginatedIndex
+        title={pageTitle}
+        posts={posts}
+        pageContext={pageContext}
+      />
     </Layout>
   )
 }

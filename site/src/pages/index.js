@@ -20,26 +20,35 @@ function LandingPage({ data, location }) {
 
       <div className="card flex justify-center">
         <div className="lg:min-w-[700px] max-w-[700px]">
-          <div className="flex justify-between mb-4 ml-2">
-            <h1>Recent Articles</h1>
-          </div>
-          <PostList posts={articlePosts} />
+          {articlePosts.length > 0 && (
+            <>
+              <div className="flex justify-between mb-4 ml-2">
+                <h1>Recent Articles</h1>
+              </div>
+              <PostList posts={articlePosts} />
+              <hr className="separator mt-4" />
+            </>
+          )}
 
-          <hr className="bg-purple-900 dark:bg-purple-600 border-0 mt-4 h-1" />
+          {blogPosts.length > 0 && (
+            <>
+              <div className="flex justify-between mb-4 ml-2 mt-4">
+                <h1>Recent Blog Posts</h1>
+              </div>
+              <PostList posts={blogPosts} />
+              <hr className="separator mt-4" />
+            </>
+          )}
 
-          <div className="flex justify-between mb-4 ml-2 mt-4">
-            <h1>Recent Blog Posts</h1>
-          </div>
-          <PostList posts={blogPosts} />
-
-          <hr className="bg-purple-900 dark:bg-purple-600 border-0 mt-4 h-1" />
-
-          <div className="flex justify-between mb-4 ml-2 mt-4">
-            <h1>Recent Slide Decks</h1>
-          </div>
-          <PostList posts={slidesPosts} />
-
-          <hr className="bg-purple-900 dark:bg-purple-600 border-0 mt-4 h-1" />
+          {blogPosts.length > 0 && (
+            <>
+              <div className="flex justify-between mb-4 ml-2 mt-4">
+                <h1>Recent Slide Decks</h1>
+              </div>
+              <PostList posts={slidesPosts} />
+              <hr className="separator mt-4" />
+            </>
+          )}
 
           <div className="ml-2 mt-4">
             <div className="flex justify-between mb-4">

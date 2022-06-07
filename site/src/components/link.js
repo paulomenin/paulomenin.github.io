@@ -18,7 +18,7 @@ function Link({ href, children, forceExternal = false, ...rest }) {
     <a
       href={href}
       target={isSamePage ? null : "_blank"}
-      rel={isSamePage ? null : "noopener noreferrer nofollow"}
+      rel={isSamePage ? null : "noopener noreferrer"}
       {...rest}
     >
       {children}

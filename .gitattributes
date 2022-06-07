@@ -4,6 +4,7 @@
 *.svg text
 
 # Binary files
+*.gz binary
 *.zip binary
 *.png binary
 *.jpg binary

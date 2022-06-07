@@ -28,10 +28,7 @@ function BlogPostTemplate({ data, location }) {
       />
       <div className="card flex justify-center">
         <article
-          className="lg:min-w-[700px] max-w-[700px] font-sans
-          prose prose-neutral dark:prose-invert
-          prose-a:text-purple-900
-          dark:prose-a:text-purple-600"
+          className="theme-prose lg:min-w-[700px] max-w-[700px] "
           itemScope
           itemType="http://schema.org/Article"
         >
@@ -45,7 +42,7 @@ function BlogPostTemplate({ data, location }) {
 
             <h1 itemProp="headline">{post.frontmatter.title}</h1>
 
-            <div className="flex justify-between mb-4">
+            <div className="flex gap-1 justify-between mb-4">
               <InlineBio />
               <div className="flex flex-col justify-evenly font-sans text-sm">
                 <div className="m-0 p-0 flex items-center gap-1">
@@ -68,10 +65,7 @@ function BlogPostTemplate({ data, location }) {
             <TagList tags={post.frontmatter.tags} />
           </header>
 
-          <section
-            className="hover:prose-a:text-purple-800 dark:hover:prose-a:text-purple-600 mt-4"
-            itemProp="articleBody"
-          >
+          <section className="mt-4" itemProp="articleBody">
             <MDXRenderer>{post.body}</MDXRenderer>
           </section>
         </article>
@@ -87,7 +81,7 @@ function BlogPostTemplate({ data, location }) {
                   rel="prev"
                   className="flex items-center gap-1"
                 >
-                  <ArrowLeftIcon className="h-4 w-4 inline-block text-neutral-700 dark:text-neutral-200" />
+                  <ArrowLeftIcon className="pagination-arrow" />
                   {previous.frontmatter.title}
                 </Link>
               )}
@@ -100,7 +94,7 @@ function BlogPostTemplate({ data, location }) {
                   className="flex items-center gap-1"
                 >
                   {next.frontmatter.title}
-                  <ArrowRightIcon className="h-4 w-4 inline-block text-neutral-700 dark:text-neutral-200" />
+                  <ArrowRightIcon className="pagination-arrow" />
                 </Link>
               )}
             </li>

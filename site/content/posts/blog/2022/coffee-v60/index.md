@@ -1,9 +1,10 @@
 ---
 title: V60 Coffee Brew
+description: My recipe of V60 coffee brew
 slug: v60c
 date: "2022-03-08 19:14:52"
-description: "My recipe of V60 coffee brew"
 tags: ["coffee", "V60"]
+draft: true
 ---
 
 Do do fugiat elit voluptate [paulomenin.dev](http://paulomenin.dev) nostrud anim veniam incididunt esse ipsum consectetur ullamco quis elit. Ea eiusmod sit esse aute irure do fugiat labore quis eiusmod nulla quis cupidatat dolore. Consectetur deserunt labore eiusmod laborum Lorem est Lorem anim veniam do. Reprehenderit enim laboris ut deserunt culpa ad in sit aliqua.
