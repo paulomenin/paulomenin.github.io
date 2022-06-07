@@ -38,7 +38,7 @@ function Footer() {
     >
       <div className="flex flex-row gap-1 items-center">
         <a
-          className="flex flex-row gap-1"
+          className="flex flex-row gap-1 min-w-fit"
           rel="license noopener noreferrer"
           href="http://creativecommons.org/licenses/by/4.0/?ref=chooser-v1"
           target="_blank"
