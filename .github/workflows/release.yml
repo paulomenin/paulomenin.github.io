@@ -1,0 +1,35 @@
+name: Build and Deploy
+
+on:
+  push:
+    branches: [source]
+
+jobs:
+  build-and-deploy:
+    name: Build and Deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+        run: |
+          git config --global user.name "github-actions"
+          git config --global user.email "github-actions@github.com"
+
+      - name: Install Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+
+      - name: Install Dependencies
+        working-directory: ./site
+        run: yarn install
+
+      - name: Build
+        working-directory: ./site
+        env:
+          NODE_ENV: production
+        run: yarn build
+
+      - name: Deploy
+        working-directory: ./site
+        run: yarn deploy
