@@ -7,7 +7,7 @@
       content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui"
     />
 
-    <title>reveal.js template</title>
+    <title>Backends for Frontends</title>
 
     <link rel="stylesheet" href="/vendor/revealjs/dist/reset.css" />
     <link rel="stylesheet" href="/vendor/revealjs/dist/reveal.css" />
@@ -40,25 +40,10 @@
   <body>
     <div class="reveal">
       <div class="slides">
-        <section>
-          <h1>Slide Deck</h1>
-          Slide 1
-        </section>
-        <section>
-          <section>Slide 2.1</section>
-          <section>Slide 2.2</section>
-        </section>
-        <section>Slide 3</section>
-        <section>
-          <h1>Slide 4 - Chart.Js</h1>
-          <div style="height: 480px">
-            <canvas class="stretch" data-chart="line">
-              Month, January, February, March, April, May, June, July
-              <!-- This is a comment that will be ignored -->
-              My first dataset, 65, 59, 80, 81, 56, 55, 40
-            </canvas>
-          </div>
-        </section>
+        <section
+          data-markdown="content.md"
+          data-separator-vertical="^\r?\n\|--\r?\n$"
+        ></section>
       </div>
     </div>
 

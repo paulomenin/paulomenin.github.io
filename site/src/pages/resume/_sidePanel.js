@@ -46,14 +46,6 @@ function SidePanel({ resumeData, siteMetadata, fullContent }) {
           <SideBarHeader>SOCIAL</SideBarHeader>
           <ul className="inline-block">
             <li>
-              <Link href={siteUrl} forceExternal>
-                <div className="flex items-center gap-1 ">
-                  <GlobeAltIcon className="h-5 w-5" />
-                  paulomenin.dev
-                </div>
-              </Link>
-            </li>
-            <li>
               <Link href={linkedin} forceExternal>
                 <div className="flex items-center gap-1 ml-[2px]">
                   <div className="h-4 w-4 fill-black">
@@ -84,6 +76,14 @@ function SidePanel({ resumeData, siteMetadata, fullContent }) {
                     </svg>
                   </div>
                   github.com/paulomenin
+                </div>
+              </Link>
+            </li>
+            <li>
+              <Link href={siteUrl} forceExternal>
+                <div className="flex items-center gap-1 ">
+                  <GlobeAltIcon className="h-5 w-5" />
+                  paulomenin.dev
                 </div>
               </Link>
             </li>

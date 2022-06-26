@@ -141,7 +141,7 @@ module.exports = {
     {
       resolve: `gatsby-plugin-sitemap`,
       options: {
-        excludes: ["/slidedeck/**/show"],
+        excludes: ["/resume", "/slidedeck/**/show"],
         query: `
         {
           site {
