@@ -6,9 +6,11 @@ import Header from "./header"
 import Footer from "./footer"
 
 import Link from "./link"
+import Kroki from "./kroki"
 import RevealJsSlides from "./revealJsSlides"
+import TeX from "@matejmazur/react-katex"
 
-const mdxComponents = { RevealJsSlides, a: Link }
+const mdxComponents = { a: Link, Kroki, TeX, RevealJsSlides }
 
 function Layout({ location, children }) {
   const rootPath = `/`

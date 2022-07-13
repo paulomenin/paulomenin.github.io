@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="267px" preserveAspectRatio="none" style="width:579px;height:267px;background:#FFFFFF;" version="1.1" viewBox="0 0 579 267" width="579px" zoomAndPan="magnify"><defs/><g><!--MD5=[70c5155dc2d6bfca20cea34af46dc1c3]
+cluster Production--><g id="cluster_Production"><rect height="174" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:1.0;fill:none;" width="553" x="7" y="7"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="76" x="245.5" y="22.9999">Production</text></g><!--MD5=[c05fcadc036a699206cfdfa4a4fdb889]
+entity controller--><g id="elem_controller"><rect fill="#000000" height="36.7999" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="173" x="23.5" y="128"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="153" x="33.5" y="151.9999">Shopping Cart Controller</text></g><!--MD5=[2518bd1d52146511dc94af8049d538e4]
+entity abstraction--><g id="elem_abstraction"><rect fill="#FFFFFF" height="36.7999" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="141" x="231.5" y="128"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="121" x="241.5" y="151.9999">Abstraction (toggle)</text></g><!--MD5=[eab9cb9aa5b6f0debeae550f9f303d44]
+entity old_sc--><g id="elem_old_sc"><rect fill="#000000" height="36.7999" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="136" x="408" y="128"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="116" x="418" y="151.9999">Old Shopping Cart</text></g><g id="elem_GMN7077624"><path d="M231,42 L231,67.6 A0,0 0 0 0 231,67.6 L298,67.6 L302,127.77 L306,67.6 L373,67.6 A0,0 0 0 0 373,67.6 L373,52 L363,42 L231,42 A0,0 0 0 0 231,42 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/><path d="M363,42 L363,52 L373,52 L363,42 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="121" x="237" y="60">Implements Interface</text></g><!--MD5=[abe60249f1fb24735d265b7fbffa2754]
+entity new_sc--><g id="elem_new_sc"><rect fill="#4B0082" height="36.7999" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="141" x="231.5" y="225"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="121" x="241.5" y="248.9999">New Shopping Cart</text></g><g id="elem_GMN7077628"><path d="M407.5,230.5 L407.5,239.5 L372.87,243.5 L407.5,247.5 L407.5,256.1 A0,0 0 0 0 407.5,256.1 L572.5,256.1 A0,0 0 0 0 572.5,256.1 L572.5,240.5 L562.5,230.5 L407.5,230.5 A0,0 0 0 0 407.5,230.5 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/><path d="M562.5,230.5 L562.5,240.5 L572.5,240.5 L562.5,230.5 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="144" x="413.5" y="248.5">Only devs turns toggle On</text></g><!--MD5=[133544120891cf7d35378209523d30b3]
+link controller to abstraction--><g id="link_controller_abstraction"><path d="M196.62,146.5 C206.44,146.5 216.25,146.5 226.07,146.5 " fill="none" id="controller-to-abstraction" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="231.2,146.5,222.2,142.5,226.2,146.5,222.2,150.5,231.2,146.5" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[11531b1dbd4d8ff7a8c6316a9f289bd2]
+link abstraction to old_sc--><g id="link_abstraction_old_sc"><path d="M372.69,146.5 C382.65,146.5 392.62,146.5 402.59,146.5 " fill="none" id="abstraction-to-old_sc" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="407.8,146.5,398.8,142.5,402.8,146.5,398.8,150.5,407.8,146.5" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[f1701ac11d6f6787faf0a53c7a724802]
+link abstraction to new_sc--><g id="link_abstraction_new_sc"><path d="M302,165.37 C302,180.63 302,202.68 302,219.3 " fill="none" id="abstraction-to-new_sc" style="stroke:#4B0082;stroke-width:1.0;"/><polygon fill="#4B0082" points="302,224.71,306,215.71,302,219.71,298,215.71,302,224.71" style="stroke:#4B0082;stroke-width:1.0;"/></g><!--MD5=[7f082c1b2cebd23807da3d3da6a7b5b0]
+@startuml
+rectangle Production {
+  rectangle "Shopping Cart Controller" as controller #black;text:white
+  rectangle "Abstraction (toggle)" as abstraction #white;text:black
+  rectangle "Old Shopping Cart" as old_sc  #black;text:white
+  note top of abstraction : Implements Interface
+} 
+
+rectangle "New Shopping Cart" as new_sc #indigo;text:white
+note right of new_sc : Only devs turns toggle On
+
+(controller) -right-> (abstraction)
+(abstraction) -right-> (old_sc)
+(abstraction) -down-> (new_sc) #indigo
+@enduml
+
+PlantUML version 1.2022.5(Sat Apr 30 10:55:52 GMT 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

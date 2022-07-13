@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="101px" preserveAspectRatio="none" style="width:591px;height:101px;background:#FFFFFF;" version="1.1" viewBox="0 0 591 101" width="591px" zoomAndPan="magnify"><defs/><g><!--MD5=[70c5155dc2d6bfca20cea34af46dc1c3]
+cluster Production--><g id="cluster_Production"><rect height="88" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:1.0;fill:none;" width="351" x="7" y="7"/><text fill="#000000" font-family="sans-serif" font-size="14" font-weight="bold" lengthAdjust="spacing" textLength="76" x="144.5" y="22.9999">Production</text></g><!--MD5=[c05fcadc036a699206cfdfa4a4fdb889]
+entity controller--><g id="elem_controller"><rect fill="#000000" height="36.7999" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="173" x="23.5" y="42"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="153" x="33.5" y="65.9999">Shopping Cart Controller</text></g><!--MD5=[abe60249f1fb24735d265b7fbffa2754]
+entity new_sc--><g id="elem_new_sc"><rect fill="#4B0082" height="36.7999" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="110" x="232" y="42"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="90" x="242" y="65.9999">Shopping Cart</text></g><g id="elem_GMN7077594"><path d="M377.5,47.5 L377.5,56.5 L342.32,60.5 L377.5,64.5 L377.5,73.1 A0,0 0 0 0 377.5,73.1 L584.5,73.1 A0,0 0 0 0 584.5,73.1 L584.5,57.5 L574.5,47.5 L377.5,47.5 A0,0 0 0 0 377.5,47.5 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/><path d="M574.5,47.5 L574.5,57.5 L584.5,57.5 L574.5,47.5 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="186" x="383.5" y="65.5">Can rename new implementation</text></g><!--MD5=[9ab3bcd3736940e10b4c446bcce46faa]
+link controller to new_sc--><g id="link_controller_new_sc"><path d="M196.77,60.5 C206.68,60.5 216.58,60.5 226.49,60.5 " fill="none" id="controller-to-new_sc" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="231.66,60.5,222.66,56.5,226.66,60.5,222.66,64.5,231.66,60.5" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[3ef7753294e1e5f12d7e9d702dd2b731]
+@startuml
+rectangle Production {
+  rectangle "Shopping Cart Controller" as controller #black;text:white
+  rectangle "Shopping Cart" as new_sc #indigo;text:white  
+} 
+
+note right of new_sc : Can rename new implementation
+
+(controller) -right-> (new_sc)
+@enduml
+
+PlantUML version 1.2022.5(Sat Apr 30 10:55:52 GMT 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

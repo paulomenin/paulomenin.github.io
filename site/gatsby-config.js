@@ -1,3 +1,5 @@
+const path = require("path")
+
 module.exports = {
   siteMetadata: {
     title: `Paulo Menin`,
@@ -17,7 +19,6 @@ module.exports = {
   },
 
   plugins: [
-    `gatsby-plugin-image`,
     `gatsby-plugin-postcss`,
     {
       resolve: "gatsby-plugin-static-folders",
@@ -37,6 +38,34 @@ module.exports = {
       options: {
         name: `images`,
         path: `${__dirname}/images`,
+      },
+    },
+    {
+      resolve: `gatsby-source-filesystem`,
+      options: {
+        name: `images`,
+        path: `${__dirname}/content/slide-decks`,
+        ignore: [
+          string => {
+            path.extname(string).toLowerCase() !== ".kroki"
+          },
+        ],
+      },
+    },
+    `gatsby-plugin-image`,
+    `gatsby-plugin-sharp`,
+    `gatsby-transformer-sharp`,
+    {
+      resolve: `gatsby-plugin-kroki`,
+      options: {
+        path: `${__dirname}/content/posts`,
+      },
+    },
+    {
+      resolve: `gatsby-plugin-kroki`,
+      options: {
+        path: `${__dirname}/content/slide-decks`,
+        copyToSrcPath: true,
       },
     },
     {
@@ -63,8 +92,6 @@ module.exports = {
         ],
       },
     },
-    `gatsby-transformer-sharp`,
-    `gatsby-plugin-sharp`,
     `gatsby-plugin-published`,
     {
       resolve: `gatsby-plugin-feed`,

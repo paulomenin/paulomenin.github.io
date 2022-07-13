@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentStyleType="text/css" height="134px" preserveAspectRatio="none" style="width:533px;height:134px;background:#FFFFFF;" version="1.1" viewBox="0 0 533 134" width="533px" zoomAndPan="magnify"><defs/><g><!--MD5=[c05fcadc036a699206cfdfa4a4fdb889]
+entity controller--><g id="elem_controller"><rect fill="#000000" height="36.7999" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="173" x="7" y="92"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="153" x="17" y="115.9999">Shopping Cart Controller</text></g><!--MD5=[2518bd1d52146511dc94af8049d538e4]
+entity abstraction--><g id="elem_abstraction"><rect fill="#FFFFFF" height="36.7999" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="141" x="215" y="92"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="121" x="225" y="115.9999">Abstraction (toggle)</text></g><!--MD5=[eab9cb9aa5b6f0debeae550f9f303d44]
+entity old_sc--><g id="elem_old_sc"><rect fill="#000000" height="36.7999" rx="2.5" ry="2.5" style="stroke:#181818;stroke-width:0.5;" width="136" x="391.5" y="92"/><text fill="#FFFFFF" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="116" x="401.5" y="115.9999">Old Shopping Cart</text></g><g id="elem_GMN7077601"><path d="M214.5,6 L214.5,31.6 A0,0 0 0 0 214.5,31.6 L281.5,31.6 L285.5,91.77 L289.5,31.6 L356.5,31.6 A0,0 0 0 0 356.5,31.6 L356.5,16 L346.5,6 L214.5,6 A0,0 0 0 0 214.5,6 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/><path d="M346.5,6 L346.5,16 L356.5,16 L346.5,6 " fill="#FEFFDD" style="stroke:#181818;stroke-width:0.5;"/><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="121" x="220.5" y="24">Implements Interface</text></g><!--MD5=[133544120891cf7d35378209523d30b3]
+link controller to abstraction--><g id="link_controller_abstraction"><path d="M180.12,110.5 C189.94,110.5 199.75,110.5 209.57,110.5 " fill="none" id="controller-to-abstraction" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="214.7,110.5,205.7,106.5,209.7,110.5,205.7,114.5,214.7,110.5" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[11531b1dbd4d8ff7a8c6316a9f289bd2]
+link abstraction to old_sc--><g id="link_abstraction_old_sc"><path d="M356.19,110.5 C366.15,110.5 376.12,110.5 386.09,110.5 " fill="none" id="abstraction-to-old_sc" style="stroke:#181818;stroke-width:1.0;"/><polygon fill="#181818" points="391.3,110.5,382.3,106.5,386.3,110.5,382.3,114.5,391.3,110.5" style="stroke:#181818;stroke-width:1.0;"/></g><!--MD5=[56384adbd0864df0b4909811ac98b85b]
+@startuml
+skinparam rectangle {
+    BackgroundColor black
+    FontColor white
+}
+
+rectangle "Shopping Cart Controller" as controller
+rectangle "Abstraction (toggle)" as abstraction #white;text:black
+rectangle "Old Shopping Cart" as old_sc
+
+note top of abstraction : Implements Interface
+
+(controller) -right-> (abstraction)
+(abstraction) -right-> (old_sc)
+@enduml
+
+PlantUML version 1.2022.5(Sat Apr 30 10:55:52 GMT 2022)
+(GPL source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: US
+--></g></svg>

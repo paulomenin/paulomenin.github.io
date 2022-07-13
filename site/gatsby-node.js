@@ -115,19 +115,22 @@ const createPagesForCategory = async ({
     postTemplate = path.resolve(`./src/templates/post.js`)
   }
 
+  const pathGlob = `**/${category.slug}/**`
+
   // Get all markdown posts in a folder
   const result = await graphql(
     `
       {
         allMdx(
           filter: {
-            fileAbsolutePath: { glob: "**/${category.slug}/**" }
+            fileAbsolutePath: { glob: "${pathGlob}" }
             fields: { visible: { eq: true } }
           }
           sort: { fields: [frontmatter___date], order: ASC }
         ) {
           nodes {
             id
+            fileAbsolutePath
             fields {
               slug
               slugSlide
@@ -154,11 +157,14 @@ const createPagesForCategory = async ({
       const previousPostId = index === 0 ? null : posts[index - 1].id
       const nextPostId = index === posts.length - 1 ? null : posts[index + 1].id
 
+      const postPathGlob = `${path.dirname(post.fileAbsolutePath)}/*`
+
       createPage({
         path: post.fields.slug,
         component: postTemplate,
         context: {
           id: post.id,
+          pathGlob: postPathGlob,
           previousPostId,
           nextPostId,
         },
@@ -250,7 +256,7 @@ const getTags = allPosts => {
   const uniqueTags = new Set()
 
   allPosts.forEach(node => {
-    node.frontmatter.tags.forEach(tag => {
+    node.frontmatter?.tags?.forEach(tag => {
       uniqueTags.add(tag.toLowerCase())
     })
   })
@@ -291,35 +297,33 @@ const createPaginatedTagIndexPages = async ({ graphql, actions, reporter }) => {
 
   const tags = getTags(result.data.allMdx.nodes)
 
-  if (tags.length > 0) {
-    tags.forEach((tag, _) => {
-      const posts = result.data.allMdx.nodes.filter(node => {
-        lowercaseTags = node.frontmatter.tags.map(tag => tag.toLowerCase())
-        return lowercaseTags.includes(tag)
-      })
+  tags?.forEach((tag, _) => {
+    const posts = result.data.allMdx.nodes.filter(node => {
+      lowercaseTags = node.frontmatter?.tags?.map(tag => tag.toLowerCase())
+      return lowercaseTags?.includes(tag) ?? false
+    })
 
-      const wrapperCreatePage = page => {
-        const pageWithNewContext = {
-          ...page,
-          context: {
-            ...page.context,
-            tag,
-            ids: posts.map(node => node.id),
-          },
-        }
-
-        return createPage(pageWithNewContext)
+    const wrapperCreatePage = page => {
+      const pageWithNewContext = {
+        ...page,
+        context: {
+          ...page.context,
+          tag,
+          ids: posts.map(node => node.id),
+        },
       }
 
-      paginate({
-        createPage: wrapperCreatePage,
-        items: posts,
-        itemsPerPage: ITEMS_PER_PAGE,
-        pathPrefix: `/tag/${tag}`,
-        component: tagIndexTemplate,
-      })
+      return createPage(pageWithNewContext)
+    }
+
+    paginate({
+      createPage: wrapperCreatePage,
+      items: posts,
+      itemsPerPage: ITEMS_PER_PAGE,
+      pathPrefix: `/tag/${tag}`,
+      component: tagIndexTemplate,
     })
-  }
+  })
 }
 
 const createPaginatedYearIndexPages = async ({

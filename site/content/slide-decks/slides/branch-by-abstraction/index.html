@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, minimal-ui"
+    />
+
+    <title>Branch by Abstraction</title>
+
+    <link rel="stylesheet" href="/vendor/revealjs/dist/reset.css" />
+    <link rel="stylesheet" href="/vendor/revealjs/dist/reveal.css" />
+    <link rel="stylesheet" href="/revealjs-themes/pm.css" />
+
+    <link
+      rel="stylesheet"
+      href="/vendor/revealjs/plugin/highlight/monokai.css"
+    />
+
+    <link rel="stylesheet" href="/vendor/reveal.js-plugins/menu/menu.css" />
+    <link
+      rel="stylesheet"
+      href="/vendor/reveal.js-plugins/chalkboard/style.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/vendor/reveal.js-plugins/customcontrols/style.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/vendor/reveal.js-plugins/menu/font-awesome/css/fontawesome.css"
+    />
+    <style>
+      .columns {
+        display: flex;
+        width: 100%;
+      }
+      .col {
+        flex: 1;
+      }
+
+      .text-small {
+        font-size: smaller;
+      }
+
+      .img-display {
+        position: relative;
+      }
+
+      .img-display p {
+        height: 100%;
+      }
+
+      .img-display img {
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="reveal">
+      <div class="slides">
+        <section
+          data-markdown="content.md"
+          data-separator-vertical="^\r?\n\|--\r?\n$"
+        ></section>
+      </div>
+    </div>
+
+    <script src="/vendor/revealjs/dist/reveal.js"></script>
+    <script src="/vendor/revealjs/plugin/notes/notes.js"></script>
+    <script src="/vendor/revealjs/plugin/markdown/markdown.js"></script>
+    <script src="/vendor/revealjs/plugin/highlight/highlight.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/3.2.0/chart.min.js"></script>
+    <script src="/vendor/reveal.js-plugins/chart/plugin.js"></script>
+
+    <script src="/vendor/reveal.js-plugins/menu/menu.js"></script>
+    <script src="/vendor/reveal.js-plugins/menu/plugin.js"></script>
+    <script src="/vendor/reveal.js-plugins/chalkboard/plugin.js"></script>
+    <script src="/vendor/reveal.js-plugins/customcontrols/plugin.js"></script>
+
+    <script>
+      // More info about initialization & config:
+      // - https://revealjs.com/initialization/
+      // - https://revealjs.com/config/
+      Reveal.initialize({
+        width: 960,
+        height: 700,
+        hash: true,
+        hashOneBasedIndex: true,
+        slideNumber: "h/v",
+
+        chart: {
+          defaults: {
+            color: "black", // color of labels
+            scale: {
+              beginAtZero: true,
+              ticks: { stepSize: 1 },
+              grid: { color: "lightgray" }, // color of grid lines
+            },
+          },
+          line: {
+            borderColor: ["rgb(88,28,135)"],
+            borderDash: [[0, 0]],
+          },
+        },
+
+        customcontrols: {
+          controls: [
+            {
+              icon: '<i class="fa fa-pen-square"></i>',
+              title: "Toggle chalkboard (B)",
+              action: "RevealChalkboard.toggleChalkboard();",
+            },
+            {
+              icon: '<i class="fa fa-pen"></i>',
+              title: "Toggle notes canvas (C)",
+              action: "RevealChalkboard.toggleNotesCanvas();",
+            },
+          ],
+        },
+
+        chalkboard: {
+          storage: "chalkboard-data",
+          colorButtons: 7,
+          eraser: {
+            src: "/vendor/reveal.js-plugins/chalkboard/img/sponge.png",
+            radius: 20,
+          },
+        },
+
+        plugins: [
+          RevealMarkdown,
+          RevealHighlight,
+          RevealNotes,
+          RevealChart,
+          RevealMenu,
+          RevealChalkboard,
+          RevealCustomControls,
+        ],
+      })
+    </script>
+  </body>
+</html>

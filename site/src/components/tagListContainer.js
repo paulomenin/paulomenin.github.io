@@ -6,7 +6,7 @@ function computeTagList(nodes) {
   const uniqueTags = new Set()
 
   nodes.forEach(({ frontmatter }) => {
-    frontmatter.tags.forEach(tag => {
+    frontmatter.tags?.forEach(tag => {
       uniqueTags.add(tag)
     })
   })

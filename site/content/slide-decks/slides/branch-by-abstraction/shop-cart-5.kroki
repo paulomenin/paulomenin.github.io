@@ -1,0 +1,17 @@
+---
+diagramType: plantuml
+---
+
+rectangle Production {
+  rectangle "Shopping Cart Controller" as controller #black;text:white
+  rectangle "Abstraction (toggle)" as abstraction #white;text:black
+  rectangle "Old Shopping Cart" as old_sc  #black;text:white
+  note top of abstraction : Implements Interface
+} 
+
+rectangle "New Shopping Cart" as new_sc #indigo;text:white
+note right of new_sc : Only devs turns toggle On
+
+(controller) -right-> (abstraction)
+(abstraction) -right-> (old_sc)
+(abstraction) -down-> (new_sc) #indigo

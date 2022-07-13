@@ -370,3 +370,49 @@ section.has-dark-background h6 {
   color: rgb(64 64 64);
   background-color: var(--r-emphasis-background-color);
 }
+
+/*********************************************
+ * FIXED LEFT BAR
+ *********************************************/
+.reveal::before {
+  content: "";
+  height: 100%;
+  width: 15px;
+  background-color: var(--r-heading-color);
+  position: absolute;
+  left: 0;
+}
+
+/*********************************************
+ * FIXED TOP HEADER
+ *********************************************/
+.reveal.slide .slides > section,
+.reveal.slide .slides > section > section {
+  min-height: 100% !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: center !important;
+  position: absolute !important;
+  top: 0 !important;
+  align-items: center !important;
+}
+section > h1:not(.center),
+section > h2:not(.center),
+section > .subtitle {
+  position: absolute !important;
+  top: 0 !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+  left: 0 !important;
+  right: 0 !important;
+  text-align: center !important;
+}
+section > .subtitle {
+  top: 60px !important;
+  font-size: var(--r-heading4-size);
+}
+.print-pdf .reveal.slide .slides > section,
+.print-pdf .reveal.slide .slides > section > section {
+  min-height: 770px !important;
+  position: relative !important;
+}

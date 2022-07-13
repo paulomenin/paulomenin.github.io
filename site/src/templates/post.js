@@ -20,6 +20,13 @@ function BlogPostTemplate({ data, location }) {
   const siteTitle = data.site.siteMetadata?.title || `Title`
   const { previous, next } = data
 
+  const krokiFiles = data.kroki.nodes.map(node => {
+    return {
+      basename: node.parent.base,
+      url: node.localFile.publicURL,
+    }
+  })
+
   return (
     <Layout location={location} title={siteTitle}>
       <Seo
@@ -66,7 +73,7 @@ function BlogPostTemplate({ data, location }) {
           </header>
 
           <section className="mt-4" itemProp="articleBody">
-            <MDXRenderer>{post.body}</MDXRenderer>
+            <MDXRenderer krokiFiles={krokiFiles}>{post.body}</MDXRenderer>
           </section>
         </article>
       </div>
@@ -110,6 +117,7 @@ export default BlogPostTemplate
 export const pageQuery = graphql`
   query BlogPostBySlug(
     $id: String!
+    $pathGlob: String!
     $previousPostId: String
     $nextPostId: String
   ) {
@@ -135,6 +143,18 @@ export const pageQuery = graphql`
           text
         }
         published
+      }
+    }
+    kroki: allKroki(filter: { fileAbsolutePath: { glob: $pathGlob } }) {
+      nodes {
+        localFile {
+          publicURL
+        }
+        parent {
+          ... on File {
+            base
+          }
+        }
       }
     }
     previous: mdx(id: { eq: $previousPostId }) {
