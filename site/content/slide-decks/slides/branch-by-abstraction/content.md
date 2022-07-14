@@ -60,13 +60,13 @@ changes that can last longer.
 
 <div class="col img-display" data-markdown>
 
-![Fig-1](shop-cart-1.svg) <!-- .element: class="fragment fade-out" data-fragment-index="1" -->
-![Fig-2](shop-cart-2.svg) <!-- .element: class="fragment fade-in-then-out" data-fragment-index="1" -->
-![Fig-3](shop-cart-3.svg) <!-- .element: class="fragment fade-in-then-out" data-fragment-index="2" -->
-![Fig-4](shop-cart-4.svg) <!-- .element: class="fragment fade-in-then-out" data-fragment-index="3" -->
-![Fig-5](shop-cart-5.svg) <!-- .element: class="fragment fade-in-then-out" data-fragment-index="4" -->
-![Fig-6](shop-cart-6.svg) <!-- .element: class="fragment fade-in-then-out" data-fragment-index="5" -->
-![Fig-7](shop-cart-7.svg) <!-- .element: class="fragment fade-in" data-fragment-index="6" -->
+![Fig-1](kroki/shop-cart-1.svg) <!-- .element: class="fragment fade-out" data-fragment-index="1" -->
+![Fig-2](kroki/shop-cart-2.svg) <!-- .element: class="fragment fade-in-then-out" data-fragment-index="1" -->
+![Fig-3](kroki/shop-cart-3.svg) <!-- .element: class="fragment fade-in-then-out" data-fragment-index="2" -->
+![Fig-4](kroki/shop-cart-4.svg) <!-- .element: class="fragment fade-in-then-out" data-fragment-index="3" -->
+![Fig-5](kroki/shop-cart-5.svg) <!-- .element: class="fragment fade-in-then-out" data-fragment-index="4" -->
+![Fig-6](kroki/shop-cart-6.svg) <!-- .element: class="fragment fade-in-then-out" data-fragment-index="5" -->
+![Fig-7](kroki/shop-cart-7.svg) <!-- .element: class="fragment fade-in" data-fragment-index="6" -->
 
 </div>
 

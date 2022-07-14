@@ -69,3 +69,7 @@ public
 **/.yarn-integrity
 **/.yarn/*
 !**/.yarn/releases
+
+# Kroki output
+**/kroki/**/*
+!**/kroki/**/*.kroki
