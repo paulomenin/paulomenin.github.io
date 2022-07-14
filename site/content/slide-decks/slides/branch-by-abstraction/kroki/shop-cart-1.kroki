@@ -1,0 +1,13 @@
+---
+diagramType: plantuml
+---
+
+skinparam rectangle {
+    BackgroundColor black
+    FontColor white
+}
+
+rectangle "Shopping Cart Controller" as controller
+rectangle "Shopping Cart" as old_sc  
+
+(controller) -right-> (old_sc)

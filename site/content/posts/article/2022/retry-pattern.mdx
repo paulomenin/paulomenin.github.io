@@ -1,0 +1,60 @@
+---
+title: Retry Pattern
+description: "Retry strategies to recover from errors"
+date: "2022-07-04T00:00:00.000Z"
+tags: ["design-patterns", "resilience", "services-communication"]
+---
+
+In a distributed environment we have services calling external resources,
+these resources can be temporarily unavailable for many reasons.
+A resilient application must know how to deal with the failures of other services.
+
+One way to handle failures of external calls is using a retry pattern.
+A retry mechanism will control the interval between attempts and the number
+of retries before giving up.
+
+But first, an application must determine if the failure is transient.
+A transient failure occurs because of a temporary fault condition that causes
+a service down for a few seconds.
+Examples of transient failures are:
+
+- Network failure: missing connectivity for a short period.
+- Unavailability: a service crash or down for maintenance.
+- Overload: an external service that cannot accept new requests.
+
+In another hand, an authentication failure, for example, will not be resolved
+after a few seconds, and should not be retried.
+
+Different applications have different requirements and require different fault
+handling strategies. Some must retry more frequently, others can have a long interval
+between attempts, for example, in background jobs where a user is not waiting for feedback.
+
+Retry pattern should be used when faults may self-correct after a short delay.
+
+#### Interval between attempts
+
+Also known as Back-off time, the time to wait before another attempt. Some strategies are:
+
+- Constant/Fixed interval: the interval is the same between attempts.
+- Incremental Back-off: the interval is calculated based on the number of attempts,
+  it can be calculated in many ways:
+  - Linear: using a constant multiplier.
+  - Exponential: <TeX math="t = b^c" /> where
+    <TeX math="t" /> is the time delay,
+    <TeX math="b" /> is the multiplicative factor and
+    <TeX math="c" /> is the number of attempts. A common value for b is 2 ( <TeX math="t = 2^c" /> ),
+    which will double the delay for every attempt.
+  - Fibonacci: the sum of the last two intervals.
+- Random: usually a value between a minimum and a maximum range.
+
+Also, a strategy can use combinations, like a constant interval plus jitter (a short random delay)
+to avoid many parallel attempts to fire at the same time.
+Another combination is to use a truncated back-off time, it is to define a maximum time
+so the attempts don't end up waiting longer and longer.
+
+#### When to give up
+
+A common strategy to give up the operation and abort is to use a fixed number of attempts.
+
+Another possibility is to use a timeout, in this case, the number of attempts will depend on the strategy
+used to determine the back-off time.
