@@ -23,7 +23,7 @@ function BlogPostTemplate({ data, location }) {
   const krokiFiles = data.kroki.nodes.map(node => {
     return {
       basename: node.parent.base,
-      url: node.localFile.publicURL,
+      url: node.childrenFile?.at(0)?.publicURL,
     }
   })
 
@@ -147,7 +147,7 @@ export const pageQuery = graphql`
     }
     kroki: allKroki(filter: { fileAbsolutePath: { glob: $pathGlob } }) {
       nodes {
-        localFile {
+        childrenFile {
           publicURL
         }
         parent {
