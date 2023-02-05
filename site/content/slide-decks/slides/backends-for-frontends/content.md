@@ -4,15 +4,14 @@
 
 ## Agenda
 
-- Application evolution
-- Features
+- What does it do?
 - Pros
 - Challenges
 - Example
 
 ---
 
-## Features
+## What does it do?
 
 #### A BFF
 
@@ -24,9 +23,9 @@
 
 #### A BFF
 
-- Can be used for SSR (Server-Side Rendering)
-- Can simplify caching
 - A BFF never communicates with other BFF
+- Can simplify caching
+- Can be used for SSR (Server-Side Rendering)
 
 ---
 
@@ -51,13 +50,14 @@
 
 ## Challenges
 
-- Depending on how similar the frontends are, it can lead to code duplication.
-- Adds a single point of failure to the Frontend.
-- Grow the number of services and components rising the deploy complexity, this can be mitigated with good DevOps practices.
+- Depending on how similar the frontends are, it can lead to code duplication
+- Adds a single point of failure to the Frontend
+- Grow the number of services and components rising the deploy complexity, this can be mitigated with DevOps practices
 
 ---
 
-## References
+## Recommended Reading
 
-https://samnewman.io/patterns/architectural/bff/
-https://philcalcado.com/2015/09/18/the_back_end_for_front_end_pattern_bff.html
+[Sam Newman - Pattern: Backends For Frontends](https://samnewman.io/patterns/architectural/bff)
+
+[Phil Calçado - The Back-end for Front-end pattern](https://philcalcado.com/2015/09/18/the_back_end_for_front_end_pattern_bff.html)

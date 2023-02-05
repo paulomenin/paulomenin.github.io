@@ -5,7 +5,7 @@ module.exports = {
     title: `Paulo Menin`,
     author: {
       name: `Paulo Menin`,
-      summary: `Software Engineer`,
+      summary: `Software Engineer and Architect`,
     },
     description: `Paulo Menin's website`,
     siteUrl: `https://paulomenin.dev`,
