@@ -50,9 +50,9 @@
 
 ## Challenges
 
-- Depending on how similar the frontends are, it can lead to code duplication
-- Adds a single point of failure to the Frontend
-- Grow the number of services and components rising the deploy complexity, this can be mitigated with DevOps practices
+- Depending on how similar the frontends are, it can lead to code duplication.
+- Adds a single point of failure to the frontend.
+- Grow the number of services and components rising the deploy complexity, this can be mitigated with good DevOps practices.
 
 ---
 

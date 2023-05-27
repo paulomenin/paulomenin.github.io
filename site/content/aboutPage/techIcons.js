@@ -18,13 +18,13 @@ function TechIcons() {
         <SimpleIcon slug="csharp" label="C Sharp" fillColor="#239120" />
         <SimpleIcon slug="python" label="Python" fillColor="#3776AB" />
         <SimpleIcon slug="javascript" label="JavaScript" fillColor="#F7DF1E" />
+        <SimpleIcon slug="typescript" label="TypeScript" fillColor="#3178C6" />
       </div>
 
       <h4>Frontend</h4>
       <div className="flex flex-wrap gap-3">
         <SimpleIcon slug="html5" label="HTML5" fillColor="#E34F26" />
         <SimpleIcon slug="css3" label="CSS3" fillColor="#1572B6" />
-        <SimpleIcon slug="typescript" label="TypeScript" fillColor="#3178C6" />
         <SimpleIcon slug="jquery" label="jQuery" fillColor="#0769AD" />
         <SimpleIcon slug="react" label="React" fillColor="#61DAFB" />
         <SimpleIcon slug="mui" label="MUI" fillColor="#007FFF" />
@@ -49,17 +49,15 @@ function TechIcons() {
           label="Microsoft Azure"
           fillColor="#0078D4"
         />
-        <SimpleIcon
-          slug="azuredevops"
-          label="Azure DevOps"
-          fillColor="#0078D7"
-        />
         <SimpleIcon slug="mongodb" label="MongoDB" fillColor="#47A248" />
+        <SimpleIcon slug="redis" label="Redis" fillColor="#DC382D" />
         <SimpleIcon
           slug="microsoftsqlserver"
           label="Microsoft SQL Server"
           fillColor="#CC2927"
         />
+        <SimpleIcon slug="apachekafka" label="Kafka" fillColor="#231F20" />
+        <SimpleIcon slug="rabbitmq" label="RabbitMQ" fillColor="#FF6600" />
       </div>
 
       <h4>Machine Learning</h4>
@@ -92,6 +90,11 @@ function TechIcons() {
         <SimpleIcon slug="cypress" label="Cypress" fillColor="#17202C" />
         <SimpleIcon slug="jest" label="Jest" fillColor="#C21325" />
         <SimpleIcon slug="jenkins" label="Jenkins" fillColor="#D24939" />
+        <SimpleIcon
+          slug="azuredevops"
+          label="Azure DevOps"
+          fillColor="#0078D7"
+        />
         <SimpleIcon slug="powershell" label="PowerShell" fillColor="#5391FE" />
         <SimpleIcon slug="sqlite" label="SQLite" fillColor="#003B57" />
         <SimpleIcon slug="zeromq" label="ZeroMQ" fillColor="#DF0000" />
