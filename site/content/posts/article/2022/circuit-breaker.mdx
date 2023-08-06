@@ -6,6 +6,13 @@ tags: ["design-patterns", "resilience", "services-communication"]
 draft: true
 ---
 
-In a distributed environment we have services calling external resources,
-these resources can be temporarily unavailable for many reasons.
-A resilient application must know how to deal with the failures of other services.
+In a distributed environment we have services calling resources that can be
+temporarily failing for many reasons, like down to maintenance or system dificulties.
+A resilient and fault-tolerant application handles failures gracefully to avoid
+propagating them throughout the system.
+
+The Circuit Breaker pattern can improve the stability and resilience of an application
+by acting as a safeguard detecting when a service is likely to fail and preventing
+calling this service. It works like a "switch" that open or closes the circuit based on
+the availability of the service. After a number of failed requests to a service it will
+block requests for a period of time
