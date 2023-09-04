@@ -21,8 +21,7 @@ function AboutMyHistory() {
       </p>
       <p>
         I remember these days when I was eager for the Elementary School classes
-        to end just to be home and start programming simple games like
-        tic-tac-toe in the evenings.
+        to end just to be home and start programming in the evenings.
       </p>
       <p>
         One day when I was in High School I saw a magazine about Linux. I bought
@@ -40,9 +39,9 @@ function AboutMyHistory() {
         with Clipper programming language, C, and more deep on Visual Basic and
         Delphi. During that time I build and sell my first software, a
         management program for a school, with features to keep track of
-        students&apos; grades, and teachers schedules and print some reports. At
-        that time I didn&apos;t have any doubt I want to learn more and declined
-        job offers to enroll in a Bachelor of Computer Science course.
+        students&apos; grades, teachers schedules and print some reports. At
+        that time I wanted to learn more and enroll in a Bachelor of Computer
+        Science course.
       </p>
       <p>
         2005 was the year I ingressed at{" "}
@@ -54,26 +53,27 @@ function AboutMyHistory() {
         Livre&quot; the OpenSource group from São Carlos, where I helped to
         organize events like the FLISOL 2006 (Festival Latinoamericano de
         Instalación de Software Libre). I helped the organization of two
-        editions of &quote;SemComp&quot;, ICMC&apos;s computing week event full
+        editions of &quot;SemComp&quot;, ICMC&apos;s computing week event full
         of talks and workshops.
       </p>
       <p>
-        In my professional career, I had always been working on projects for big
-        multinational companies. Always using Agile Methodologies. In 2014 I
-        passed the exam for the Scrum Master certification.
+        In 2014 I passed the exam for the Scrum Master certification. In 2023 I
+        graduated in Software Architecture and Solutions from XP Education.
       </p>
       <p>
-        I worked on a wide range of projects and technologies: Web development,
-        command-line tools, desktop applications, embedded systems, computer
-        vision, machine learning, 3D printing, IoT, drones, and distributed
-        systems. This diversity of experiences among contact with many different
-        programming languages, from C for embedded systems to high-level
-        languages like Python, enabled me to always be learning something new
-        and have contact with different ways of thinking, patterns, and
-        solutions to problems from different viewpoints. This also made me
-        develop the skill to learn something new very fast. Many times I was
-        exposed to different technology and need to learn it in weeks at the
-        point to become a focal point for the team.
+        In my professional career, I had always been working on projects for big
+        multinational companies. Always using Agile Methodologies. I worked on a
+        wide range of projects and technologies: Web development, command-line
+        tools, desktop applications, embedded systems, computer vision, machine
+        learning, 3D printing, IoT, drones, and distributed systems. This
+        diversity of experiences among contact with many different programming
+        languages, from C for embedded systems to high-level languages like
+        Python, enabled me to always be learning something new and have contact
+        with different ways of thinking, patterns, and solutions to problems
+        from different viewpoints. This also made me develop the skill to learn
+        something new very fast. Many times I was exposed to different
+        technologies and need to learn it fast at the point to become a focal
+        point for the team.
       </p>
       <p>
         Every day at night I ask this question to myself: What did I learn

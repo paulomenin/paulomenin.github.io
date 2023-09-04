@@ -46,10 +46,6 @@ function AboutPage({ data, location }) {
             </Accordion>
 
             <Accordion id="tech-stack" label="Tech Stack">
-              <p className="mt-0">
-                These are some of the technologies that I have been working on
-                within my career.
-              </p>
               <TechIcons />
             </Accordion>
           </section>

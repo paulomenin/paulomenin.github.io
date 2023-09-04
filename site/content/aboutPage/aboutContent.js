@@ -14,12 +14,6 @@ function AboutContent() {
         experience working in technology/research companies, which has enabled
         me to gain knowledge in different fields and programming languages.
       </p>
-      {/* <p>
-        Check out my{" "}
-        <Link href="/resume" forceExternal>
-          resume
-        </Link>
-      </p> */}
 
       <h2>What I write about</h2>
       <p>This site is divided into three main categories:</p>
