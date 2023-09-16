@@ -16,14 +16,14 @@ function LandingPage({ data, location }) {
 
   return (
     <Layout location={location} title={siteTitle}>
-      <Seo title="Recent Posts" />
+      <Seo title="Latest Posts" />
 
       <div className="card flex justify-center">
         <div className="lg:min-w-[700px] max-w-[700px]">
           {articlePosts.length > 0 && (
             <>
               <div className="flex justify-between mb-4 ml-2">
-                <h1>Recent Articles</h1>
+                <h1>Latest Articles</h1>
               </div>
               <PostList posts={articlePosts} />
               <hr className="separator mt-4" />
@@ -33,7 +33,7 @@ function LandingPage({ data, location }) {
           {blogPosts.length > 0 && (
             <>
               <div className="flex justify-between mb-4 ml-2 mt-4">
-                <h1>Recent Blog Posts</h1>
+                <h1>Latest Blog Posts</h1>
               </div>
               <PostList posts={blogPosts} />
               <hr className="separator mt-4" />
@@ -43,7 +43,7 @@ function LandingPage({ data, location }) {
           {blogPosts.length > 0 && (
             <>
               <div className="flex justify-between mb-4 ml-2 mt-4">
-                <h1>Recent Slide Decks</h1>
+                <h1>Latest Slide Decks</h1>
               </div>
               <PostList posts={slidesPosts} />
               <hr className="separator mt-4" />

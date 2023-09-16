@@ -25,18 +25,6 @@ function AboutPage({ data, location }) {
           </header>
 
           <section className="" itemProp="articleBody">
-            <div className="float-right text-center">
-              <StaticImage
-                className="rounded-full shadow-md shadow-black/60"
-                layout="fixed"
-                formats={["auto", "webp", "avif"]}
-                src="../../images/profile-pic.jpg"
-                width={160}
-                height={160}
-                quality={95}
-                alt="Profile picture"
-              />
-            </div>
             <AboutContent />
           </section>
 
