@@ -1,0 +1,17 @@
+---
+diagramType: plantuml
+---
+
+skinparam rectangle {
+    BackgroundColor black
+    FontColor white
+}
+
+rectangle "Shopping Cart Controller" as controller
+rectangle "Abstraction (toggle)" as abstraction #white;text:black
+rectangle "Shopping Cart" as old_sc
+
+note top of abstraction : Implements Interface
+
+(controller) -right-> (abstraction)
+(abstraction) -right-> (old_sc)

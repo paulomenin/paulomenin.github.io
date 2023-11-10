@@ -1,0 +1,12 @@
+---
+diagramType: plantuml
+---
+
+rectangle Production {
+  rectangle "Shopping Cart Controller" as controller #black;text:white
+  rectangle "Shopping Cart" as new_sc #indigo;text:white  
+} 
+
+note right of new_sc : Can rename new implementation
+
+(controller) -right-> (new_sc)

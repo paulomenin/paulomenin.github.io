@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+Sitemap: https://paulomenin.dev/sitemap-index.xml
+Host: https://paulomenin.dev
