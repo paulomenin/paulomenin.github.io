@@ -164,7 +164,19 @@ module.exports = {
     },
     `gatsby-plugin-react-helmet`,
     `gatsby-plugin-cname`,
-    `gatsby-plugin-robots-txt`,
+    {
+      resolve: `gatsby-plugin-robots-txt`,
+      options: {
+        host: `https://paulomenin.dev`,
+        sitemap: `https://paulomenin.dev/sitemap.xml`,
+        policy: [
+          { userAgent: "GPTBot", disallow: "/" },
+          { userAgent: "ChatGPT-User", disallow: "/" },
+          { userAgent: "Google-Extended", disallow: "/" },
+          { userAgent: "CCBot", disallow: "/" },
+        ],
+      },
+    },
     {
       resolve: `gatsby-plugin-sitemap`,
       options: {
