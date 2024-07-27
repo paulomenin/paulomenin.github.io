@@ -1,13 +1,12 @@
 import * as React from "react"
-import Link from "../../src/components/link"
 
 function AboutContent() {
   return (
     <>
       <h2>Hi, I&apos;m Paulo Menin</h2>
       <p>
-        A passionate software engineer and lifelong learner from Brazil helping
-        teams to grow high-quality software solutions.
+        A software architect and lifelong learner from Brazil helping teams to
+        grow high-quality software solutions.
       </p>
       <p>
         I have more than {new Date().getFullYear() - 2010} years of professional

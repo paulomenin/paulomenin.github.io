@@ -1,12 +1,8 @@
 import * as React from "react"
 import { graphql } from "gatsby"
-import { StaticImage } from "gatsby-plugin-image"
-import Accordion from "../components/accordion"
 import Layout from "../components/layout"
 import Seo from "../components/seo"
 import AboutContent from "../../content/aboutPage/aboutContent"
-import AboutHistory from "../../content/aboutPage/aboutHistory"
-import TechIcons from "../../content/aboutPage/techIcons"
 
 function AboutPage({ data, location }) {
   const siteTitle = data.site.siteMetadata?.title || `Title`
@@ -26,16 +22,6 @@ function AboutPage({ data, location }) {
 
           <section className="" itemProp="articleBody">
             <AboutContent />
-          </section>
-
-          <section className="pt-8 pb-2 font-sans flex flex-col gap-4">
-            <Accordion id="my-history" label="My History">
-              <AboutHistory />
-            </Accordion>
-
-            <Accordion id="tech-stack" label="Tech Stack">
-              <TechIcons />
-            </Accordion>
           </section>
         </article>
       </div>
