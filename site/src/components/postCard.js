@@ -3,13 +3,13 @@ import Link from "./link"
 
 function PostCard({ post }) {
   return (
-    <div className="group p-2 rounded-md hover:bg-neutral-200 duration-300">
+    <div className="group p-2 rounded-md duration-300">
       <Link href={post.fields.slug}>
         <div className="flex justify-between">
           <h3
             className="font-bold 
             text-neutral-700
-            group-hover:text-purple-800
+            group-hover:text-purple-900
             transition-colors duration-300"
           >
             {post.frontmatter.title}
