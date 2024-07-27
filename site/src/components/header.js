@@ -1,9 +1,7 @@
 import * as React from "react"
 import { useStaticQuery, graphql } from "gatsby"
 import { StaticImage } from "gatsby-plugin-image"
-import useDarkMode from "use-dark-mode"
 import { RssIcon } from "@heroicons/react/solid"
-import DarkModeToggle from "react-dark-mode-toggle"
 import Link from "./link"
 import Menu from "./menu"
 
@@ -28,10 +26,6 @@ function Header() {
   const social = data.site.siteMetadata?.social
   const title = author.name
 
-  const darkMode = useDarkMode(false, {
-    onChange: () => {}, // Avoid hook to add unwanted class on body element.
-  })
-
   return (
     <header className="card flex flex-col m-4 gap-2">
       <div className="flex flex-row justify-between">
@@ -43,23 +37,15 @@ function Header() {
             placeholder="none"
             backgroundColor="#ffffff"
           />
-          <span className="font-sans font-bold text-2xl text-black dark:text-white">
+          <span className="font-sans font-bold text-2xl text-black">
             {title}
           </span>
         </Link>
 
         <div className="flex gap-2 items-start">
-          <div className="flex flex-col justify-center h-7">
-            <DarkModeToggle
-              onChange={darkMode.toggle}
-              checked={darkMode.value}
-              size={41}
-            />
-          </div>
-
           <Link href={social.linkedin}>
             <div className="icon-link flex justify-center items-center">
-              <div className="h-5 w-5 dark:fill-neutral-200 transition-colors duration-300">
+              <div className="h-5 w-5 transition-colors duration-300">
                 <svg
                   role="img"
                   viewBox="0 0 24 24"
@@ -74,7 +60,7 @@ function Header() {
 
           <Link href={social.github}>
             <div className="icon-link flex justify-center items-center">
-              <div className="h-5 w-5 dark:fill-neutral-200 transition-colors duration-300">
+              <div className="h-5 w-5 transition-colors duration-300">
                 <svg
                   role="img"
                   viewBox="0 0 24 24"
@@ -88,7 +74,7 @@ function Header() {
           </Link>
 
           <Link href="/rss.xml" title="RSS">
-            <div className="icon-link text-neutral-900 dark:text-neutral-200">
+            <div className="icon-link text-neutral-900">
               <RssIcon className="h-7 w-7" />
             </div>
           </Link>

@@ -8,7 +8,7 @@ function RevealJsSlides({ src, title, fullscreen }) {
   const heightClass = fullscreen ? "h-screen" : "h-96"
   const borderClass = fullscreen
     ? "outline-none"
-    : "outline outline-purple-800 dark:outline-purple-600 rounded p-1"
+    : "outline outline-purple-800 rounded p-1"
   return (
     <div className={`${borderClass}`}>
       <div className={`w-full ${heightClass}`}>

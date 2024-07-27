@@ -5,10 +5,7 @@ function SimpleIcon({ slug, label, fillColor }) {
   const icon = simpleIcons.Get(slug)
   return (
     <div className="flex flex-col items-center justify-start font-sans min-w-[88px] max-w-[88px]">
-      <div
-        className="w-10 h-10 justify-self-center p-1
-      dark:bg-white dark:rounded-md"
-      >
+      <div className="w-10 h-10 justify-self-center p-1">
         <svg
           role="img"
           viewBox="0 0 24 24"

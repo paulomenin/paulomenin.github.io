@@ -33,7 +33,7 @@ function Footer() {
         content-center items-center
         h-10 m-4 mb-2 px-3 rounded-lg
         text-sm
-        bg-neutral-200 dark:bg-neutral-800
+        bg-neutral-200
         drop-shadow-md"
     >
       <div className="flex flex-row gap-1 items-center">
@@ -62,7 +62,7 @@ function Footer() {
             gap-2"
       >
         <a href={social.linkedin} target="_blank" rel="noopener noreferrer">
-          <div className="w-5 h-5 fill-gray-600 hover:fill-[#0A66C2]">
+          <div className="w-5 h-5 fill-gray-600 hover:fill-black">
             <svg
               role="img"
               viewBox="0 0 24 24"

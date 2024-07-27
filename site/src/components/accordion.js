@@ -14,8 +14,8 @@ function Accordion({ id, label, children }) {
   return (
     <div
       className="relative w-full rounded-lg overflow-hidden p-0
-      border-[1px] border-neutral-200 dark:border-neutral-700
-      bg-neutral-200 dark:bg-neutral-700"
+      border-[1px] border-neutral-200
+      bg-neutral-200"
     >
       <input
         id={tabId}
@@ -29,7 +29,6 @@ function Accordion({ id, label, children }) {
         transition-all duration-300
         font-bold
         bg-neutral-200 text-neutral-800 hover:text-purple-900
-        dark:bg-neutral-700 dark:text-neutral-200 dark:hover:text-purple-500
         peer-checked:bg-purple-800 peer-checked:text-neutral-200 peer-checked:hover:text-neutral-200"
         onClick={toggle}
       >
@@ -39,14 +38,13 @@ function Accordion({ id, label, children }) {
         className="w-6 h-6 block absolute right-4 top-4 cursor-pointer
         transition-all duration-300
         peer-checked:rotate-[-180deg] 
-        text-neutral-800 peer-checked:text-neutral-200
-        dark:text-neutral-200 dark:peer-checked:text-neutral-200"
+        text-neutral-800 peer-checked:text-neutral-200"
         onClick={toggle}
       />
       <div
         className="border-box overflow-hidden h-0
           peer-checked:h-auto
-          bg-white dark:bg-neutral-800"
+          bg-white"
       >
         <div className="p-4">{children}</div>
       </div>

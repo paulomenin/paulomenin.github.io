@@ -1,6 +1,10 @@
 const path = require("path")
 
 module.exports = {
+  flags: {
+    DEV_SSR: true,
+  },
+
   siteMetadata: {
     title: `Paulo Menin`,
     author: {

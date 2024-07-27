@@ -33,7 +33,7 @@ function InlineBio() {
         />
         <div
           className="flex flex-col justify-evenly h-16
-          font-sans text-base text-neutral-600 dark:text-neutral-300"
+          font-sans text-base text-neutral-600"
         >
           <p className="font-bold text-sm p-0 m-0">{author?.name || null}</p>
           <p className="p-0 m-0 text-sm">{author?.summary || null}</p>

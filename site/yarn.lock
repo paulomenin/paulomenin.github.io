@@ -8614,7 +8614,6 @@ __metadata:
     prop-types: ^15.8.1
     puppeteer: ^15.3.2
     react: ^17.0.1
-    react-dark-mode-toggle: ^0.2.0
     react-dom: ^17.0.1
     react-helmet: ^6.1.0
     simple-icons: ^6.12.0
@@ -11947,13 +11946,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"lottie-web@npm:^5.7.6":
-  version: 5.10.2
-  resolution: "lottie-web@npm:5.10.2"
-  checksum: 9ec80b479d8d03c079bd4f246d301f0c4aac2c4d6f8daaa79f6f3fc285aaba377c64879f6748d49c1db52b9854aea81c3203d858e9c686f7a47cd8b771d112d0
-  languageName: node
-  linkType: hard
-
 "lower-case-first@npm:^1.0.0":
   version: 1.0.2
   resolution: "lower-case-first@npm:1.0.2"
@@ -13741,13 +13733,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"parse-unit@npm:^1.0.1":
-  version: 1.0.1
-  resolution: "parse-unit@npm:1.0.1"
-  checksum: fdd7d2b91a3e536d7835e408caec21345eac6d4ae442d0cfecd5ebb8750c89cfc3ed4cd5da389826313134aedca04e30e52188005b564ec13c212720821731c8
-  languageName: node
-  linkType: hard
-
 "parse-url@npm:^8.1.0":
   version: 8.1.0
   resolution: "parse-url@npm:8.1.0"
@@ -14928,16 +14913,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"react-dark-mode-toggle@npm:^0.2.0":
-  version: 0.2.0
-  resolution: "react-dark-mode-toggle@npm:0.2.0"
-  dependencies:
-    parse-unit: ^1.0.1
-    react-lottie-player: ^1.1.1
-  checksum: 6a0bd0bf43130c826ce2e43e9e0d9dd6e32b50185e5006cb2abe0a16f6628a946d2889c7328b55773574b2cab92458a1bf2708d6b88f70fb794ba3b85af62f44
-  languageName: node
-  linkType: hard
-
 "react-dev-utils@npm:^12.0.1":
   version: 12.0.1
   resolution: "react-dev-utils@npm:12.0.1"
@@ -15022,19 +14997,6 @@ __metadata:
   version: 3.0.4
   resolution: "react-lifecycles-compat@npm:3.0.4"
   checksum: a904b0fc0a8eeb15a148c9feb7bc17cec7ef96e71188280061fc340043fd6d8ee3ff233381f0e8f95c1cf926210b2c4a31f38182c8f35ac55057e453d6df204f
-  languageName: node
-  linkType: hard
-
-"react-lottie-player@npm:^1.1.1":
-  version: 1.5.4
-  resolution: "react-lottie-player@npm:1.5.4"
-  dependencies:
-    fast-deep-equal: ^3.1.3
-    lottie-web: ^5.7.6
-    rfdc: ^1.3.0
-  peerDependencies:
-    react: ^16.0.0 || ^17.0.0 || ^18.0.0
-  checksum: ef2f505ca81e2ccd8ef7dfa01c1ee204cea21c9e3fa8112ff83962085e0cea77a1f946b2b9bba5d8d83a6ad9b081620efccc94c3381607bce7e12b3b4ef7b82a
   languageName: node
   linkType: hard
 
@@ -15737,13 +15699,6 @@ __metadata:
   version: 1.0.4
   resolution: "reusify@npm:1.0.4"
   checksum: c3076ebcc22a6bc252cb0b9c77561795256c22b757f40c0d8110b1300723f15ec0fc8685e8d4ea6d7666f36c79ccc793b1939c748bf36f18f542744a4e379fcc
-  languageName: node
-  linkType: hard
-
-"rfdc@npm:^1.3.0":
-  version: 1.3.0
-  resolution: "rfdc@npm:1.3.0"
-  checksum: fb2ba8512e43519983b4c61bd3fa77c0f410eff6bae68b08614437bc3f35f91362215f7b4a73cbda6f67330b5746ce07db5dd9850ad3edc91271ad6deea0df32
   languageName: node
   linkType: hard
 
